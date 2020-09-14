@@ -61,7 +61,7 @@ namespace KarteikartenDesktop
                 CreateIntervall(7);
                 CreateIntervall(30);
 
-                this.connection.Close();
+                //this.connection.Close();
             } else
             {
                 SQLiteConnection databaseConnection = new SQLiteConnection("Data Source=karteikarten.sqlite;Version=3;");
@@ -73,7 +73,7 @@ namespace KarteikartenDesktop
 
                 this.connection = databaseConnection;
 
-                this.connection.Close();
+                //this.connection.Close();
             }
         }
 

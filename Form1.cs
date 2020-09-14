@@ -20,14 +20,6 @@ namespace KarteikartenDesktop
             InitializeComponent();
 
             DataBase dataBase = new DataBase();
-
-            var day1 = dataBase.GetIntervall(1);
-            var days3 = dataBase.GetIntervall(2);
-            var days7 = dataBase.GetIntervall(3);
-            var days30 = dataBase.GetIntervall(4);
-
-            dataBase.RemoveIntervall(4);
-            var days30Removed = dataBase.GetIntervall(4); // sollte 0 zurückgeben
         }
     }
 }
