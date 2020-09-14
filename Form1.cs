@@ -15,6 +15,8 @@ namespace KarteikartenDesktop
         public Form1()
         {
             InitializeComponent();
+
+            DataBase dataBase = new DataBase();
         }
     }
 }
