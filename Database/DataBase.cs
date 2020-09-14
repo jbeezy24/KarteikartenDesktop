@@ -45,6 +45,7 @@ namespace KarteikartenDesktop
                 removeTable("Thema");
                 removeTable("UserSettings");
                 removeTable("Karteikarten");
+
                 createTable("Bild", "BildID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, BildDaten BLOB");
                 createTable("Intervall", "IntervallID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, Dauer INTEGER");
                 createTable("Frage", "FrageID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, Text VARCHAR(1000), BildID INTEGER, FOREIGN KEY (BildID) REFERENCES Bild(BildID)");
@@ -60,8 +61,9 @@ namespace KarteikartenDesktop
                 CreateIntervall(3);
                 CreateIntervall(7);
                 CreateIntervall(30);
+                CreateIntervall(9999);
 
-                this.connection.Close();
+               // this.connection.Close();
             } else
             {
                 SQLiteConnection databaseConnection = new SQLiteConnection("Data Source=karteikarten.sqlite;Version=3;");
@@ -73,7 +75,148 @@ namespace KarteikartenDesktop
 
                 this.connection = databaseConnection;
 
-                this.connection.Close();
+               // this.connection.Close();
+            }
+        }
+
+        public void CreateQuestion(string text, int bildID = 0)
+        {
+            try
+            {
+                SQLiteCommand command = this.connection.CreateCommand();
+
+                if (bildID == 0)
+                {
+                    command.CommandText = string.Format("INSERT INTO Frage (Text) VALUES (@0);");
+                    SQLiteParameter parameter = new SQLiteParameter("@0", System.Data.DbType.String);
+                    parameter.Value = text;
+                    command.Parameters.Add(parameter);
+                } else
+                {
+                    command.CommandText = string.Format("INSERT INTO Frage (Text, BildID) VALUES (@0, @1);");
+                    SQLiteParameter parameter = new SQLiteParameter("@0", System.Data.DbType.String);
+                    SQLiteParameter parameterBildID = new SQLiteParameter("@1", System.Data.DbType.Int32);
+                    parameter.Value = text;
+                    parameterBildID.Value = bildID;
+                    command.Parameters.Add(parameter);
+                    command.Parameters.Add(parameterBildID);
+                }
+
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteLogfile("CreateIntervall: " + ex.Message);
+            }
+        }
+
+        public void CreateQuestion(string text, Bitmap picture = null)
+        {
+            try
+            {
+                SQLiteCommand command = this.connection.CreateCommand();
+
+                if (picture == null)
+                {
+                    command.CommandText = string.Format("INSERT INTO Frage (Text) VALUES (@0);");
+                    SQLiteParameter parameter = new SQLiteParameter("@0", System.Data.DbType.String);
+                    parameter.Value = text;
+                    command.Parameters.Add(parameter);
+                }
+                else
+                {
+                    SavePicture(picture);
+
+                    // letzten Eintrag von Tabelle Bild bekommen, da dort unser neuestes Bild ist
+                    var latestPicture = GetLatestPictureBildID();
+
+                    if (latestPicture > 0)
+                    {
+                        command.CommandText = string.Format("INSERT INTO Frage (Text, BildID) VALUES (@0, @1);");
+                        SQLiteParameter parameter = new SQLiteParameter("@0", System.Data.DbType.String);
+                        SQLiteParameter parameterBild = new SQLiteParameter("@1", System.Data.DbType.Int32);
+                        parameter.Value = text;
+                        parameterBild.Value = latestPicture;
+                        command.Parameters.Add(parameter);
+                        command.Parameters.Add(parameterBild);
+                    }
+                }
+
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteLogfile("CreateIntervall: " + ex.Message);
+            }
+        }
+
+        public string GetQuestion(int frageID)
+        {
+            string query = "SELECT Text FROM Frage WHERE FrageID='" + frageID + "';";
+            SQLiteCommand command = new SQLiteCommand(query, this.connection);
+            try
+            {
+                IDataReader dataReader = command.ExecuteReader();
+                try
+                {
+                    while (dataReader.Read())
+                    {
+                        var a = dataReader["Text"];
+                        return Convert.ToString(a);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Logger.WriteLogfile("GetQuestion 1: " + ex.Message);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteLogfile("GetQuestion 2: " + ex.Message);
+            }
+
+            return string.Empty;
+        }
+
+        public Bitmap GetQuestionPicture(int frageID)
+        {
+            string query = "SELECT BildDaten FROM Bild INNER JOIN Frage ON Frage.BildID=Bild.BildID WHERE Frage.FrageID='" + frageID + "';";
+            SQLiteCommand command = new SQLiteCommand(query, this.connection);
+            try
+            {
+                IDataReader dataReader = command.ExecuteReader();
+                try
+                {
+                    while (dataReader.Read())
+                    {
+                        byte[] a = (System.Byte[])dataReader["BildDaten"];
+                        return new Bitmap(byteToImage(a));
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Logger.WriteLogfile("GetQuestionPicture 1: " + ex.Message);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteLogfile("GetQuestionPicture 2: " + ex.Message);
+            }
+
+            return null;
+        }
+
+        public void RemoveQuestion(int frageID)
+        {
+            try
+            {
+                SQLiteCommand command = this.connection.CreateCommand();
+                command.CommandText = string.Format("DELETE FROM Frage WHERE FrageID='" + frageID + "';");
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteLogfile("RemoveQuestion: " + ex.Message);
             }
         }
 
@@ -217,6 +360,34 @@ namespace KarteikartenDesktop
             return null;
         }
 
+        public int GetLatestPictureBildID()
+        {
+            string query = "SELECT BildID FROM Bild ORDER BY BildID DESC LIMIT 1;";
+            SQLiteCommand command = new SQLiteCommand(query, this.connection);
+            try
+            {
+                IDataReader dataReader = command.ExecuteReader();
+                try
+                {
+                    while (dataReader.Read())
+                    {
+                        var a = dataReader["BildID"];
+                        return Convert.ToInt32(a);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Logger.WriteLogfile("GetLatestPicture 1: " + ex.Message);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteLogfile("GetLatestPicture 2: " + ex.Message);
+            }
+
+            return 0;
+        }
+
         public byte[] ImageToByte(Image image, System.Drawing.Imaging.ImageFormat format)
         {
             using (MemoryStream memoryStream = new MemoryStream())
@@ -263,6 +434,8 @@ namespace KarteikartenDesktop
                 Logger.WriteLogfile("removeTable: " + ex.Message);
             }
         }
+
+        public SQLiteConnection Connection { get => connection; set => connection = value; }
 
         private SQLiteConnection connection;
     }

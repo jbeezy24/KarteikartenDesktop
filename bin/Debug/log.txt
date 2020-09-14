@@ -1,1 +1,2 @@
-GetIntervall 2: Database is not open
+[14.09.2020 14:31:38] GetLatestPicture 2: SQL logic error
+no such column: ID
