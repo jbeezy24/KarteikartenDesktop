@@ -74,7 +74,7 @@ namespace KarteikartenDesktop
 
         public void SavePicture(Bitmap picture)
         {
-            byte[] pic = imageToByte(picture, System.Drawing.Imaging.ImageFormat.Jpeg);
+            byte[] pic = ImageToByte(picture, System.Drawing.Imaging.ImageFormat.Jpeg);
 
             SQLiteCommand cmd = this.connection.CreateCommand();
             cmd.CommandText = string.Format("INSERT INTO Bild (BildDaten) VALUES (@0);");
@@ -92,35 +92,69 @@ namespace KarteikartenDesktop
             }
         }
 
+        public void ChangePicture(Bitmap picture, int pictureID)
+        {
+            byte[] pic = ImageToByte(picture, System.Drawing.Imaging.ImageFormat.Jpeg);
+
+            SQLiteCommand command = this.connection.CreateCommand();
+            command.CommandText = string.Format("UPDATE Bild SET BildDaten=(@0) WHERE BildID='" + pictureID + "';");
+            SQLiteParameter parameter = new SQLiteParameter("@0", System.Data.DbType.Binary);
+            parameter.Value = pic;
+            command.Parameters.Add(parameter);
+
+            try
+            {
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        public void RemovePicture(int pictureID) {
+            SQLiteCommand command = this.connection.CreateCommand();
+            command.CommandText = string.Format("DELETE FROM Bild WHERE BildID='" + pictureID + "';");
+
+            try
+            {
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
         public Bitmap GetPicture(int pictureID)
         {
             string query = "SELECT BildDaten FROM Bild WHERE BildID='" + pictureID + "';";
-            SQLiteCommand cmd = new SQLiteCommand(query, this.connection);
+            SQLiteCommand command = new SQLiteCommand(query, this.connection);
             try
             {
-                IDataReader rdr = cmd.ExecuteReader();
+                IDataReader dataReader = command.ExecuteReader();
                 try
                 {
-                    while (rdr.Read())
+                    while (dataReader.Read())
                     {
-                        byte[] a = (System.Byte[])rdr["BildDaten"];
+                        byte[] a = (System.Byte[])dataReader["BildDaten"];
                         return new Bitmap(byteToImage(a));
                     }
                 }
-                catch (Exception exc) { }
+                catch (Exception ex) { }
             }
             catch (Exception ex) { }
 
             return null;
         }
 
-        private byte[] imageToByte(Image image, System.Drawing.Imaging.ImageFormat format)
+        public byte[] ImageToByte(Image image, System.Drawing.Imaging.ImageFormat format)
         {
-            using (MemoryStream ms = new MemoryStream())
+            using (MemoryStream memoryStream = new MemoryStream())
             {
                 // Convert Image to byte[]
-                image.Save(ms, format);
-                byte[] imageBytes = ms.ToArray();
+                image.Save(memoryStream, format);
+                byte[] imageBytes = memoryStream.ToArray();
                 return imageBytes;
             }
         }
@@ -128,9 +162,9 @@ namespace KarteikartenDesktop
         private Image byteToImage(byte[] imageBytes)
         {
             // Convert byte[] to Image
-            MemoryStream ms = new MemoryStream(imageBytes, 0, imageBytes.Length);
-            ms.Write(imageBytes, 0, imageBytes.Length);
-            Image image = new Bitmap(ms);
+            MemoryStream memoryStream = new MemoryStream(imageBytes, 0, imageBytes.Length);
+            memoryStream.Write(imageBytes, 0, imageBytes.Length);
+            Image image = new Bitmap(memoryStream);
             return image;
         }
 
@@ -141,7 +175,6 @@ namespace KarteikartenDesktop
                 try
                 {
                     string sql = "create table " + tableName + " (" + parameterString + ")";
-
                     SQLiteCommand command = new SQLiteCommand(sql, this.connection);
                     command.ExecuteNonQuery();
                 } catch (Exception ex) { 
@@ -155,7 +188,6 @@ namespace KarteikartenDesktop
             try
             {
                 string sql = "drop table " + tableName;
-
                 SQLiteCommand command = new SQLiteCommand(sql, this.connection);
                 command.ExecuteNonQuery();
             }
