@@ -21,5 +21,10 @@ namespace KarteikartenDesktop
 
             DataBase dataBase = new DataBase();
         }
+
+        private void Form1_SizeChanged(object sender, EventArgs e)
+        {
+            panelsideMenu.Width = Form1.ActiveForm.Width / 4;
+        }
     }
 }
