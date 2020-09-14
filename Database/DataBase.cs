@@ -61,7 +61,7 @@ namespace KarteikartenDesktop
                 CreateIntervall(7);
                 CreateIntervall(30);
 
-                //this.connection.Close();
+                this.connection.Close();
             } else
             {
                 SQLiteConnection databaseConnection = new SQLiteConnection("Data Source=karteikarten.sqlite;Version=3;");
@@ -73,10 +73,11 @@ namespace KarteikartenDesktop
 
                 this.connection = databaseConnection;
 
-                //this.connection.Close();
+                this.connection.Close();
             }
         }
 
+        #region Intervalltabelle erstellen / auslesen / löschen
         public void CreateIntervall(int duration)
         {
             try
@@ -133,6 +134,7 @@ namespace KarteikartenDesktop
                 Logger.WriteLogfile("RemoveIntervall: " + ex.Message);
             }
         }
+        #endregion
 
         #region Bildtabelle bearbeiten / hinzufügen / entfernen / auslesen
         public void SavePicture(Bitmap picture)
