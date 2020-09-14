@@ -22,3 +22,6 @@ D:\Projects\KarteikartenDesktop\obj\Debug\KarteikartenDesktop.csproj.CoreCompile
 D:\Projects\KarteikartenDesktop\obj\Debug\KarteikartenDesktop.csproj.CopyComplete
 D:\Projects\KarteikartenDesktop\obj\Debug\KarteikartenDesktop.exe
 D:\Projects\KarteikartenDesktop\obj\Debug\KarteikartenDesktop.pdb
+D:\Projects\KarteikartenDesktop\bin\Debug\Newtonsoft.Json.dll
+D:\Projects\KarteikartenDesktop\bin\Debug\Newtonsoft.Json.xml
+D:\Projects\KarteikartenDesktop\obj\Debug\KarteikartenDesktop.Form1.resources
