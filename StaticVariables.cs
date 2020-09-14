@@ -13,5 +13,7 @@ namespace KarteikartenDesktop
         {
             return Directory.GetCurrentDirectory();
         }
+
+        public static string LogName = "log.txt";
     }
 }

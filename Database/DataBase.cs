@@ -72,6 +72,7 @@ namespace KarteikartenDesktop
             }
         }
 
+        #region Bildtabelle bearbeiten / hinzufügen / entfernen / auslesen
         public void SavePicture(Bitmap picture)
         {
             byte[] pic = ImageToByte(picture, System.Drawing.Imaging.ImageFormat.Jpeg);
@@ -88,7 +89,7 @@ namespace KarteikartenDesktop
             }
             catch (Exception ex)
             {
-
+                Logger.WriteLogfile("SavePicture: " + ex.Message);
             }
         }
 
@@ -108,7 +109,7 @@ namespace KarteikartenDesktop
             }
             catch (Exception ex)
             {
-
+                Logger.WriteLogfile("ChangePicture: " + ex.Message);
             }
         }
 
@@ -122,7 +123,7 @@ namespace KarteikartenDesktop
             }
             catch (Exception ex)
             {
-
+                Logger.WriteLogfile("RemovePicture: " + ex.Message);
             }
         }
 
@@ -141,9 +142,13 @@ namespace KarteikartenDesktop
                         return new Bitmap(byteToImage(a));
                     }
                 }
-                catch (Exception ex) { }
+                catch (Exception ex) {
+                    Logger.WriteLogfile("GetPicture 1: " + ex.Message);
+                }
             }
-            catch (Exception ex) { }
+            catch (Exception ex) {
+                Logger.WriteLogfile("GetPicture 2: " + ex.Message);
+            }
 
             return null;
         }
@@ -167,6 +172,7 @@ namespace KarteikartenDesktop
             Image image = new Bitmap(memoryStream);
             return image;
         }
+        #endregion
 
         private void createTable(string tableName, string parameterString)
         {
@@ -177,8 +183,8 @@ namespace KarteikartenDesktop
                     string sql = "create table " + tableName + " (" + parameterString + ")";
                     SQLiteCommand command = new SQLiteCommand(sql, this.connection);
                     command.ExecuteNonQuery();
-                } catch (Exception ex) { 
-                    
+                } catch (Exception ex) {
+                    Logger.WriteLogfile("createTable: " + ex.Message);
                 }
             }
         }
@@ -191,9 +197,9 @@ namespace KarteikartenDesktop
                 SQLiteCommand command = new SQLiteCommand(sql, this.connection);
                 command.ExecuteNonQuery();
             }
-            catch
+            catch (Exception ex)
             {
-
+                Logger.WriteLogfile("removeTable: " + ex.Message);
             }
         }
 
