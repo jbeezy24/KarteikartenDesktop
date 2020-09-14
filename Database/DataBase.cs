@@ -56,6 +56,11 @@ namespace KarteikartenDesktop
                 createTable("Karteikarten", "KartenID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, ThemaID INTEGER, FrageID INTEGER, AntwortID INTEGER, IntervallID INTEGER, LetzteAbfrage DATETIME," +
                     "FOREIGN KEY (ThemaID) REFERENCES Thema(ThemaID), FOREIGN KEY (FrageID) REFERENCES Frage(FrageID), FOREIGN KEY (AntwortID) REFERENCES Antwort(AntwortID), FOREIGN KEY (IntervallID) REFERENCES Intervall(IntervallID)");
 
+                CreateIntervall(1);
+                CreateIntervall(3);
+                CreateIntervall(7);
+                CreateIntervall(30);
+
                 this.connection.Close();
             } else
             {
@@ -72,20 +77,77 @@ namespace KarteikartenDesktop
             }
         }
 
+        public void CreateIntervall(int duration)
+        {
+            try
+            {
+                SQLiteCommand command = this.connection.CreateCommand();
+                command.CommandText = string.Format("INSERT INTO Intervall (Dauer) VALUES (@0);");
+                SQLiteParameter parameter = new SQLiteParameter("@0", System.Data.DbType.Int32);
+                parameter.Value = duration;
+                command.Parameters.Add(parameter);
+                command.ExecuteNonQuery();
+            } catch (Exception ex)
+            {
+                Logger.WriteLogfile("CreateIntervall: " + ex.Message);
+            }
+        }
+
+        public int GetIntervall(int intervallID)
+        {
+            string query = "SELECT Dauer FROM Intervall WHERE IntervallID='" + intervallID+ "';";
+            SQLiteCommand command = new SQLiteCommand(query, this.connection);
+            try
+            {
+                IDataReader dataReader = command.ExecuteReader();
+                try
+                {
+                    while (dataReader.Read())
+                    {
+                        var a = dataReader["Dauer"];
+                        return Convert.ToInt32(a);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Logger.WriteLogfile("GetIntervall 1: " + ex.Message);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteLogfile("GetIntervall 2: " + ex.Message);
+            }
+
+            return 0;
+        }
+
+        public void RemoveIntervall(int intervallID)
+        {
+            try
+            {
+                SQLiteCommand command = this.connection.CreateCommand();
+                command.CommandText = string.Format("DELETE FROM Intervall WHERE IntervallID='" + intervallID + "';");
+                command.ExecuteNonQuery();
+            } catch (Exception ex)
+            {
+                Logger.WriteLogfile("RemoveIntervall: " + ex.Message);
+            }
+        }
+
         #region Bildtabelle bearbeiten / hinzufügen / entfernen / auslesen
         public void SavePicture(Bitmap picture)
         {
             byte[] pic = ImageToByte(picture, System.Drawing.Imaging.ImageFormat.Jpeg);
 
-            SQLiteCommand cmd = this.connection.CreateCommand();
-            cmd.CommandText = string.Format("INSERT INTO Bild (BildDaten) VALUES (@0);");
+            SQLiteCommand command = this.connection.CreateCommand();
+            command.CommandText = string.Format("INSERT INTO Bild (BildDaten) VALUES (@0);");
             SQLiteParameter param = new SQLiteParameter("@0", System.Data.DbType.Binary);
             param.Value = pic;
-            cmd.Parameters.Add(param);
+            command.Parameters.Add(param);
             
             try
             {
-                cmd.ExecuteNonQuery();
+                command.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
@@ -176,16 +238,13 @@ namespace KarteikartenDesktop
 
         private void createTable(string tableName, string parameterString)
         {
-            if (this.connection != null)
+            try
             {
-                try
-                {
-                    string sql = "create table " + tableName + " (" + parameterString + ")";
-                    SQLiteCommand command = new SQLiteCommand(sql, this.connection);
-                    command.ExecuteNonQuery();
-                } catch (Exception ex) {
-                    Logger.WriteLogfile("createTable: " + ex.Message);
-                }
+                string sql = "create table " + tableName + " (" + parameterString + ")";
+                SQLiteCommand command = new SQLiteCommand(sql, this.connection);
+                command.ExecuteNonQuery();
+            } catch (Exception ex) {
+                Logger.WriteLogfile("createTable: " + ex.Message);
             }
         }
 
