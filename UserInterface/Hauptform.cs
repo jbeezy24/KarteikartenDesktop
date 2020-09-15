@@ -1,4 +1,5 @@
 ﻿using KarteikartenDesktop.Database;
+using KarteikartenDesktop.UserInterface;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -87,5 +88,12 @@ namespace KarteikartenDesktop {
         }
 
         List<DataGridView> viewList = new List<DataGridView>();
+
+        private void buttonExport_Click(object sender, EventArgs e) {
+            this.Visible = false;
+            KartenExport export = new KartenExport();
+            export.ShowDialog();
+            this.Visible = true;
+        }
     }
 }

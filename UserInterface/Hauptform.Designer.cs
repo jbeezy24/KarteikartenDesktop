@@ -107,6 +107,7 @@
             this.buttonExport.TabIndex = 3;
             this.buttonExport.Text = "Karten Exportieren";
             this.buttonExport.UseVisualStyleBackColor = true;
+            this.buttonExport.Click += new System.EventHandler(this.buttonExport_Click);
             // 
             // buttonAdd
             // 
