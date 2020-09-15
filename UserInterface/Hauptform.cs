@@ -28,7 +28,7 @@ namespace KarteikartenDesktop {
 
             //dataBase.CreateRecordCard(1, 11, 11, 1, DateTime.Now);
 
-            //dataBase.GetAllKarteikarten();
+            dataBase.GetAllKarteikarten();
 
             dataBase.Connection.Close();
 
