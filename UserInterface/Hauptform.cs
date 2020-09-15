@@ -27,7 +27,14 @@ namespace KarteikartenDesktop {
 
             //dataBase.CreateRecordCard(1, 11, 11, 1, DateTime.Now);
 
-            dataBase.GetAllKarteikarten();
+            //dataBase.CreateUsersettings("sarah", "sarahb", true, 1);
+            var allKarteikarte = dataBase.GetAllKarteikarten();
+            dataBase.SetAllUsersettings();
+            var userSettings = dataBase.AllUsersettings[0];
+            dataBase.SetAllKlasse();
+            var allKlasse = dataBase.AllKlasse;
+
+            Requests.Request.ExportKarteikarte(allKarteikarte[0], userSettings, allKlasse);
 
             dataBase.Connection.Close();
 

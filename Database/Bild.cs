@@ -9,7 +9,7 @@ namespace KarteikartenDesktop
 {
     public class Bild
     {
-        public int BildID { get; set; }
+        public int? BildID { get; set; }
         public int[] BildDaten { get; set; }
     }
 }

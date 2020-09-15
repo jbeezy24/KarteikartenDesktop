@@ -13,13 +13,16 @@ namespace KarteikartenDesktop
         public string Thema { get; set; }
         public string Frage { get; set; }
         public Bitmap FrageBitmap { get; set; }
-        public int FrageBitmapID { get; set; }
+        public int? FrageBitmapID { get; set; }
         public string Antwort { get; set; }
         public Bitmap AntwortBitmap { get; set; }
-        public int AntwortBitmapID { get; set; }
+        public int? AntwortBitmapID { get; set; }
         public int Intervall { get; set; }
         public DateTime LetzteAbfrage { get; set; }
         public string Fachname { get; set; }
         public int ThemaID { get; set; }
+        public int FrageID { get; set; }
+        public int FachID { get; set; }
+        public int AntwortID { get; set; }
     }
 }
