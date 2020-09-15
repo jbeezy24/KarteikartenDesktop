@@ -68,8 +68,8 @@ namespace KarteikartenDesktop {
         private void buttonAbfrage_Click(object sender, EventArgs e) {
             this.Visible = false;
             KartenAbfrage abfrage = new KartenAbfrage();
-
-
+            abfrage.ShowDialog();
+            this.Visible = true;
         }
 
         List<DataGridView> viewList = new List<DataGridView>();
