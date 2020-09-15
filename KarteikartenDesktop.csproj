@@ -112,6 +112,9 @@
     <Compile Include="UserInterface\KartenImport.Designer.cs">
       <DependentUpon>KartenImport.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserInterface\RunderButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <EmbeddedResource Include="UserInterface\Hauptform.resx">
       <DependentUpon>Hauptform.cs</DependentUpon>
     </EmbeddedResource>
