@@ -1,2 +1,2 @@
-[15.09.2020 13:01:00] GetAllKarteikarten 2: database schema has changed
-near "INNER": syntax error
+[15.09.2020 14:09:11] createTable: SQL logic error
+table Thema already exists

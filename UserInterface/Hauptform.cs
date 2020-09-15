@@ -17,20 +17,18 @@ namespace KarteikartenDesktop {
         public Hauptform() {
             InitializeComponent();
 
-            DataBase dataBase = new DataBase();
+            dataBase1 = new DataBase();
 
-            //dataBase.CreateClass("FIA18A");
-            //dataBase.CreateSubject("IT3", 1);
-            //dataBase.CreateTopic("Programmierung", 1);
+            //dataBase1.CreateClass("FIA18A");
+            //dataBase1.CreateSubject("IT3", 1);
+            //dataBase1.CreateTopic("Programmierung", 1);
 
-            //dataBase.CreateQuestion("Warum sind Bananen krumm?", new Bitmap(Image.FromFile(@"D:\vsico.png")));
-            //dataBase.CreateAnswer("Weil es so ist", null);
+            //dataBase1.CreateQuestion("Warum sind Bananen krumm?", null);
+            //dataBase1.CreateAnswer("Weil es so ist", null);
 
-            //dataBase.CreateRecordCard(1, 11, 11, 1, DateTime.Now);
+            //dataBase1.CreateRecordCard(1, 11, 11, 1, DateTime.Now);
 
-            dataBase.GetAllKarteikarten();
-
-            dataBase.Connection.Close();
+            //dataBase1.GetAllKarteikarten();
 
             viewList.Add(dataGridView1);
             viewList.Add(dataGridView2);
@@ -88,11 +86,14 @@ namespace KarteikartenDesktop {
         }
 
         List<DataGridView> viewList = new List<DataGridView>();
+        private DataBase dataBase1 = new DataBase();
 
         private void buttonExport_Click(object sender, EventArgs e) {
             this.Visible = false;
-            KartenExport export = new KartenExport();
-            export.ShowDialog();
+            KartenExport export = new KartenExport(dataBase1);
+            if (export.ShowDialog() == DialogResult.OK) {
+                //Upload der einzelnen Karten an die Web-Datenbank
+            }
             this.Visible = true;
         }
     }

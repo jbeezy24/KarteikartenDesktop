@@ -140,6 +140,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UserInterface\KartenExport.resx">
+      <DependentUpon>KartenExport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserInterface\KartenImport.resx">
       <DependentUpon>KartenImport.cs</DependentUpon>
     </EmbeddedResource>

@@ -8,10 +8,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace KarteikartenDesktop.UserInterface {
+namespace KarteikartenDesktop {
     public partial class KartenExport : Form {
-        public KartenExport() {
+        public KartenExport(DataBase db) {
             InitializeComponent();
+            this.db = db;
+            db.SetAllFach();
+            fachlist = db.AllFach;
+
+            foreach (var fach in fachlist) {
+                comboBox1.Items.Add(fach.Name);
+            }
         }
+
+        private DataBase db;
+        private List<Fach> fachlist;
     }
+
 }
