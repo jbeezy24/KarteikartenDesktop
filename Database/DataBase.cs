@@ -1364,7 +1364,7 @@ namespace KarteikartenDesktop
         {
             List<KarteikartenHelper> karteikartenHelpers = new List<KarteikartenHelper>();
 
-            string query = "SELECT Karteikarten.KartenID, Thema.Name, Frage.Text, Frage.BildID, Antwort.Text, Antwort.BildID, Intervall.Dauer, Karteikarten.LetzteAbfrage " +
+            string query = "SELECT Karteikarten.KartenID, Thema.Name, Frage.Text, Frage.BildID, Antwort.Text, Antwort.BildID, Intervall.Dauer, Karteikarten.LetzteAbfrage, Thema.ThemaID, Fach.Name " +
                 "FROM Karteikarten " +
                 "INNER JOIN Thema " +
                 "ON Thema.ThemaID = Karteikarten.ThemaID " +
@@ -1373,7 +1373,9 @@ namespace KarteikartenDesktop
                 "INNER JOIN Antwort " +
                 "ON Antwort.AntwortID = Karteikarten.AntwortID " +
                 "INNER JOIN Intervall " +
-                "ON Intervall.IntervallID = Karteikarten.IntervallID;";
+                "ON Intervall.IntervallID = Karteikarten.IntervallID " +
+                "INNER JOIN Fach " +
+                "ON Fach.FachID = Thema.FachID;";
             SQLiteCommand command = new SQLiteCommand(query, this.connection);
             try
             {
@@ -1391,6 +1393,8 @@ namespace KarteikartenDesktop
                         var antwortBildID = dataReader[5];
                         var intervallDauer = dataReader[6];
                         var letzteAbfrage = dataReader[7];
+                        var themaID = dataReader[8];
+                        var fachname = dataReader[9];
 
                         karteikartenHelper.KartenID = Convert.ToInt32(kartenID);
                         karteikartenHelper.Thema = themaName.ToString();
@@ -1400,6 +1404,8 @@ namespace KarteikartenDesktop
                         karteikartenHelper.AntwortBitmapID = antwortBildID.GetType() == typeof(DBNull) ? 0 : Convert.ToInt32(antwortBildID);
                         karteikartenHelper.Intervall = Convert.ToInt32(intervallDauer);
                         karteikartenHelper.LetzteAbfrage = Convert.ToDateTime(letzteAbfrage);
+                        karteikartenHelper.ThemaID = Convert.ToInt32(themaID);
+                        karteikartenHelper.Fachname = fachname.ToString();
 
                         karteikartenHelpers.Add(karteikartenHelper);
                     }

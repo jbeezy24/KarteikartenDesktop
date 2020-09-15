@@ -19,5 +19,7 @@ namespace KarteikartenDesktop
         public int AntwortBitmapID { get; set; }
         public int Intervall { get; set; }
         public DateTime LetzteAbfrage { get; set; }
+        public string Fachname { get; set; }
+        public int ThemaID { get; set; }
     }
 }
