@@ -17,6 +17,20 @@ namespace KarteikartenDesktop {
             InitializeComponent();
 
             DataBase dataBase = new DataBase();
+
+            //dataBase.CreateClass("FIA18A");
+            //dataBase.CreateSubject("IT3", 1);
+            //dataBase.CreateTopic("Programmierung", 1);
+
+            //dataBase.CreateQuestion("Warum sind Bananen krumm?", new Bitmap(Image.FromFile(@"D:\vsico.png")));
+            //dataBase.CreateAnswer("Weil es so ist", null);
+
+            //dataBase.CreateRecordCard(1, 11, 11, 1, DateTime.Now);
+
+            //dataBase.GetAllKarteikarten();
+
+            dataBase.Connection.Close();
+
             viewList.Add(dataGridView1);
             viewList.Add(dataGridView2);
             viewList.Add(dataGridView3);

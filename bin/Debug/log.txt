@@ -1,2 +1,2 @@
-[15.09.2020 10:00:28] createTable: SQL logic error
-table Fach already exists
+[15.09.2020 12:14:37] createTable: SQL logic error
+table Thema already exists

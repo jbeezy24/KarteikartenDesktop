@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KarteikartenDesktop
 {
-    public class ImportRequestJson
+    public class ExportRequestJson
     {
         public string Benutzername { get; set; }
         public Klasse Klasse { get; set; }

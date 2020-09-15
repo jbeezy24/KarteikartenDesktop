@@ -50,7 +50,7 @@ namespace KarteikartenDesktop
 
                 createTable("Bild", "BildID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, BildDaten BLOB");
                 createTable("Intervall", "IntervallID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, Dauer INTEGER");
-                createTable("Frage", "FrageID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, Text VARCHAR(1000), BildID INTEGER, FOREIGN KEY (BildID) REFERENCES Bild(BildID)");
+                createTable("Frage", "FrageID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, Text VARCHAR(500), BildID INTEGER, FOREIGN KEY (BildID) REFERENCES Bild(BildID)");
                 createTable("Antwort", "AntwortID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, Text VARCHAR(2000), BildID INTEGER, FOREIGN KEY (BildID) REFERENCES Bild(BildID)");
                 createTable("Klasse", "KlasseID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, Name VARCHAR(64)");
                 createTable("Fach", "FachID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, Name VARCHAR(64), KlasseID INTEGER, FOREIGN KEY (KlasseID) REFERENCES Klasse(KlasseID)");
@@ -1358,6 +1358,122 @@ namespace KarteikartenDesktop
             {
                 Logger.WriteLogfile("SetAllAnswer 2: " + ex.Message);
             }
+        }
+
+        public List<KarteikartenHelper> GetAllKarteikarten()
+        {
+            List<KarteikartenHelper> karteikartenHelpers = new List<KarteikartenHelper>();
+
+            string query = "SELECT Karteikarten.KartenID, Thema.Name, Frage.Text, Frage.BildID, Antwort.Text, Antwort.BildID, Intervall.Dauer, Karteikarten.LetzteAbfrage " +
+                "FROM Karteikarten " +
+                "INNER JOIN Thema " +
+                "ON Thema.ThemaID = Karteikarten.ThemaID " +
+                "INNER JOIN Frage " +
+                "ON Frage.FrageID = Karteikarten.FrageID " +
+                "INNER JOIN Antwort " +
+                "ON Antwort.AntwortID = Karteikarten.AntwortID " +
+                "INNER JOIN Intervall " +
+                "ON Intervall.IntervallID = Karteikarten.IntervallID;";
+            SQLiteCommand command = new SQLiteCommand(query, this.connection);
+            try
+            {
+                IDataReader dataReader = command.ExecuteReader();
+                try
+                {
+                    while (dataReader.Read())
+                    {
+                        KarteikartenHelper karteikartenHelper = new KarteikartenHelper();
+                        var kartenID = dataReader[0];
+                        var themaName = dataReader[1];
+                        var frageText = dataReader[2];
+                        var frageBildID = dataReader[3];
+                        var antwortText = dataReader[4];
+                        var antwortBildID = dataReader[5];
+                        var intervallDauer = dataReader[6];
+                        var letzteAbfrage = dataReader[7];
+
+                        karteikartenHelper.KartenID = Convert.ToInt32(kartenID);
+                        karteikartenHelper.Thema = themaName.ToString();
+                        karteikartenHelper.Frage = frageText.ToString();
+                        karteikartenHelper.FrageBitmapID = frageBildID.GetType() == typeof(DBNull) ? 0 : Convert.ToInt32(frageBildID);
+                        karteikartenHelper.Antwort = antwortText.ToString();
+                        karteikartenHelper.AntwortBitmapID = antwortBildID.GetType() == typeof(DBNull) ? 0 : Convert.ToInt32(antwortBildID);
+                        karteikartenHelper.Intervall = Convert.ToInt32(intervallDauer);
+                        karteikartenHelper.LetzteAbfrage = Convert.ToDateTime(letzteAbfrage);
+
+                        karteikartenHelpers.Add(karteikartenHelper);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Logger.WriteLogfile("GetAllKarteikarten 1: " + ex.Message);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteLogfile("GetAllKarteikarten 2: " + ex.Message);
+            }
+
+            for (int i = 0; i < karteikartenHelpers.Count; i++)
+            {
+                if (karteikartenHelpers[i].FrageBitmapID > 0)
+                {
+                    var queryFrage = "SELECT BildDaten " +
+                    "FROM Bild " +
+                    "WHERE BildID='" + karteikartenHelpers[i].FrageBitmapID + "';";
+
+                    command = new SQLiteCommand(queryFrage, this.connection);
+                    try
+                    {
+                        IDataReader dataReader = command.ExecuteReader();
+                        try
+                        {
+                            while (dataReader.Read())
+                            {
+                                byte[] bildDaten = (System.Byte[])dataReader["BildDaten"];
+                                karteikartenHelpers[i].FrageBitmap = new Bitmap(ByteToImage(bildDaten));
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Logger.WriteLogfile("GetAllKarteikarten 3: " + ex.Message);
+                        }
+                    } catch (Exception ex)
+                    {
+                        Logger.WriteLogfile("GetAllKarteikarten 4: " + ex.Message);
+                    }
+                }
+
+                if (karteikartenHelpers[i].AntwortBitmapID > 0)
+                {
+                    var queryAntwort = "SELECT Bild.BildDaten" +
+                    "FROM Bild" +
+                    "WHERE Bild.BildID='" + karteikartenHelpers[i].AntwortBitmapID + "';";
+
+                    command = new SQLiteCommand(queryAntwort, this.connection);
+                    try
+                    {
+                        IDataReader dataReader = command.ExecuteReader();
+                        try
+                        {
+                            while (dataReader.Read())
+                            {
+                                byte[] bildDaten = (System.Byte[])dataReader["BildDaten"];
+                                karteikartenHelpers[i].AntwortBitmap = new Bitmap(ByteToImage(bildDaten));
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Logger.WriteLogfile("GetAllKarteikarten 5: " + ex.Message);
+                        }
+                    } catch (Exception ex)
+                    {
+                        Logger.WriteLogfile("GetAllKarteikarten 6: " + ex.Message);
+                    }
+                }
+            }
+
+            return karteikartenHelpers;
         }
 
         private void createTable(string tableName, string parameterString)

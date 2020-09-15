@@ -24,7 +24,6 @@ D:\Projects\KarteikartenDesktop\obj\Debug\KarteikartenDesktop.exe
 D:\Projects\KarteikartenDesktop\obj\Debug\KarteikartenDesktop.pdb
 D:\Projects\KarteikartenDesktop\bin\Debug\Newtonsoft.Json.dll
 D:\Projects\KarteikartenDesktop\bin\Debug\Newtonsoft.Json.xml
-D:\Projects\KarteikartenDesktop\obj\Debug\KarteikartenDesktop.Form1.resources
 D:\Projects\KarteikartenDesktop\bin\Debug\Microsoft.Win32.Primitives.dll
 D:\Projects\KarteikartenDesktop\bin\Debug\netstandard.dll
 D:\Projects\KarteikartenDesktop\bin\Debug\System.AppContext.dll
@@ -122,3 +121,7 @@ D:\Projects\KarteikartenDesktop\bin\Debug\System.Xml.XmlSerializer.dll
 D:\Projects\KarteikartenDesktop\bin\Debug\System.Xml.XPath.dll
 D:\Projects\KarteikartenDesktop\bin\Debug\System.Xml.XPath.XDocument.dll
 D:\Projects\KarteikartenDesktop\obj\Debug\KarteikartenDesktop.exe.config
+D:\Projects\KarteikartenDesktop\obj\Debug\KarteikartenDesktop.Hauptform.resources
+D:\Projects\KarteikartenDesktop\obj\Debug\KarteikartenDesktop.KartenAbfrage.resources
+D:\Projects\KarteikartenDesktop\obj\Debug\KarteikartenDesktop.KartenErstellen.resources
+D:\Projects\KarteikartenDesktop\obj\Debug\KarteikartenDesktop.KartenImport.resources
