@@ -20,6 +20,7 @@ namespace KarteikartenDesktop
             InitializeComponent();
 
             DataBase dataBase = new DataBase();
+            dataBase.Connection.Close();
         }
 
         private void Form1_SizeChanged(object sender, EventArgs e)
