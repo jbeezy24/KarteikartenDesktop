@@ -7,16 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows;
 
 namespace KarteikartenDesktop {
-    public partial class KartenImport : Form {
-        public KartenImport() {
+    public partial class KartenAbfrage : Form {
+        public KartenAbfrage() {
             InitializeComponent();
         }
 
-        private void buttonPaste_Click(object sender, EventArgs e) {
-            textBox1.Text = Clipboard.GetText();
+        private void KartenAbfrage_FormClosing(object sender, FormClosingEventArgs e) {
+            
         }
     }
 }
