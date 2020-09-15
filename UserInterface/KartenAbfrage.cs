@@ -31,7 +31,29 @@ namespace KarteikartenDesktop {
         }
 
         private void pictureBoxFrage_MouseMove(object sender, MouseEventArgs e) {
+            ZoomButtonAntwort.Visible = true;
+        }
 
+        private void ZoomButtonAntwort_Click(object sender, EventArgs e) {
+            picturePanel.Visible = true;
+        }
+
+        private void ZoomButtonFrage_Click(object sender, EventArgs e) {
+            picturepanel2.Visible = true;
+        }
+
+        private void KartenAbfrage_MouseClick(object sender, MouseEventArgs e) {
+            picturepanel2.Visible = false;
+            picturePanel.Visible = false;
+        }
+
+        private void pictureBoxZoomAntwort_Click(object sender, EventArgs e) {
+
+            picturePanel.Visible = false;
+        }
+
+        private void pictureBoxZoomFrage_Click(object sender, EventArgs e) {
+            picturepanel2.Visible = false;
         }
     }
 }

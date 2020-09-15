@@ -25,11 +25,17 @@
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(KartenAbfrage));
             this.panelFrage = new System.Windows.Forms.Panel();
+            this.picturepanel2 = new System.Windows.Forms.Panel();
+            this.pictureBoxZoomFrage = new System.Windows.Forms.PictureBox();
+            this.ZoomButtonFrage = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.FragenLabel = new System.Windows.Forms.Label();
             this.pictureBoxFrage = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panelAntwort = new System.Windows.Forms.Panel();
+            this.picturePanel = new System.Windows.Forms.Panel();
+            this.pictureBoxZoomAntwort = new System.Windows.Forms.PictureBox();
+            this.ZoomButtonAntwort = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.antwortLabel = new System.Windows.Forms.Label();
             this.pictureBoxAntwort = new System.Windows.Forms.PictureBox();
@@ -42,8 +48,12 @@
             this.runderButtonZurück = new KarteikartenDesktop.UserInterface.RunderButton();
             this.runderButton1 = new KarteikartenDesktop.UserInterface.RunderButton();
             this.panelFrage.SuspendLayout();
+            this.picturepanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxZoomFrage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFrage)).BeginInit();
             this.panelAntwort.SuspendLayout();
+            this.picturePanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxZoomAntwort)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAntwort)).BeginInit();
             this.panelLayover.SuspendLayout();
             this.SuspendLayout();
@@ -51,6 +61,8 @@
             // panelFrage
             // 
             this.panelFrage.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.panelFrage.Controls.Add(this.picturepanel2);
+            this.panelFrage.Controls.Add(this.ZoomButtonFrage);
             this.panelFrage.Controls.Add(this.label2);
             this.panelFrage.Controls.Add(this.FragenLabel);
             this.panelFrage.Controls.Add(this.pictureBoxFrage);
@@ -59,6 +71,43 @@
             this.panelFrage.Name = "panelFrage";
             this.panelFrage.Size = new System.Drawing.Size(650, 282);
             this.panelFrage.TabIndex = 1;
+            // 
+            // picturepanel2
+            // 
+            this.picturepanel2.Controls.Add(this.pictureBoxZoomFrage);
+            this.picturepanel2.Location = new System.Drawing.Point(23, 28);
+            this.picturepanel2.Name = "picturepanel2";
+            this.picturepanel2.Size = new System.Drawing.Size(611, 236);
+            this.picturepanel2.TabIndex = 6;
+            this.picturepanel2.Visible = false;
+            // 
+            // pictureBoxZoomFrage
+            // 
+            this.pictureBoxZoomFrage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBoxZoomFrage.Location = new System.Drawing.Point(0, 0);
+            this.pictureBoxZoomFrage.Name = "pictureBoxZoomFrage";
+            this.pictureBoxZoomFrage.Size = new System.Drawing.Size(611, 236);
+            this.pictureBoxZoomFrage.TabIndex = 0;
+            this.pictureBoxZoomFrage.TabStop = false;
+            this.pictureBoxZoomFrage.Click += new System.EventHandler(this.pictureBoxZoomFrage_Click);
+            // 
+            // ZoomButtonFrage
+            // 
+            this.ZoomButtonFrage.BackColor = System.Drawing.Color.Transparent;
+            this.ZoomButtonFrage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ZoomButtonFrage.FlatAppearance.BorderSize = 0;
+            this.ZoomButtonFrage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ZoomButtonFrage.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ZoomButtonFrage.ForeColor = System.Drawing.Color.Black;
+            this.ZoomButtonFrage.Location = new System.Drawing.Point(447, 37);
+            this.ZoomButtonFrage.Margin = new System.Windows.Forms.Padding(0);
+            this.ZoomButtonFrage.Name = "ZoomButtonFrage";
+            this.ZoomButtonFrage.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.ZoomButtonFrage.Size = new System.Drawing.Size(187, 227);
+            this.ZoomButtonFrage.TabIndex = 5;
+            this.ZoomButtonFrage.Text = "🔍 ";
+            this.ZoomButtonFrage.UseVisualStyleBackColor = false;
+            this.ZoomButtonFrage.Click += new System.EventHandler(this.ZoomButtonFrage_Click);
             // 
             // label2
             // 
@@ -103,6 +152,8 @@
             // panelAntwort
             // 
             this.panelAntwort.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.panelAntwort.Controls.Add(this.picturePanel);
+            this.panelAntwort.Controls.Add(this.ZoomButtonAntwort);
             this.panelAntwort.Controls.Add(this.label3);
             this.panelAntwort.Controls.Add(this.antwortLabel);
             this.panelAntwort.Controls.Add(this.pictureBoxAntwort);
@@ -111,6 +162,42 @@
             this.panelAntwort.Name = "panelAntwort";
             this.panelAntwort.Size = new System.Drawing.Size(653, 282);
             this.panelAntwort.TabIndex = 2;
+            // 
+            // picturePanel
+            // 
+            this.picturePanel.Controls.Add(this.pictureBoxZoomAntwort);
+            this.picturePanel.Location = new System.Drawing.Point(23, 28);
+            this.picturePanel.Name = "picturePanel";
+            this.picturePanel.Size = new System.Drawing.Size(608, 236);
+            this.picturePanel.TabIndex = 5;
+            this.picturePanel.Visible = false;
+            // 
+            // pictureBoxZoomAntwort
+            // 
+            this.pictureBoxZoomAntwort.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBoxZoomAntwort.Location = new System.Drawing.Point(0, 0);
+            this.pictureBoxZoomAntwort.Name = "pictureBoxZoomAntwort";
+            this.pictureBoxZoomAntwort.Size = new System.Drawing.Size(608, 236);
+            this.pictureBoxZoomAntwort.TabIndex = 0;
+            this.pictureBoxZoomAntwort.TabStop = false;
+            this.pictureBoxZoomAntwort.Click += new System.EventHandler(this.pictureBoxZoomAntwort_Click);
+            // 
+            // ZoomButtonAntwort
+            // 
+            this.ZoomButtonAntwort.BackColor = System.Drawing.Color.Transparent;
+            this.ZoomButtonAntwort.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ZoomButtonAntwort.FlatAppearance.BorderSize = 0;
+            this.ZoomButtonAntwort.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ZoomButtonAntwort.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ZoomButtonAntwort.Location = new System.Drawing.Point(447, 37);
+            this.ZoomButtonAntwort.Margin = new System.Windows.Forms.Padding(0);
+            this.ZoomButtonAntwort.Name = "ZoomButtonAntwort";
+            this.ZoomButtonAntwort.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.ZoomButtonAntwort.Size = new System.Drawing.Size(187, 227);
+            this.ZoomButtonAntwort.TabIndex = 4;
+            this.ZoomButtonAntwort.Text = "🔍 ";
+            this.ZoomButtonAntwort.UseVisualStyleBackColor = false;
+            this.ZoomButtonAntwort.Click += new System.EventHandler(this.ZoomButtonAntwort_Click);
             // 
             // label3
             // 
@@ -155,10 +242,10 @@
             // panelLayover
             // 
             this.panelLayover.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.panelLayover.Controls.Add(this.panelAntwort);
             this.panelLayover.Controls.Add(this.runderButtonJa);
             this.panelLayover.Controls.Add(this.runderButtonNein);
             this.panelLayover.Controls.Add(this.runderButtonQmark);
-            this.panelLayover.Controls.Add(this.panelAntwort);
             this.panelLayover.Controls.Add(this.runderButton3);
             this.panelLayover.Dock = System.Windows.Forms.DockStyle.Right;
             this.panelLayover.Location = new System.Drawing.Point(52, 0);
@@ -169,7 +256,6 @@
             // 
             // runderButtonJa
             // 
-            this.runderButtonJa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.runderButtonJa.BackColor = System.Drawing.Color.LimeGreen;
             this.runderButtonJa.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.runderButtonJa.FlatAppearance.BorderSize = 0;
@@ -186,18 +272,16 @@
             // 
             // runderButtonNein
             // 
-            this.runderButtonNein.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.runderButtonNein.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(6)))), ((int)(((byte)(12)))));
             this.runderButtonNein.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.runderButtonNein.FlatAppearance.BorderSize = 0;
             this.runderButtonNein.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.runderButtonNein.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.runderButtonNein.Location = new System.Drawing.Point(215, 300);
+            this.runderButtonNein.Location = new System.Drawing.Point(210, 300);
             this.runderButtonNein.Margin = new System.Windows.Forms.Padding(0);
             this.runderButtonNein.Name = "runderButtonNein";
             this.runderButtonNein.Padding = new System.Windows.Forms.Padding(5, 0, 0, 5);
-            this.runderButtonNein.Size = new System.Drawing.Size(105, 105);
+            this.runderButtonNein.Size = new System.Drawing.Size(102, 102);
             this.runderButtonNein.TabIndex = 4;
             this.runderButtonNein.Text = "✖️";
             this.runderButtonNein.UseVisualStyleBackColor = false;
@@ -280,11 +364,16 @@
             this.Name = "KartenAbfrage";
             this.Text = "KartenAbfrage";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.KartenAbfrage_FormClosing);
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.KartenAbfrage_MouseClick);
             this.panelFrage.ResumeLayout(false);
             this.panelFrage.PerformLayout();
+            this.picturepanel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxZoomFrage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFrage)).EndInit();
             this.panelAntwort.ResumeLayout(false);
             this.panelAntwort.PerformLayout();
+            this.picturePanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxZoomAntwort)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAntwort)).EndInit();
             this.panelLayover.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -310,5 +399,11 @@
         private UserInterface.RunderButton runderButtonNein;
         private UserInterface.RunderButton runderButtonJa;
         private System.Windows.Forms.Panel panelLayover;
+        private System.Windows.Forms.Button ZoomButtonAntwort;
+        private System.Windows.Forms.Button ZoomButtonFrage;
+        private System.Windows.Forms.Panel picturepanel2;
+        private System.Windows.Forms.PictureBox pictureBoxZoomFrage;
+        private System.Windows.Forms.Panel picturePanel;
+        private System.Windows.Forms.PictureBox pictureBoxZoomAntwort;
     }
 }
