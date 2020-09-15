@@ -77,6 +77,7 @@
     <Compile Include="Database\DataBase.cs" />
     <Compile Include="Database\Fach.cs" />
     <Compile Include="Database\Frage.cs" />
+    <Compile Include="Database\ImportRequestJson.cs" />
     <Compile Include="Database\Intervall.cs" />
     <Compile Include="Database\Karteikarten.cs" />
     <Compile Include="Database\Klasse.cs" />
