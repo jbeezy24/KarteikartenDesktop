@@ -51,7 +51,7 @@ namespace KarteikartenDesktop {
             //database.ChangeRecordCard(recordCard, intervallID: 2, letzteAbfrage: DateTime.Now);
             //var test = database.GetRecordCard(1);
 
-
+            Request.ImportKarteikarte("160018188151");
             //Request.ExportKarteikarte(allKarteikarte[allKarteikarte.Count - 1], userSettings, allKlasse);
             #endregion
 

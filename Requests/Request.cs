@@ -1,5 +1,6 @@
 ﻿using KarteikartenDesktop.Database;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -17,22 +18,52 @@ namespace KarteikartenDesktop
         /// <param name="userSetting">Benutzereinstellung</param>
         /// <param name="allKlasse">alle Klassen</param>
         /// <param name="code">Code</param>
-        public static void ImportKarteikarte(UserSettings userSetting, string code)
+        public static void ImportKarteikarte(string code, DataBase database)
         {
-            List<UserSettings> userSettings = new List<UserSettings>();
-            userSettings.Add(userSetting);
-
-            List<string> codeList = new List<string>();
-            codeList.Add(code);
-
-            string json1 = JsonConvert.SerializeObject(codeList);
-            string json2 = JsonConvert.SerializeObject(userSettings);
-
-
-            string jsonString = "{\"Code\": " + json1 + "," + "\"Benutzer\":" + json2 + "}";
-
+            string jsonString = "{\"Code\": " + code + "}";
             // sendet ein "Post" an den Server
-            PostObject(jsonString, "/api_export.php");
+            string jsonObject = PostObject(jsonString, "/api_export.php");
+            var exportObject = JsonConvert.DeserializeObject<ExportObject>(jsonObject);
+
+            List<KarteikartenImportHelper> importHelper = new List<KarteikartenImportHelper>();
+            for (int i = 0; i < exportObject.Karteikarten.Count; i++)
+            {
+                KarteikartenImportHelper helper = new KarteikartenImportHelper();
+                helper.Thema = exportObject.Thema.Thema;
+                helper.Frage = exportObject.Karteikarten[i].Frage;
+                helper.Antwort = exportObject.Karteikarten[i].Antwort;
+
+                // Bild und Antwort müssen konvertiert werden
+                if (exportObject.Karteikarten[i].BildAntwort.GetType() == typeof(JArray))
+                {
+                    var array = exportObject.Karteikarten[i].BildAntwort as JArray;
+                    int[] bitmapArray = array.Select(jv => (int)jv).ToArray();
+                    byte[] bitmapByteArray = new byte[bitmapArray.Length * sizeof(int)];
+                    Buffer.BlockCopy(bitmapArray, 0, bitmapByteArray, 0, bitmapByteArray.Length);
+
+                    var bitmap = StaticVariables.ByteToImage(bitmapByteArray);
+                    helper.AntwortBild = new Bitmap(bitmap);
+                }
+                else
+                    helper.AntwortBild = null;
+
+                if (exportObject.Karteikarten[i].BildFrage.GetType() == typeof(JArray))
+                {
+                    var array = exportObject.Karteikarten[i].BildAntwort as JArray;
+                    int[] bitmapArray = array.Select(jv => (int)jv).ToArray();
+                    byte[] bitmapByteArray = new byte[bitmapArray.Length * sizeof(int)];
+                    Buffer.BlockCopy(bitmapArray, 0, bitmapByteArray, 0, bitmapByteArray.Length);
+
+                    var bitmap = StaticVariables.ByteToImage(bitmapByteArray);
+                    helper.FrageBild = new Bitmap(bitmap);
+                }
+                else
+                    helper.FrageBild = null;
+
+            }
+
+            // Überprüfen ob Thema mit Name bereits vorhanden ist
+            
         }
 
         /// <summary> Exportiert !EINE! Karteikarte</summary>
@@ -122,7 +153,7 @@ namespace KarteikartenDesktop
         /// <summary> Postet ein angegebenen string an den angegebenen Endpunkt an den Server</summary>
         /// <param name="jsonString">zu postender JSON-String</param>
         /// <param name="endpoint">Endpunkt (Name der PHP Datei)</param>
-        public static void PostObject(string jsonString, string endpoint)
+        public static string PostObject(string jsonString, string endpoint)
         {
             ServicePointManager.Expect100Continue = true;
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
@@ -139,8 +170,10 @@ namespace KarteikartenDesktop
                 {
                     streamWriter.Write(jsonString);
                 }
-            } catch (Exception ex) { }
-
+            } catch (Exception ex) {
+                Logger.WriteLogfile("PostObject Request: " + ex.Message);            
+            }
+                
             var response = webRequest.GetResponse();
             var responseStream = response.GetResponseStream();
             StreamReader reader = new StreamReader(responseStream);
@@ -149,6 +182,8 @@ namespace KarteikartenDesktop
             reader.Close();
             responseStream.Close();
             response.Close();
+
+            return responseFromServer;
         }
     }
 }
