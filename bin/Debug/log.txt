@@ -1,2 +1,2 @@
-[16.09.2020 12:13:51] createTable: SQL logic error
-table Thema already exists
+[16.09.2020 14:02:52] GetAllKarteikarten 6: SQL logic error
+near "Bild": syntax error

@@ -190,5 +190,46 @@ namespace KarteikartenDesktop {
             }
         }
 
+        private void button2_Click(object sender, EventArgs e) {
+            foreach (DataGridView view in viewList) {
+                foreach(DataGridViewRow row in view.Rows) {
+                    row.Cells[0].Value = true;
+                }
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e) {
+            foreach (DataGridView view in viewList) {
+                foreach (DataGridViewRow row in view.Rows) {
+                    row.Cells[0].Value = false;
+                }
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e) {
+            int deletionNumber = 0;
+            foreach (DataGridView view in viewList) {
+                foreach (DataGridViewRow row in view.Rows) {
+                    if (System.Convert.ToBoolean(row.Cells[0].Value) == true) {
+                        var karte = database.GetAllKarteikarten().Where(x => x.KartenID == System.Convert.ToInt32(row.Cells[1].Value)).FirstOrDefault();
+                        if (karte != null) {
+                            deletionNumber++;
+                        }
+                    }
+                }
+            }
+            if (deletionNumber != 0) {
+                if (MessageBox.Show("Möchten Sie alle " + deletionNumber + " angewählten Karteikarten löschen?", "Karteikarten löschen", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes) {
+                    foreach (DataGridView view in viewList) {
+                        foreach (DataGridViewRow row in view.Rows) {
+                            if (System.Convert.ToBoolean(row.Cells[0].Value) == true) {
+                                database.RemoveRecordCard(System.Convert.ToInt32(row.Cells[1].Value));
+                                view.Rows.Remove(row);
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

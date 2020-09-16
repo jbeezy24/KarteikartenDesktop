@@ -253,4 +253,3 @@ C:\Users\adminR56\Documents\GitHub\KarteikartenDesktop\obj\Debug\KarteikartenDes
 C:\Users\adminR56\Documents\GitHub\KarteikartenDesktop\obj\Debug\KarteikartenDesktop.pdb
 C:\Users\adminR56\Documents\GitHub\KarteikartenDesktop\obj\Debug\KarteikartenDesktop.KartenExport.resources
 D:\Projects\KarteikartenDesktop\obj\Debug\KarteikartenDesktop.KartenExport.resources
-C:\Users\adminR56\Documents\GitHub\KarteikartenDesktop\obj\Debug\KarteikartenDesktop.csprojAssemblyReference.cache

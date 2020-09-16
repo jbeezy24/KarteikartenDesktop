@@ -42,11 +42,11 @@
             this.pictureBoxAntwort = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
             this.panelLayover = new System.Windows.Forms.Panel();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.runderButtonJa = new KarteikartenDesktop.UserInterface.RunderButton();
             this.runderButtonNein = new KarteikartenDesktop.UserInterface.RunderButton();
             this.runderButtonQmark = new KarteikartenDesktop.UserInterface.RunderButton();
             this.runderButton3 = new KarteikartenDesktop.UserInterface.RunderButton();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.runderButtonZurück = new KarteikartenDesktop.UserInterface.RunderButton();
             this.runderButton1 = new KarteikartenDesktop.UserInterface.RunderButton();
             this.panelFrage.SuspendLayout();
@@ -89,6 +89,7 @@
             this.pictureBoxZoomFrage.Location = new System.Drawing.Point(0, 0);
             this.pictureBoxZoomFrage.Name = "pictureBoxZoomFrage";
             this.pictureBoxZoomFrage.Size = new System.Drawing.Size(611, 236);
+            this.pictureBoxZoomFrage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxZoomFrage.TabIndex = 0;
             this.pictureBoxZoomFrage.TabStop = false;
             this.pictureBoxZoomFrage.Click += new System.EventHandler(this.pictureBoxZoomFrage_Click);
@@ -99,13 +100,13 @@
             this.ZoomButtonFrage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ZoomButtonFrage.FlatAppearance.BorderSize = 0;
             this.ZoomButtonFrage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ZoomButtonFrage.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ZoomButtonFrage.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ZoomButtonFrage.ForeColor = System.Drawing.Color.Black;
             this.ZoomButtonFrage.Location = new System.Drawing.Point(447, 37);
             this.ZoomButtonFrage.Margin = new System.Windows.Forms.Padding(0);
             this.ZoomButtonFrage.Name = "ZoomButtonFrage";
-            this.ZoomButtonFrage.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.ZoomButtonFrage.Size = new System.Drawing.Size(187, 227);
+            this.ZoomButtonFrage.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.ZoomButtonFrage.Size = new System.Drawing.Size(40, 40);
             this.ZoomButtonFrage.TabIndex = 5;
             this.ZoomButtonFrage.Text = "🔍 ";
             this.ZoomButtonFrage.UseVisualStyleBackColor = false;
@@ -137,9 +138,9 @@
             this.pictureBoxFrage.Location = new System.Drawing.Point(447, 37);
             this.pictureBoxFrage.Name = "pictureBoxFrage";
             this.pictureBoxFrage.Size = new System.Drawing.Size(187, 227);
+            this.pictureBoxFrage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxFrage.TabIndex = 2;
             this.pictureBoxFrage.TabStop = false;
-            this.pictureBoxFrage.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBoxFrage_MouseMove);
             // 
             // label1
             // 
@@ -170,7 +171,7 @@
             this.picturePanel.Controls.Add(this.pictureBoxZoomAntwort);
             this.picturePanel.Location = new System.Drawing.Point(23, 28);
             this.picturePanel.Name = "picturePanel";
-            this.picturePanel.Size = new System.Drawing.Size(608, 236);
+            this.picturePanel.Size = new System.Drawing.Size(611, 236);
             this.picturePanel.TabIndex = 5;
             this.picturePanel.Visible = false;
             // 
@@ -179,7 +180,8 @@
             this.pictureBoxZoomAntwort.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBoxZoomAntwort.Location = new System.Drawing.Point(0, 0);
             this.pictureBoxZoomAntwort.Name = "pictureBoxZoomAntwort";
-            this.pictureBoxZoomAntwort.Size = new System.Drawing.Size(608, 236);
+            this.pictureBoxZoomAntwort.Size = new System.Drawing.Size(611, 236);
+            this.pictureBoxZoomAntwort.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxZoomAntwort.TabIndex = 0;
             this.pictureBoxZoomAntwort.TabStop = false;
             this.pictureBoxZoomAntwort.Click += new System.EventHandler(this.pictureBoxZoomAntwort_Click);
@@ -190,12 +192,11 @@
             this.ZoomButtonAntwort.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ZoomButtonAntwort.FlatAppearance.BorderSize = 0;
             this.ZoomButtonAntwort.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ZoomButtonAntwort.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ZoomButtonAntwort.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
             this.ZoomButtonAntwort.Location = new System.Drawing.Point(447, 37);
             this.ZoomButtonAntwort.Margin = new System.Windows.Forms.Padding(0);
             this.ZoomButtonAntwort.Name = "ZoomButtonAntwort";
-            this.ZoomButtonAntwort.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.ZoomButtonAntwort.Size = new System.Drawing.Size(187, 227);
+            this.ZoomButtonAntwort.Size = new System.Drawing.Size(40, 40);
             this.ZoomButtonAntwort.TabIndex = 4;
             this.ZoomButtonAntwort.Text = "🔍 ";
             this.ZoomButtonAntwort.UseVisualStyleBackColor = false;
@@ -227,9 +228,9 @@
             this.pictureBoxAntwort.Location = new System.Drawing.Point(447, 37);
             this.pictureBoxAntwort.Name = "pictureBoxAntwort";
             this.pictureBoxAntwort.Size = new System.Drawing.Size(187, 227);
+            this.pictureBoxAntwort.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxAntwort.TabIndex = 2;
             this.pictureBoxAntwort.TabStop = false;
-            this.pictureBoxAntwort.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBoxAntwort_MouseMove);
             // 
             // label5
             // 

@@ -32,14 +32,6 @@ namespace KarteikartenDesktop {
             panelLayover.Visible = false;
         }
 
-        private void pictureBoxAntwort_MouseMove(object sender, MouseEventArgs e) {
-
-        }
-
-        private void pictureBoxFrage_MouseMove(object sender, MouseEventArgs e) {
-            ZoomButtonAntwort.Visible = true;
-        }
-
         private void ZoomButtonAntwort_Click(object sender, EventArgs e) {
             picturePanel.Visible = true;
         }
@@ -91,10 +83,8 @@ namespace KarteikartenDesktop {
             generateAndShowCard();
         }
 
-        private void generateAndShowCard()
-        {
-            if (this.karten.Count > 0)
-            {
+        private void generateAndShowCard() {
+            if (this.karten.Count > 0) {
                 var max = this.karten.Count - 1;
                 var r = new Random();
                 var pick = r.Next(0, max);
@@ -106,9 +96,11 @@ namespace KarteikartenDesktop {
                 antwortLabel.Text = karte.Antwort;
 
                 pictureBoxFrage.Image = karte.FrageBitmap;
+                pictureBoxZoomFrage.Image = karte.FrageBitmap;
                 pictureBoxAntwort.Image = karte.AntwortBitmap;
-            } else
-            {
+                pictureBoxZoomAntwort.Image = karte.AntwortBitmap;
+
+            } else {
                 runderButtonZurück.PerformClick();
             }
         }
