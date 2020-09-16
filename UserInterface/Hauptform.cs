@@ -88,16 +88,13 @@ namespace KarteikartenDesktop {
             this.Visible = false;
             KartenAbfrage abfrage = new KartenAbfrage();
             abfrage.ShowDialog();
-            this.Visible = true;
-        }
+            //überprüfung von Invallenänderung
 
-        private void handleHauptformClosing(object sender, FormClosingEventArgs e)
-        {
-            database.Connection.Close();
+            this.Visible = true;
         }
         private void buttonExport_Click(object sender, EventArgs e) {
 
-            KartenExport export = new KartenExport();
+            KartenExport export = new KartenExport(database);
             this.Visible = false;
             if (export.ShowDialog() == DialogResult.OK) {
                 //-> Upload auf Web-DB der einzelnen angewählten Karten.
@@ -105,8 +102,19 @@ namespace KarteikartenDesktop {
             this.Visible = true;
         }
 
+        private void handleHauptformClosing(object sender, FormClosingEventArgs e)
+        {
+            database.Connection.Close();
+        }
+
         List<DataGridView> viewList = new List<DataGridView>();
         private DataBase database = new DataBase();
 
+        private void Hauptform_VisibleChanged(object sender, EventArgs e) {
+            var AktuelleKarteikarten = database.GetAllKarteikarten();
+            foreach (var Karte in AktuelleKarteikarten) {
+
+            }
+        }
     }
 }

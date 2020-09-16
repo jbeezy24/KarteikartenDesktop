@@ -23,6 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(KartenAbfrage));
             this.panelFrage = new System.Windows.Forms.Panel();
             this.picturepanel2 = new System.Windows.Forms.Panel();
@@ -47,6 +48,7 @@
             this.runderButton3 = new KarteikartenDesktop.UserInterface.RunderButton();
             this.runderButtonZurück = new KarteikartenDesktop.UserInterface.RunderButton();
             this.runderButton1 = new KarteikartenDesktop.UserInterface.RunderButton();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panelFrage.SuspendLayout();
             this.picturepanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxZoomFrage)).BeginInit();
@@ -269,6 +271,7 @@
             this.runderButtonJa.TabIndex = 5;
             this.runderButtonJa.Text = "✅";
             this.runderButtonJa.UseVisualStyleBackColor = false;
+            this.runderButtonJa.MouseHover += new System.EventHandler(this.runderButtonJa_MouseHover);
             // 
             // runderButtonNein
             // 
@@ -285,6 +288,7 @@
             this.runderButtonNein.TabIndex = 4;
             this.runderButtonNein.Text = "✖️";
             this.runderButtonNein.UseVisualStyleBackColor = false;
+            this.runderButtonNein.MouseHover += new System.EventHandler(this.runderButtonNein_MouseHover);
             // 
             // runderButtonQmark
             // 
@@ -301,6 +305,7 @@
             this.runderButtonQmark.TabIndex = 3;
             this.runderButtonQmark.Text = "❓";
             this.runderButtonQmark.UseVisualStyleBackColor = false;
+            this.runderButtonQmark.MouseHover += new System.EventHandler(this.runderButtonQmark_MouseHover);
             // 
             // runderButton3
             // 
@@ -312,11 +317,13 @@
             this.runderButton3.Location = new System.Drawing.Point(496, 300);
             this.runderButton3.Margin = new System.Windows.Forms.Padding(0);
             this.runderButton3.Name = "runderButton3";
+            this.runderButton3.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.runderButton3.Size = new System.Drawing.Size(105, 105);
             this.runderButton3.TabIndex = 1;
-            this.runderButton3.Text = "↩️";
+            this.runderButton3.Text = "↪️";
             this.runderButton3.UseVisualStyleBackColor = false;
             this.runderButton3.Click += new System.EventHandler(this.runderButton3_Click);
+            this.runderButton3.MouseHover += new System.EventHandler(this.runderButton3_MouseHover);
             // 
             // runderButtonZurück
             // 
@@ -334,6 +341,7 @@
             this.runderButtonZurück.TabIndex = 2;
             this.runderButtonZurück.Text = "🔙";
             this.runderButtonZurück.UseVisualStyleBackColor = false;
+            this.runderButtonZurück.MouseHover += new System.EventHandler(this.runderButtonZurück_MouseHover);
             // 
             // runderButton1
             // 
@@ -350,6 +358,7 @@
             this.runderButton1.Text = "↩️";
             this.runderButton1.UseVisualStyleBackColor = false;
             this.runderButton1.Click += new System.EventHandler(this.runderButton1_Click);
+            this.runderButton1.MouseHover += new System.EventHandler(this.runderButton1_MouseHover);
             // 
             // KartenAbfrage
             // 
@@ -405,5 +414,6 @@
         private System.Windows.Forms.PictureBox pictureBoxZoomFrage;
         private System.Windows.Forms.Panel picturePanel;
         private System.Windows.Forms.PictureBox pictureBoxZoomAntwort;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

@@ -55,5 +55,29 @@ namespace KarteikartenDesktop {
         private void pictureBoxZoomFrage_Click(object sender, EventArgs e) {
             picturepanel2.Visible = false;
         }
+
+        private void runderButtonZurück_MouseHover(object sender, EventArgs e) {
+            toolTip1.SetToolTip(this.runderButtonZurück, "Abfrage abbrechen und zurück zum Hauptmenü");
+        }
+
+        private void runderButton1_MouseHover(object sender, EventArgs e) {
+            toolTip1.SetToolTip(this.runderButton1, "Zur Antwort umdrehen");
+        }
+
+        private void runderButtonJa_MouseHover(object sender, EventArgs e) {
+            toolTip1.SetToolTip(this.runderButtonJa, "Gewusst");
+        }
+
+        private void runderButtonNein_MouseHover(object sender, EventArgs e) {
+            toolTip1.SetToolTip(this.runderButtonNein, "Nicht gewusst");
+        }
+
+        private void runderButtonQmark_MouseHover(object sender, EventArgs e) {
+            toolTip1.SetToolTip(this.runderButtonQmark, "Karte ist irrelevant");
+        }
+
+        private void runderButton3_MouseHover(object sender, EventArgs e) {
+            toolTip1.SetToolTip(this.runderButton3, "Zur Frage zurückdrehen");
+        }
     }
 }
