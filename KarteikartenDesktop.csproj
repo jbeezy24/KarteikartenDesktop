@@ -78,6 +78,7 @@
     <Compile Include="Database\Fach.cs" />
     <Compile Include="Database\Frage.cs" />
     <Compile Include="Database\KarteikartenHelper.cs" />
+    <Compile Include="Requests\ExportObject.cs" />
     <Compile Include="Requests\ExportRequestJson.cs" />
     <Compile Include="Requests\ImportRequestJson.cs" />
     <Compile Include="Database\Intervall.cs" />
@@ -85,7 +86,10 @@
     <Compile Include="Database\Klasse.cs" />
     <Compile Include="Database\Thema.cs" />
     <Compile Include="Database\UserSettings.cs" />
+    <Compile Include="Requests\KarteikartenImportHelper.cs" />
+    <Compile Include="Requests\Karteikarten_Import.cs" />
     <Compile Include="Requests\Request.cs" />
+    <Compile Include="Requests\Thema_Import.cs" />
     <Compile Include="UserInterface\Hauptform.cs">
       <SubType>Form</SubType>
     </Compile>
