@@ -42,13 +42,13 @@
             this.pictureBoxAntwort = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
             this.panelLayover = new System.Windows.Forms.Panel();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.runderButtonJa = new KarteikartenDesktop.UserInterface.RunderButton();
             this.runderButtonNein = new KarteikartenDesktop.UserInterface.RunderButton();
             this.runderButtonQmark = new KarteikartenDesktop.UserInterface.RunderButton();
             this.runderButton3 = new KarteikartenDesktop.UserInterface.RunderButton();
             this.runderButtonZurück = new KarteikartenDesktop.UserInterface.RunderButton();
             this.runderButton1 = new KarteikartenDesktop.UserInterface.RunderButton();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panelFrage.SuspendLayout();
             this.picturepanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxZoomFrage)).BeginInit();
@@ -271,6 +271,7 @@
             this.runderButtonJa.TabIndex = 5;
             this.runderButtonJa.Text = "✅";
             this.runderButtonJa.UseVisualStyleBackColor = false;
+            this.runderButtonJa.Click += new System.EventHandler(this.runderButtonJa_Click);
             this.runderButtonJa.MouseHover += new System.EventHandler(this.runderButtonJa_MouseHover);
             // 
             // runderButtonNein
@@ -288,6 +289,7 @@
             this.runderButtonNein.TabIndex = 4;
             this.runderButtonNein.Text = "✖️";
             this.runderButtonNein.UseVisualStyleBackColor = false;
+            this.runderButtonNein.Click += new System.EventHandler(this.runderButtonNein_Click);
             this.runderButtonNein.MouseHover += new System.EventHandler(this.runderButtonNein_MouseHover);
             // 
             // runderButtonQmark
@@ -305,6 +307,7 @@
             this.runderButtonQmark.TabIndex = 3;
             this.runderButtonQmark.Text = "❓";
             this.runderButtonQmark.UseVisualStyleBackColor = false;
+            this.runderButtonQmark.Click += new System.EventHandler(this.runderButtonQmark_Click);
             this.runderButtonQmark.MouseHover += new System.EventHandler(this.runderButtonQmark_MouseHover);
             // 
             // runderButton3
