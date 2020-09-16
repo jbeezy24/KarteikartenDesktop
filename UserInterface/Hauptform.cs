@@ -73,7 +73,7 @@ namespace KarteikartenDesktop {
         }
 
         private void buttonAdd_Click(object sender, EventArgs e) {
-            KartenErstellen erstellen = new KartenErstellen();
+            KartenErstellen erstellen = new KartenErstellen(database);
             this.Visible = false;
             if (erstellen.ShowDialog() == DialogResult.OK) {
                 //-> Commit auf Datenbank, neue Karteikarte anlegen.

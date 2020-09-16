@@ -44,25 +44,28 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.buttonPreview = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonOK
             // 
+            this.buttonOK.BackColor = System.Drawing.SystemColors.HotTrack;
             this.buttonOK.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.buttonOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonOK.Font = new System.Drawing.Font("Georgia", 9.75F, System.Drawing.FontStyle.Bold);
-            this.buttonOK.Location = new System.Drawing.Point(326, 376);
+            this.buttonOK.ForeColor = System.Drawing.Color.White;
+            this.buttonOK.Location = new System.Drawing.Point(268, 376);
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.Size = new System.Drawing.Size(96, 23);
             this.buttonOK.TabIndex = 0;
             this.buttonOK.Text = "OK";
-            this.buttonOK.UseVisualStyleBackColor = true;
+            this.buttonOK.UseVisualStyleBackColor = false;
+            this.buttonOK.Click += new System.EventHandler(this.buttonOK_Click);
             // 
             // buttonAbort
             // 
             this.buttonAbort.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.buttonAbort.Font = new System.Drawing.Font("Georgia", 9.75F, System.Drawing.FontStyle.Bold);
-            this.buttonAbort.Location = new System.Drawing.Point(438, 376);
+            this.buttonAbort.Location = new System.Drawing.Point(380, 376);
             this.buttonAbort.Name = "buttonAbort";
             this.buttonAbort.Size = new System.Drawing.Size(96, 23);
             this.buttonAbort.TabIndex = 1;
@@ -113,9 +116,9 @@
             this.label6.Font = new System.Drawing.Font("Georgia", 9.75F, System.Drawing.FontStyle.Bold);
             this.label6.Location = new System.Drawing.Point(123, 9);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(506, 16);
+            this.label6.Size = new System.Drawing.Size(510, 16);
             this.label6.TabIndex = 7;
-            this.label6.Text = "Wähle das Fach und Thema und gebe eine Frage und eine Antwort ein";
+            this.label6.Text = "Wähle das Fach und Thema und gebe eine Frage und eine Antwort ein.";
             // 
             // button1
             // 
@@ -125,6 +128,7 @@
             this.button1.Size = new System.Drawing.Size(75, 67);
             this.button1.TabIndex = 8;
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -134,6 +138,7 @@
             this.button2.Size = new System.Drawing.Size(75, 67);
             this.button2.TabIndex = 9;
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // comboBox1
             // 
@@ -196,24 +201,11 @@
             this.label8.TabIndex = 15;
             this.label8.Text = "Bild zu Antwort\r\nhinzufügen";
             // 
-            // buttonPreview
-            // 
-            this.buttonPreview.DialogResult = System.Windows.Forms.DialogResult.Retry;
-            this.buttonPreview.Font = new System.Drawing.Font("Georgia", 9.75F, System.Drawing.FontStyle.Bold);
-            this.buttonPreview.Location = new System.Drawing.Point(215, 376);
-            this.buttonPreview.Name = "buttonPreview";
-            this.buttonPreview.Size = new System.Drawing.Size(96, 23);
-            this.buttonPreview.TabIndex = 16;
-            this.buttonPreview.Text = "Vorschau";
-            this.buttonPreview.UseVisualStyleBackColor = true;
-            this.buttonPreview.Click += new System.EventHandler(this.buttonPreview_Click);
-            // 
             // KartenErstellen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 411);
-            this.Controls.Add(this.buttonPreview);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.richTextBox2);
@@ -255,6 +247,5 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button buttonPreview;
     }
 }
