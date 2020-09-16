@@ -1,2 +1,2 @@
-[16.09.2020 14:02:52] GetAllKarteikarten 6: SQL logic error
+[16.09.2020 14:32:03] GetAllKarteikarten 6: SQL logic error
 near "Bild": syntax error

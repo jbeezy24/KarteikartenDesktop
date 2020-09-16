@@ -215,7 +215,7 @@
             // antwortLabel
             // 
             this.antwortLabel.BackColor = System.Drawing.Color.Transparent;
-            this.antwortLabel.Font = new System.Drawing.Font("Georgia", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.antwortLabel.Font = new System.Drawing.Font("Georgia", 12F);
             this.antwortLabel.Location = new System.Drawing.Point(23, 37);
             this.antwortLabel.Name = "antwortLabel";
             this.antwortLabel.Size = new System.Drawing.Size(418, 227);

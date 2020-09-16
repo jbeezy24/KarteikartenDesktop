@@ -121,12 +121,15 @@ namespace KarteikartenDesktop {
                     }
                 }
             }
+            if (listAbfrage.Count > 0) {
+                this.Visible = false;
+                KartenAbfrage abfrage = new KartenAbfrage(listAbfrage, this.database);
+                abfrage.ShowDialog();
 
-            this.Visible = false;
-            KartenAbfrage abfrage = new KartenAbfrage(listAbfrage, this.database);
-            abfrage.ShowDialog();
-
-            this.Visible = true;
+                this.Visible = true;
+            } else {
+                MessageBox.Show("Wählen Sie Karteikarten zum Abfragen aus!", "Keine Karten ausgewählt", MessageBoxButtons.OK);
+            }
         }
         private void buttonExport_Click(object sender, EventArgs e) {
 
@@ -165,30 +168,31 @@ namespace KarteikartenDesktop {
                 switch (Karte.Intervall) {
                     case 1: {
                             dataGridView1.Rows.Add(row);
-                            buttonInt1.Text = "Interval 1(" + dataGridView1.Rows.Count + "Karten)";
                             break;
                         }
                     case 3: {
                             dataGridView2.Rows.Add(row);
-                            buttonInt2.Text = "Interval 2(" + dataGridView2.Rows.Count + "Karten)";
                             break;
                         }
                     case 7: {
                             dataGridView3.Rows.Add(row);
-                            buttonInt3.Text = "Interval 3(" + dataGridView3.Rows.Count + "Karten)";
                             break;
                         }
                     case 30: {
                             dataGridView4.Rows.Add(row);
-                            buttonInt4.Text = "Interval 4(" + dataGridView4.Rows.Count + "Karten)";
                             break;
                         }
                     case 9999: {
                             dataGridView5.Rows.Add(row);
-                            buttonInt5.Text = "Interval 5(" + dataGridView5.Rows.Count + "Karten)";
                             break;
                         }
                 }
+                buttonInt1.Text = "Interval 1 (" + dataGridView1.Rows.Count + " Karten)";
+                buttonInt2.Text = "Interval 2 (" + dataGridView2.Rows.Count + " Karten)";
+                buttonInt3.Text = "Interval 3 (" + dataGridView3.Rows.Count + " Karten)";
+                buttonInt4.Text = "Interval 4 (" + dataGridView4.Rows.Count + " Karten)";
+                buttonInt5.Text = "Interval 5 (" + dataGridView5.Rows.Count + " Karten)";
+
                 for (int i = 0; i < 5; i++) {
                     panelList[i].Size = new Size(Width, 22 * (1 + viewList[i].Rows.Count));
                 }
