@@ -51,7 +51,7 @@ namespace KarteikartenDesktop {
             //database.ChangeRecordCard(recordCard, intervallID: 2, letzteAbfrage: DateTime.Now);
             //var test = database.GetRecordCard(1);
 
-            Request.ImportKarteikarte("160018188151", database);
+            //Request.ImportKarteikarte("160018188151", database);
             //Request.ExportKarteikarte(allKarteikarte[allKarteikarte.Count - 1], userSettings, allKlasse);
             #endregion
 
@@ -60,6 +60,11 @@ namespace KarteikartenDesktop {
             viewList.Add(dataGridView3);
             viewList.Add(dataGridView4);
             viewList.Add(dataGridView5);
+            panelList.Add(panelInterval1);
+            panelList.Add(panelInterval2);
+            panelList.Add(panelInterval3);
+            panelList.Add(panelInterval4);
+            panelList.Add(panelInterval5);
         }
 
         private void Form1_SizeChanged(object sender, EventArgs e) {
@@ -105,9 +110,19 @@ namespace KarteikartenDesktop {
 
         private void buttonAbfrage_Click(object sender, EventArgs e) {
             this.Visible = false;
-            KartenAbfrage abfrage = new KartenAbfrage();
+            List<KarteikartenHelper> listAbfrage = new List<KarteikartenHelper>();
+            foreach (DataGridView view in viewList) {
+                foreach (DataGridViewRow row in view.Rows) {
+                    if (System.Convert.ToBoolean(row.Cells[0].Value) == true) {
+                        var karte = database.GetAllKarteikarten().Where(x => x.KartenID == System.Convert.ToInt32(row.Cells[1].Value)).FirstOrDefault();
+                        if (karte != null) {
+                            listAbfrage.Add(karte);
+                        }
+                    }
+                }
+            }
+            KartenAbfrage abfrage = new KartenAbfrage(listAbfrage);
             abfrage.ShowDialog();
-            //überprüfung von Invallenänderung
 
             this.Visible = true;
         }
@@ -121,13 +136,13 @@ namespace KarteikartenDesktop {
             this.Visible = true;
         }
 
-        private void handleHauptformClosing(object sender, FormClosingEventArgs e)
-        {
+        private void handleHauptformClosing(object sender, FormClosingEventArgs e) {
             database.Connection.Close();
         }
 
         List<DataGridView> viewList = new List<DataGridView>();
         private DataBase database = new DataBase();
+        List<Panel> panelList = new List<Panel>();
 
         private void Hauptform_VisibleChanged(object sender, EventArgs e) {
             foreach (var view in viewList) {
@@ -144,8 +159,8 @@ namespace KarteikartenDesktop {
                 celltopic.Value = Karte.Thema;
                 cellsubject.Value = Karte.Fachname;
                 cellkartenid.Value = Karte.KartenID;
-                row.Cells.AddRange(new DataGridViewCell[] { cellcheck, cellkartenid, cellsubject, celltopic }) ;
-                switch(Karte.Intervall) {
+                row.Cells.AddRange(new DataGridViewCell[] { cellcheck, cellkartenid, cellsubject, celltopic });
+                switch (Karte.Intervall) {
                     case 1: {
                             dataGridView1.Rows.Add(row);
                             break;
@@ -167,12 +182,10 @@ namespace KarteikartenDesktop {
                             break;
                         }
                 }
+                for (int i = 0; i < 5; i++) {
+                    panelList[i].Size = new Size(Width, 22 * (1 + viewList[i].Rows.Count));
+                }
 
-                panelInterval1.Size = new Size(Width, 22 * (1 + dataGridView1.Rows.Count));
-                panelInterval2.Size = new Size(Width, 22 * (1 + dataGridView2.Rows.Count));
-                panelInterval3.Size = new Size(Width, 22 * (1 + dataGridView3.Rows.Count));
-                panelInterval4.Size = new Size(Width, 22 * (1 + dataGridView4.Rows.Count));
-                panelInterval5.Size = new Size(Width, 22 * (1 + dataGridView5.Rows.Count));
             }
         }
 
