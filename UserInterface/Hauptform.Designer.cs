@@ -109,7 +109,6 @@
             this.buttonExport.TabIndex = 3;
             this.buttonExport.Text = "Karten Exportieren";
             this.buttonExport.UseVisualStyleBackColor = true;
-            this.buttonExport.Click += new System.EventHandler(this.buttonExport_Click);
             // 
             // buttonAdd
             // 
@@ -371,6 +370,7 @@
             this.MinimumSize = new System.Drawing.Size(200, 112);
             this.Name = "Hauptform";
             this.Text = "KarteiLernSystem";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.handleHauptformClosing);
             this.SizeChanged += new System.EventHandler(this.Form1_SizeChanged);
             this.panelsideMenu.ResumeLayout(false);
             this.panel1.ResumeLayout(false);

@@ -1,5 +1,4 @@
 ﻿using KarteikartenDesktop.Database;
-using KarteikartenDesktop.UserInterface;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -17,18 +16,25 @@ namespace KarteikartenDesktop {
         public Hauptform() {
             InitializeComponent();
 
-            dataBase1 = new DataBase();
+            #region Testen von Export Karteikarten
+            //dataBase.CreateClass("FIA18A");
+            //dataBase.CreateSubject("IT3", 1);
+            //dataBase.CreateTopic("Programmierung", 1);
 
-            //dataBase1.CreateClass("FIA18A");
-            //dataBase1.CreateSubject("IT3", 1);
-            //dataBase1.CreateTopic("Programmierung", 1);
+            //dataBase.CreateQuestion("Warum sind Bananen krumm?", new Bitmap(Image.FromFile(@"D:\vsico.png")));
+            //dataBase.CreateAnswer("Weil es so ist", null);
 
-            //dataBase1.CreateQuestion("Warum sind Bananen krumm?", null);
-            //dataBase1.CreateAnswer("Weil es so ist", null);
+            //dataBase.CreateRecordCard(1, 11, 11, 1, DateTime.Now);
 
-            //dataBase1.CreateRecordCard(1, 11, 11, 1, DateTime.Now);
+            //dataBase.CreateUsersettings("sarah", "sarahb", true, 1);
+            //var allKarteikarte = dataBase.GetAllKarteikarten();
+            //dataBase.SetAllUsersettings();
+            //var userSettings = dataBase.AllUsersettings[0];
+            //dataBase.SetAllKlasse();
+            //var allKlasse = dataBase.AllKlasse;
 
-            //dataBase1.GetAllKarteikarten();
+            //Request.ExportKarteikarte(allKarteikarte[0], userSettings, allKlasse);
+            #endregion
 
             viewList.Add(dataGridView1);
             viewList.Add(dataGridView2);
@@ -86,15 +92,12 @@ namespace KarteikartenDesktop {
         }
 
         List<DataGridView> viewList = new List<DataGridView>();
-        private DataBase dataBase1 = new DataBase();
 
-        private void buttonExport_Click(object sender, EventArgs e) {
-            this.Visible = false;
-            KartenExport export = new KartenExport(dataBase1);
-            if (export.ShowDialog() == DialogResult.OK) {
-                //Upload der einzelnen Karten an die Web-Datenbank
-            }
-            this.Visible = true;
+        private void handleHauptformClosing(object sender, FormClosingEventArgs e)
+        {
+            database.Connection.Close();
         }
+
+        private DataBase database = new DataBase();
     }
 }

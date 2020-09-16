@@ -1,2 +1,2 @@
-[15.09.2020 14:09:11] createTable: SQL logic error
+[15.09.2020 14:17:49] createTable: SQL logic error
 table Thema already exists

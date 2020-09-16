@@ -10,6 +10,6 @@ namespace KarteikartenDesktop
     {
         public int AntwortID { get; set; }
         public string Text { get; set; }
-        public int BildID { get; set; }
+        public int? BildID { get; set; }
     }
 }
