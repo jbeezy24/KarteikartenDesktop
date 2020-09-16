@@ -14,6 +14,8 @@ namespace KarteikartenDesktop {
             InitializeComponent();
         }
 
+
+
         private void buttonPreview_Click(object sender, EventArgs e) {
             //Verweis auf Lernfunktion
         }

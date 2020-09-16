@@ -10,9 +10,13 @@ using System.Windows.Forms;
 
 namespace KarteikartenDesktop {
     public partial class KartenAbfrage : Form {
-        public KartenAbfrage() {
+        public KartenAbfrage(List<KarteikartenHelper> karten) {
             InitializeComponent();
+            this.karten = karten;
         }
+
+
+        List<KarteikartenHelper> karten = new List<KarteikartenHelper>();
 
         private void KartenAbfrage_FormClosing(object sender, FormClosingEventArgs e) {
 
