@@ -91,13 +91,22 @@ namespace KarteikartenDesktop {
             this.Visible = true;
         }
 
-        List<DataGridView> viewList = new List<DataGridView>();
-
         private void handleHauptformClosing(object sender, FormClosingEventArgs e)
         {
             database.Connection.Close();
         }
+        private void buttonExport_Click(object sender, EventArgs e) {
 
+            KartenExport export = new KartenExport();
+            this.Visible = false;
+            if (export.ShowDialog() == DialogResult.OK) {
+                //-> Upload auf Web-DB der einzelnen angewählten Karten.
+            }
+            this.Visible = true;
+        }
+
+        List<DataGridView> viewList = new List<DataGridView>();
         private DataBase database = new DataBase();
+
     }
 }
