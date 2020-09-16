@@ -590,7 +590,7 @@ namespace KarteikartenDesktop
                         var text = dataReader["Text"];
                         var bildID = dataReader["BildID"];
 
-                        antwort.Text = text;
+                        antwort.Text = text.ToString();
                         antwort.BildID = Convert.ToInt32(bildID);
                         return antwort;
                     }
@@ -785,7 +785,7 @@ namespace KarteikartenDesktop
                         var text = dataReader["Text"];
                         var bildID = dataReader["BildID"];
 
-                        frage.Text = text;
+                        frage.Text = text.ToString();
                         frage.BildID = Convert.ToInt32(bildID);
                         return frage;
                     }

@@ -74,7 +74,7 @@ namespace KarteikartenDesktop
                     // wenn Fach nicht vorhanden, neu erstellen
                     if (fach == null)
                     {
-                        database.CreateSubject(importHelper[i].Fach, database.GetUsersettings(1).KlasseID);
+                        database.CreateSubject(importHelper[i].Fach);
                         database.SetAllFach();
                         fach = database.AllFach.Where(x => x.Name.ToLower() == importHelper[i].Fach.ToLower()).FirstOrDefault();
                     }
@@ -117,8 +117,7 @@ namespace KarteikartenDesktop
         /// <summary> Exportiert !EINE! Karteikarte</summary>
         /// <param name="karteikartenHelper">Karteikartenhelper, bekommt man aus DataBase.GetAllKarteikarten()</param>
         /// <param name="userSetting">Benutzereinstellungen, !ACHTUNG! nur !EINE! Benutzereinstellung möglich, diese wird bei Initialisierung der Datenbank angelegt!!</param>
-        /// <param name="AllKlasse">"DataBase.AllKlasse"</param>
-        public static void ExportKarteikarte(KarteikartenHelper karteikartenHelper, UserSettings userSetting, List<Klasse> AllKlasse)
+        public static string ExportKarteikarte(KarteikartenHelper karteikartenHelper, UserSettings userSetting)
         {
             // Für den Import auf der Datenbank wird immer eine Liste benötigt, da sonst dies nicht ordentlich deserialisiert werden kann
             List<Antwort> antworts = new List<Antwort>();
@@ -170,14 +169,6 @@ namespace KarteikartenDesktop
 
             karteikarten.Add(karteikarte);
 
-            var klasseGet = AllKlasse.Where(x => x.KlasseID == userSetting.KlasseID).FirstOrDefault();
-
-            List<Klasse> klassen = new List<Klasse>();
-            Klasse klasse = new Klasse();
-            klasse.KlasseID = Convert.ToInt32(klasseGet?.KlasseID);
-            klasse.Name = klasseGet?.Name;
-            klassen.Add(klasse);
-
             List<UserSettings> userSettings = new List<UserSettings>();
             userSettings.Add(userSetting);
 
@@ -187,15 +178,14 @@ namespace KarteikartenDesktop
             string json4 = JsonConvert.SerializeObject(faecher);
             string json5 = JsonConvert.SerializeObject(themas);
             string json6 = JsonConvert.SerializeObject(bilder);
-            string json7 = JsonConvert.SerializeObject(klassen);
             string json8 = JsonConvert.SerializeObject(userSettings);
 
 
             string jsonString = "{\"Karteikarte\": " + json1 + "," + "\"Antwort\":" + json2 + "," + "\"Frage\":" + json3 + "," + "\"Fach\":" + json4 + "," + "\"Thema\":" + json5 + "," + "\"Bild\":" + json6 +
-                "," + "\"Klasse\":" + json7 + "," + "\"Benutzer\":" + json8 + "}";
+                "," + "\"Benutzer\":" + json8 + "}";
 
             // sendet ein "Post" an den Server
-            PostObject(jsonString, "/api_import.php");
+            return PostObject(jsonString, "/api_import.php");
         }
 
         /// <summary> Postet ein angegebenen string an den angegebenen Endpunkt an den Server</summary>
