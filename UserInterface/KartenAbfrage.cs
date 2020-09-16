@@ -83,5 +83,18 @@ namespace KarteikartenDesktop {
         private void runderButton3_MouseHover(object sender, EventArgs e) {
             toolTip1.SetToolTip(this.runderButton3, "Zur Frage zurückdrehen");
         }
+
+        private void KartenAbfrage_Load(object sender, EventArgs e)
+        {
+            // die erste Karte anzeigen
+            var max = this.karten.Count - 1;
+            var r = new Random();
+            var pick = r.Next(0, max);
+
+            var karte = this.karten[pick];
+            label3.Text = karte.KartenID.ToString();
+            label5.Text = "Thema: " + karte.Thema;
+
+        }
     }
 }
