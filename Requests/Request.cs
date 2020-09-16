@@ -104,10 +104,9 @@ namespace KarteikartenDesktop
                         var antwort = database.AllAntwort[database.AllAntwort.Count - 1];
 
                         database.CreateRecordCard(thema.ThemaID, frage.FrageID, antwort.AntwortID, 1, DateTime.Now);
-                    }
-
-                    return true;
+                    }                    
                 }
+                return true;
             } catch (Exception ex)
             {
                 Logger.WriteLogfile(ex.Message);

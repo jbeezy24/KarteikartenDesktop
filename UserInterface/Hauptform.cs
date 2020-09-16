@@ -82,7 +82,7 @@ namespace KarteikartenDesktop {
         }
 
         private void buttonImport_Click(object sender, EventArgs e) {
-            KartenImport import = new KartenImport();
+            KartenImport import = new KartenImport(database);
             if (import.ShowDialog() == DialogResult.OK) {
                 //Erstellung von Karten und einfügen in DB anhand von Daten der jeweiligen im Web auswählten Karten
             }
