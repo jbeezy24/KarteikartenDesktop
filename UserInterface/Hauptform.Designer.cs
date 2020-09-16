@@ -160,6 +160,7 @@
             this.buttonOptions.Size = new System.Drawing.Size(60, 60);
             this.buttonOptions.TabIndex = 1;
             this.buttonOptions.UseVisualStyleBackColor = false;
+            this.buttonOptions.Click += new System.EventHandler(this.buttonOptions_Click);
             // 
             // panel1
             // 
@@ -646,6 +647,18 @@
             this.button3.Text = "Alles abwählen";
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
+		
+            // 
+            this.buttonInt1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.buttonInt1.Font = new System.Drawing.Font("Georgia", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonInt1.Location = new System.Drawing.Point(0, 0);
+            this.buttonInt1.Name = "buttonInt1";
+            this.buttonInt1.Size = new System.Drawing.Size(585, 38);
+            this.buttonInt1.TabIndex = 0;
+            this.buttonInt1.Text = "Interval 1 (x Karten)";
+            this.buttonInt1.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.buttonInt1.UseVisualStyleBackColor = true;
+            this.buttonInt1.Click += new System.EventHandler(this.buttonInt1_Click);
             // 
             // Hauptform
             // 

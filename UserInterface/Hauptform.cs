@@ -1,4 +1,5 @@
 ﻿using KarteikartenDesktop.Database;
+using KarteikartenDesktop.UserInterface;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -164,22 +165,27 @@ namespace KarteikartenDesktop {
                 switch (Karte.Intervall) {
                     case 1: {
                             dataGridView1.Rows.Add(row);
+                            buttonInt1.Text = "Interval 1(" + dataGridView1.Rows.Count + "Karten)";
                             break;
                         }
                     case 3: {
                             dataGridView2.Rows.Add(row);
+                            buttonInt2.Text = "Interval 2(" + dataGridView2.Rows.Count + "Karten)";
                             break;
                         }
                     case 7: {
                             dataGridView3.Rows.Add(row);
+                            buttonInt3.Text = "Interval 3(" + dataGridView3.Rows.Count + "Karten)";
                             break;
                         }
                     case 30: {
                             dataGridView4.Rows.Add(row);
+                            buttonInt4.Text = "Interval 4(" + dataGridView4.Rows.Count + "Karten)";
                             break;
                         }
                     case 9999: {
                             dataGridView5.Rows.Add(row);
+                            buttonInt5.Text = "Interval 5(" + dataGridView5.Rows.Count + "Karten)";
                             break;
                         }
                 }
@@ -230,6 +236,10 @@ namespace KarteikartenDesktop {
                     }
                 }
             }
+        private void buttonOptions_Click(object sender, EventArgs e)
+        {
+            Benutzereinstellung benutzereinstellung = new Benutzereinstellung(database);
+            benutzereinstellung.ShowDialog();
         }
     }
 }

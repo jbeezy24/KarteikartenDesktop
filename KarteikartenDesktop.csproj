@@ -90,6 +90,12 @@
     <Compile Include="Requests\Karteikarten_Import.cs" />
     <Compile Include="Requests\Request.cs" />
     <Compile Include="Requests\Kontext_Import.cs" />
+    <Compile Include="UserInterface\Benutzereinstellung.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserInterface\Benutzereinstellung.Designer.cs">
+      <DependentUpon>Benutzereinstellung.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserInterface\Hauptform.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -127,6 +133,9 @@
     <Compile Include="UserInterface\RunderButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <EmbeddedResource Include="UserInterface\Benutzereinstellung.resx">
+      <DependentUpon>Benutzereinstellung.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserInterface\Hauptform.resx">
       <DependentUpon>Hauptform.cs</DependentUpon>
     </EmbeddedResource>
