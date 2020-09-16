@@ -28,7 +28,9 @@
             this.buttonImport = new System.Windows.Forms.Button();
             this.buttonExport = new System.Windows.Forms.Button();
             this.buttonAdd = new System.Windows.Forms.Button();
+            this.buttonOptions = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
             this.buttonAbfrage = new System.Windows.Forms.Button();
@@ -48,10 +50,9 @@
             this.panelInterval1 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.buttonInt1 = new System.Windows.Forms.Button();
-            this.buttonOptions = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelsideMenu.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.panel2.SuspendLayout();
             this.panelGrids.SuspendLayout();
@@ -65,7 +66,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.panelInterval1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panelsideMenu
@@ -87,6 +87,7 @@
             // 
             this.buttonImport.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonImport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonImport.Font = new System.Drawing.Font("Georgia", 9.75F, System.Drawing.FontStyle.Bold);
             this.buttonImport.Location = new System.Drawing.Point(0, 162);
             this.buttonImport.Name = "buttonImport";
@@ -100,6 +101,7 @@
             // 
             this.buttonExport.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonExport.Font = new System.Drawing.Font("Georgia", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonExport.Location = new System.Drawing.Point(0, 126);
             this.buttonExport.Name = "buttonExport";
@@ -113,14 +115,28 @@
             // 
             this.buttonAdd.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonAdd.BackColor = System.Drawing.Color.LightCyan;
+            this.buttonAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonAdd.Font = new System.Drawing.Font("Georgia", 9.75F, System.Drawing.FontStyle.Bold);
             this.buttonAdd.Location = new System.Drawing.Point(0, 90);
             this.buttonAdd.Name = "buttonAdd";
             this.buttonAdd.Size = new System.Drawing.Size(200, 30);
             this.buttonAdd.TabIndex = 2;
             this.buttonAdd.Text = "Karten Erstellen";
-            this.buttonAdd.UseVisualStyleBackColor = true;
+            this.buttonAdd.UseVisualStyleBackColor = false;
             this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
+            // 
+            // buttonOptions
+            // 
+            this.buttonOptions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonOptions.BackColor = System.Drawing.Color.Transparent;
+            this.buttonOptions.ForeColor = System.Drawing.Color.Transparent;
+            this.buttonOptions.Image = global::KarteikartenDesktop.Properties.Resources.settingscog_87317_1_;
+            this.buttonOptions.Location = new System.Drawing.Point(3, 348);
+            this.buttonOptions.Name = "buttonOptions";
+            this.buttonOptions.Size = new System.Drawing.Size(60, 60);
+            this.buttonOptions.TabIndex = 1;
+            this.buttonOptions.UseVisualStyleBackColor = false;
             // 
             // panel1
             // 
@@ -132,12 +148,21 @@
             this.panel1.Size = new System.Drawing.Size(200, 84);
             this.panel1.TabIndex = 0;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(60, 60);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
             // errorProvider1
             // 
             this.errorProvider1.ContainerControl = this;
             // 
             // panel2
             // 
+            this.panel2.BackColor = System.Drawing.Color.PaleTurquoise;
             this.panel2.Controls.Add(this.buttonAbfrage);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
@@ -149,14 +174,16 @@
             // 
             this.buttonAbfrage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonAbfrage.BackColor = System.Drawing.Color.MediumTurquoise;
+            this.buttonAbfrage.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonAbfrage.Font = new System.Drawing.Font("Georgia", 9.75F, System.Drawing.FontStyle.Bold);
+            this.buttonAbfrage.ForeColor = System.Drawing.Color.White;
             this.buttonAbfrage.Location = new System.Drawing.Point(703, 4);
             this.buttonAbfrage.Name = "buttonAbfrage";
             this.buttonAbfrage.Size = new System.Drawing.Size(78, 23);
             this.buttonAbfrage.TabIndex = 0;
             this.buttonAbfrage.Text = "Abfragen";
-            this.buttonAbfrage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonAbfrage.UseVisualStyleBackColor = true;
+            this.buttonAbfrage.UseVisualStyleBackColor = false;
             this.buttonAbfrage.Click += new System.EventHandler(this.buttonAbfrage_Click);
             // 
             // panelGrids
@@ -333,26 +360,6 @@
             this.buttonInt1.UseVisualStyleBackColor = true;
             this.buttonInt1.Click += new System.EventHandler(this.buttonInt1_Click);
             // 
-            // buttonOptions
-            // 
-            this.buttonOptions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonOptions.BackColor = System.Drawing.Color.Transparent;
-            this.buttonOptions.ForeColor = System.Drawing.Color.Transparent;
-            this.buttonOptions.Image = global::KarteikartenDesktop.Properties.Resources.settingscog_87317_1_;
-            this.buttonOptions.Location = new System.Drawing.Point(3, 348);
-            this.buttonOptions.Name = "buttonOptions";
-            this.buttonOptions.Size = new System.Drawing.Size(60, 60);
-            this.buttonOptions.TabIndex = 1;
-            this.buttonOptions.UseVisualStyleBackColor = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(60, 60);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
             // Hauptform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -367,6 +374,7 @@
             this.SizeChanged += new System.EventHandler(this.Form1_SizeChanged);
             this.panelsideMenu.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panelGrids.ResumeLayout(false);
@@ -380,7 +388,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.panelInterval1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
