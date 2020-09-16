@@ -89,7 +89,7 @@
     <Compile Include="Requests\KarteikartenImportHelper.cs" />
     <Compile Include="Requests\Karteikarten_Import.cs" />
     <Compile Include="Requests\Request.cs" />
-    <Compile Include="Requests\Thema_Import.cs" />
+    <Compile Include="Requests\Kontext_Import.cs" />
     <Compile Include="UserInterface\Hauptform.cs">
       <SubType>Form</SubType>
     </Compile>

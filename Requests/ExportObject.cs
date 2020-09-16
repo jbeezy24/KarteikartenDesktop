@@ -8,7 +8,7 @@ namespace KarteikartenDesktop
 {
     public class ExportObject
     {
-        public Thema_Import Thema { get; set; }
+        public Kontext_Import Kontext { get; set; }
         public List<Karteikarten_Import> Karteikarten { get; set; }
     }
 }

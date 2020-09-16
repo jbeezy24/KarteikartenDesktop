@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace KarteikartenDesktop
 {
-    public class Thema_Import
+    public class Kontext_Import
     {
         public string Thema { get; set; }
+        public string Fach { get; set; }
     }
 }

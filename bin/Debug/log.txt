@@ -1,2 +1,2 @@
-[16.09.2020 09:27:03] ChangeRecordCard: constraint failed
-FOREIGN KEY constraint failed
+[16.09.2020 11:35:08] createTable: SQL logic error
+table Klasse already exists

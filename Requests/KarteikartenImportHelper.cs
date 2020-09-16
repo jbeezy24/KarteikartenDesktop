@@ -10,6 +10,7 @@ namespace KarteikartenDesktop
     public class KarteikartenImportHelper
     {
         public string Thema { get; set; }
+        public string Fach { get; set; }
         public string Frage { get; set; }
         public string Antwort { get; set; }
         public Bitmap FrageBild { get; set; }
