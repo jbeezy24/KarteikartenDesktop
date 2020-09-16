@@ -17,20 +17,9 @@ namespace KarteikartenDesktop
         /// <param name="userSetting">Benutzereinstellung</param>
         /// <param name="allKlasse">alle Klassen</param>
         /// <param name="code">Code</param>
-        public static void ImportKarteikarte(UserSettings userSetting, string code)
+        public static void ImportKarteikarte(string code)
         {
-            List<UserSettings> userSettings = new List<UserSettings>();
-            userSettings.Add(userSetting);
-
-            List<string> codeList = new List<string>();
-            codeList.Add(code);
-
-            string json1 = JsonConvert.SerializeObject(codeList);
-            string json2 = JsonConvert.SerializeObject(userSettings);
-
-
-            string jsonString = "{\"Code\": " + json1 + "," + "\"Benutzer\":" + json2 + "}";
-
+            string jsonString = "{\"Code\": " + code + "}";
             // sendet ein "Post" an den Server
             PostObject(jsonString, "/api_export.php");
         }
