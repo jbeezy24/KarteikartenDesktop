@@ -20,88 +20,95 @@ namespace KarteikartenDesktop
         /// <param name="code">Code</param>
         public static void ImportKarteikarte(string code, DataBase database)
         {
-            string jsonString = "{\"Code\": " + code + "}";
-            // sendet ein "Post" an den Server
-            string jsonObject = PostObject(jsonString, "/api_export.php");
-            var exportObject = JsonConvert.DeserializeObject<ExportObject>(jsonObject);
-
-            List<KarteikartenImportHelper> importHelper = new List<KarteikartenImportHelper>();
-            for (int i = 0; i < exportObject.Karteikarten.Count; i++)
+            try
             {
-                KarteikartenImportHelper helper = new KarteikartenImportHelper();
-                helper.Thema = exportObject.Kontext.Thema;
-                helper.Fach = exportObject.Kontext.Fach;
-                helper.Frage = exportObject.Karteikarten[i].Frage;
-                helper.Antwort = exportObject.Karteikarten[i].Antwort;
+                string jsonString = "{\"Code\": " + code + "}";
+                // sendet ein "Post" an den Server
+                string jsonObject = PostObject(jsonString, "/api_export.php");
+                var exportObject = JsonConvert.DeserializeObject<ExportObject>(jsonObject);
 
-                // Bild und Antwort müssen konvertiert werden
-                if (exportObject.Karteikarten[i].BildAntwort.GetType() == typeof(JArray))
+                List<KarteikartenImportHelper> importHelper = new List<KarteikartenImportHelper>();
+                for (int i = 0; i < exportObject.Karteikarten.Count; i++)
                 {
-                    var array = exportObject.Karteikarten[i].BildAntwort as JArray;
-                    int[] bitmapArray = array.Select(jv => (int)jv).ToArray();
-                    byte[] bitmapByteArray = bitmapArray.Select(x => (byte)x).ToArray();
-                    var bitmap = StaticVariables.ByteToImage(bitmapByteArray);
-                    helper.AntwortBild = new Bitmap(bitmap);
-                }
-                else
-                    helper.AntwortBild = null;
+                    KarteikartenImportHelper helper = new KarteikartenImportHelper();
+                    helper.Thema = exportObject.Kontext.Thema;
+                    helper.Fach = exportObject.Kontext.Fach;
+                    helper.Frage = exportObject.Karteikarten[i].Frage;
+                    helper.Antwort = exportObject.Karteikarten[i].Antwort;
 
-                if (exportObject.Karteikarten[i].BildFrage.GetType() == typeof(JArray))
-                {
-                    var array = exportObject.Karteikarten[i].BildFrage as JArray;
-                    int[] bitmapArray = array.Select(jv => (int)jv).ToArray();
-                    byte[] bitmapByteArray = bitmapArray.Select(x => (byte)x).ToArray();
-                    var bitmap = StaticVariables.ByteToImage(bitmapByteArray);
-                    helper.FrageBild = new Bitmap(bitmap);
-                }
-                else
-                    helper.FrageBild = null;
+                    // Bild und Antwort müssen konvertiert werden
+                    if (exportObject.Karteikarten[i].BildAntwort.GetType() == typeof(JArray))
+                    {
+                        var array = exportObject.Karteikarten[i].BildAntwort as JArray;
+                        int[] bitmapArray = array.Select(jv => (int)jv).ToArray();
+                        byte[] bitmapByteArray = bitmapArray.Select(x => (byte)x).ToArray();
+                        var bitmap = StaticVariables.ByteToImage(bitmapByteArray);
+                        helper.AntwortBild = new Bitmap(bitmap);
+                    }
+                    else
+                        helper.AntwortBild = null;
 
-                importHelper.Add(helper);
-            }
+                    if (exportObject.Karteikarten[i].BildFrage.GetType() == typeof(JArray))
+                    {
+                        var array = exportObject.Karteikarten[i].BildFrage as JArray;
+                        int[] bitmapArray = array.Select(jv => (int)jv).ToArray();
+                        byte[] bitmapByteArray = bitmapArray.Select(x => (byte)x).ToArray();
+                        var bitmap = StaticVariables.ByteToImage(bitmapByteArray);
+                        helper.FrageBild = new Bitmap(bitmap);
+                    }
+                    else
+                        helper.FrageBild = null;
 
-            // Überprüfen ob Thema mit Name bereits vorhanden ist
-            for (int i = 0; i < importHelper.Count; i++) {
-                database.SetAllThema();
-                var thema = database.AllThema.Where(x => x.Name.ToLower() == importHelper[i].Thema.ToLower()).FirstOrDefault();
-
-                database.SetAllFach();
-                var fach = database.AllFach.Where(x => x.Name.ToLower() == importHelper[i].Fach.ToLower()).FirstOrDefault(); 
-
-                // wenn Fach nicht vorhanden, neu erstellen
-                if (fach == null)
-                {
-                    database.CreateSubject(importHelper[i].Fach, database.GetUsersettings(1).KlasseID);
-                    database.SetAllFach();
-                    fach = database.AllFach.Where(x => x.Name.ToLower() == importHelper[i].Fach.ToLower()).FirstOrDefault();
+                    importHelper.Add(helper);
                 }
 
-                // wenn Thema nicht vorhanden, neu erstellen
-                if (thema == null)
+                // Überprüfen ob Thema mit Name bereits vorhanden ist
+                for (int i = 0; i < importHelper.Count; i++)
                 {
-                    database.CreateTopic(importHelper[i].Thema, fach.FachID);
                     database.SetAllThema();
-                    thema = database.AllThema.Where(x => x.Name.ToLower() == importHelper[i].Thema.ToLower()).FirstOrDefault();
+                    var thema = database.AllThema.Where(x => x.Name.ToLower() == importHelper[i].Thema.ToLower()).FirstOrDefault();
+
+                    database.SetAllFach();
+                    var fach = database.AllFach.Where(x => x.Name.ToLower() == importHelper[i].Fach.ToLower()).FirstOrDefault();
+
+                    // wenn Fach nicht vorhanden, neu erstellen
+                    if (fach == null)
+                    {
+                        database.CreateSubject(importHelper[i].Fach, database.GetUsersettings(1).KlasseID);
+                        database.SetAllFach();
+                        fach = database.AllFach.Where(x => x.Name.ToLower() == importHelper[i].Fach.ToLower()).FirstOrDefault();
+                    }
+
+                    // wenn Thema nicht vorhanden, neu erstellen
+                    if (thema == null)
+                    {
+                        database.CreateTopic(importHelper[i].Thema, fach.FachID);
+                        database.SetAllThema();
+                        thema = database.AllThema.Where(x => x.Name.ToLower() == importHelper[i].Thema.ToLower()).FirstOrDefault();
+                    }
+
+                    // Überprüfen ob eine Karteikarte mit selbe Frage + Antwort existiert
+                    var allKarteikarten = database.GetAllKarteikarten();
+                    var karteikarte = allKarteikarten.Where(x => x.Frage == importHelper[i].Frage && x.Antwort == importHelper[i].Antwort).FirstOrDefault();
+
+                    // wenn keine Karteikarte gefunden mit selbe Frage + Antwort
+                    if (karteikarte == null)
+                    {
+                        database.CreateQuestion(importHelper[i].Frage, importHelper[i].FrageBild);
+                        database.CreateAnswer(importHelper[i].Antwort, importHelper[i].AntwortBild);
+
+                        database.SetAllFrage();
+                        database.SetAllAntwort();
+
+                        var frage = database.AllFrage[database.AllFrage.Count - 1];
+                        var antwort = database.AllAntwort[database.AllAntwort.Count - 1];
+
+                        database.CreateRecordCard(thema.ThemaID, frage.FrageID, antwort.AntwortID, 1, DateTime.Now);
+                    }
                 }
-
-                // Überprüfen ob eine Karteikarte mit selbe Frage + Antwort existiert
-                var allKarteikarten = database.GetAllKarteikarten();
-                var karteikarte = allKarteikarten.Where(x => x.Frage == importHelper[i].Frage && x.Antwort == importHelper[i].Antwort).FirstOrDefault();
-                
-                // wenn keine Karteikarte gefunden mit selbe Frage + Antwort
-                if (karteikarte == null)
-                {
-                    database.CreateQuestion(importHelper[i].Frage, importHelper[i].FrageBild);
-                    database.CreateAnswer(importHelper[i].Antwort, importHelper[i].AntwortBild);
-
-                    database.SetAllFrage();
-                    database.SetAllAntwort();
-
-                    var frage = database.AllFrage[database.AllFrage.Count - 1];
-                    var antwort = database.AllAntwort[database.AllAntwort.Count - 1];
-
-                    database.CreateRecordCard(thema.ThemaID, frage.FrageID, antwort.AntwortID, 1, DateTime.Now);
-                }
+            } catch (Exception ex)
+            {
+                Logger.WriteLogfile(ex.Message);
             }
         }
 
