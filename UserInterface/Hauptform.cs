@@ -106,12 +106,9 @@ namespace KarteikartenDesktop {
             this.Visible = false;
             KartenAbfrage abfrage = new KartenAbfrage();
             abfrage.ShowDialog();
-            this.Visible = true;
-        }
+            //überprüfung von Invallenänderung
 
-        private void handleHauptformClosing(object sender, FormClosingEventArgs e)
-        {
-            database.Connection.Close();
+            this.Visible = true;
         }
         private void buttonExport_Click(object sender, EventArgs e) {
 
@@ -123,8 +120,19 @@ namespace KarteikartenDesktop {
             this.Visible = true;
         }
 
+        private void handleHauptformClosing(object sender, FormClosingEventArgs e)
+        {
+            database.Connection.Close();
+        }
+
         List<DataGridView> viewList = new List<DataGridView>();
         private DataBase database = new DataBase();
 
+        private void Hauptform_VisibleChanged(object sender, EventArgs e) {
+            var AktuelleKarteikarten = database.GetAllKarteikarten();
+            foreach (var Karte in AktuelleKarteikarten) {
+
+            }
+        }
     }
 }
