@@ -23,6 +23,47 @@ namespace KarteikartenDesktop {
 
         private DataBase db;
         private List<Fach> fachlist;
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e) {
+            foreach (DataGridViewRow row in dataGridView1.Rows) {
+                row.Cells[0].Value = checkBox1.Checked;
+            }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e) {
+            dataGridView1.Rows.Clear();
+            var fachKarten = db.GetAllKarteikarten().Where(x => x.Fachname == comboBox1.SelectedItem.ToString()).ToList();
+            foreach (var Karte in fachKarten) {
+                var row = new DataGridViewRow();
+                var cellcheck = new DataGridViewCheckBoxCell();
+                var cellkartenid = new DataGridViewTextBoxCell();
+                var celltopic = new DataGridViewTextBoxCell();
+                var cellquestion = new DataGridViewTextBoxCell();
+
+                celltopic.Value = Karte.Thema;
+                cellquestion.Value = Karte.Frage;
+                cellkartenid.Value = Karte.KartenID;
+                row.Cells.AddRange(new DataGridViewCell[] { cellcheck,cellkartenid,celltopic,cellquestion});
+                dataGridView1.Rows.Add(row);
+            }
+        }
+
+        private void buttonUpload_Click(object sender, EventArgs e) {
+            List<DataGridViewRow> checkedRows = new List<DataGridViewRow>();
+            foreach (DataGridViewRow row in dataGridView1.Rows) {
+                if(System.Convert.ToBoolean(row.Cells[0].Value) == true) {
+                    checkedRows.Add(row);
+                }
+            }
+            foreach (var ckrows in checkedRows) {
+                var karte = db.GetAllKarteikarten().Where(x => x.KartenID == System.Convert.ToInt32(ckrows.Cells[1].Value)).FirstOrDefault();
+                if(karte != null) {
+                    db.SetAllKlasse();
+                    Request.ExportKarteikarte(karte, db.GetUsersettings(1), db.AllKlasse);
+                }
+            }
+           
+        }
     }
 
 }

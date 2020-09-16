@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -129,10 +130,51 @@ namespace KarteikartenDesktop {
         private DataBase database = new DataBase();
 
         private void Hauptform_VisibleChanged(object sender, EventArgs e) {
+            foreach (var view in viewList) {
+                view.Rows.Clear();
+            }
             var AktuelleKarteikarten = database.GetAllKarteikarten();
             foreach (var Karte in AktuelleKarteikarten) {
+                var row = new DataGridViewRow();
+                var cellcheck = new DataGridViewCheckBoxCell();
+                var cellkartenid = new DataGridViewTextBoxCell();
+                var celltopic = new DataGridViewTextBoxCell();
+                var cellsubject = new DataGridViewTextBoxCell();
 
+                celltopic.Value = Karte.Thema;
+                cellsubject.Value = Karte.Fachname;
+                cellkartenid.Value = Karte.KartenID;
+                row.Cells.AddRange(new DataGridViewCell[] { cellcheck, cellkartenid, cellsubject, celltopic }) ;
+                switch(Karte.Intervall) {
+                    case 1: {
+                            dataGridView1.Rows.Add(row);
+                            break;
+                        }
+                    case 3: {
+                            dataGridView2.Rows.Add(row);
+                            break;
+                        }
+                    case 7: {
+                            dataGridView3.Rows.Add(row);
+                            break;
+                        }
+                    case 30: {
+                            dataGridView4.Rows.Add(row);
+                            break;
+                        }
+                    case 9999: {
+                            dataGridView5.Rows.Add(row);
+                            break;
+                        }
+                }
+
+                panelInterval1.Size = new Size(Width, 22 * (1 + dataGridView1.Rows.Count));
+                panelInterval2.Size = new Size(Width, 22 * (1 + dataGridView2.Rows.Count));
+                panelInterval3.Size = new Size(Width, 22 * (1 + dataGridView3.Rows.Count));
+                panelInterval4.Size = new Size(Width, 22 * (1 + dataGridView4.Rows.Count));
+                panelInterval5.Size = new Size(Width, 22 * (1 + dataGridView5.Rows.Count));
             }
         }
+
     }
 }
