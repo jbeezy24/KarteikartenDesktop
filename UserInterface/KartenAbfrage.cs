@@ -10,13 +10,15 @@ using System.Windows.Forms;
 
 namespace KarteikartenDesktop {
     public partial class KartenAbfrage : Form {
-        public KartenAbfrage(List<KarteikartenHelper> karten) {
+        public KartenAbfrage(List<KarteikartenHelper> karten, DataBase database) {
             InitializeComponent();
             this.karten = karten;
+            this.database = database;
         }
 
 
         List<KarteikartenHelper> karten = new List<KarteikartenHelper>();
+        DataBase database;
 
         private void KartenAbfrage_FormClosing(object sender, FormClosingEventArgs e) {
 
@@ -86,15 +88,122 @@ namespace KarteikartenDesktop {
 
         private void KartenAbfrage_Load(object sender, EventArgs e)
         {
-            // die erste Karte anzeigen
-            var max = this.karten.Count - 1;
-            var r = new Random();
-            var pick = r.Next(0, max);
+            generateAndShowCard();
+        }
 
-            var karte = this.karten[pick];
-            label3.Text = karte.KartenID.ToString();
-            label5.Text = "Thema: " + karte.Thema;
+        private void generateAndShowCard()
+        {
+            if (this.karten.Count > 0)
+            {
+                var max = this.karten.Count - 1;
+                var r = new Random();
+                var pick = r.Next(0, max);
 
+                this.karte = this.karten[pick];
+                label3.Text = label2.Text = karte.KartenID.ToString();
+                label5.Text = label1.Text = "Thema: " + karte.Thema;
+                FragenLabel.Text = karte.Frage;
+                antwortLabel.Text = karte.Antwort;
+
+                pictureBoxFrage.Image = karte.FrageBitmap;
+                pictureBoxAntwort.Image = karte.AntwortBitmap;
+            } else
+            {
+                runderButtonZurück.PerformClick();
+            }
+        }
+
+        private KarteikartenHelper karte;
+
+        private void runderButtonJa_Click(object sender, EventArgs e)
+        {
+            if (this.karte != null)
+            {
+                var id = this.karten.FindIndex(x => x == this.karte);
+                if (id > -1)
+                {
+                    this.karten.RemoveAt(id);
+                }
+
+                // Intervall um eins erhöhen!
+                // Prüfen ob wir nicht in den unendlichen Intervall rennen
+                database.SetAllIntervall();
+                var intervall = database.AllIntervall;
+
+                if (this.karte.Intervall == intervall[intervall.Count - 1].Dauer)
+                {
+                    this.karte.Intervall = 2;
+                }
+
+                var newIntervall = ++this.karte.Intervall;
+                if (newIntervall < intervall.Count - 1)
+                {
+                    // wenn noch nicht im letzten Intervall dann um eins höher setzen
+                    database.ChangeRecordCard(database.GetRecordCard(this.karte.KartenID), intervallID: newIntervall, letzteAbfrage: DateTime.Now);
+                }
+
+                // Panel "Antwort" invisible
+                panelLayover.Visible = false;
+
+                // Frage neusetzen
+                generateAndShowCard();
+            }
+        }
+
+        private void runderButtonNein_Click(object sender, EventArgs e)
+        {
+            if (this.karte != null)
+            {
+                var id = this.karten.FindIndex(x => x == this.karte);
+                if (id > -1)
+                {
+                    this.karten.RemoveAt(id);
+                }
+
+                // Intervall um eins erhöhen!
+                // Prüfen ob wir nicht in den unendlichen Intervall rennen
+                database.SetAllIntervall();
+                var intervall = database.AllIntervall;
+
+                if (this.karte.Intervall == intervall[intervall.Count - 1].Dauer)
+                {
+                    this.karte.Intervall = 1;
+                }
+
+                // wenn noch nicht im letzten Intervall dann um eins höher setzen
+                database.ChangeRecordCard(database.GetRecordCard(this.karte.KartenID), intervallID: 1, letzteAbfrage: DateTime.Now);
+
+                // Panel "Antwort" invisible
+                panelLayover.Visible = false;
+
+                // Frage neusetzen
+                generateAndShowCard();
+            }
+        }
+
+        private void runderButtonQmark_Click(object sender, EventArgs e)
+        {
+            if (this.karte != null)
+            {
+                var id = this.karten.FindIndex(x => x == this.karte);
+                if (id > -1)
+                {
+                    this.karten.RemoveAt(id);
+                }
+
+                // Intervall um eins erhöhen!
+                // Prüfen ob wir nicht in den unendlichen Intervall rennen
+                database.SetAllIntervall();
+                var intervall = database.AllIntervall;
+
+                database.ChangeRecordCard(database.GetRecordCard(this.karte.KartenID), intervallID: intervall[intervall.Count - 1].IntervallID, letzteAbfrage: DateTime.Now);
+
+                // Panel "Antwort" invisible
+                panelLayover.Visible = false;
+
+                // Frage neusetzen
+                generateAndShowCard();
+            }
         }
     }
 }

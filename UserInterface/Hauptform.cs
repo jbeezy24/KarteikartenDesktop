@@ -30,7 +30,7 @@ namespace KarteikartenDesktop {
             //database.SetAllAntwort();
             //var allquestions = database.AllAntwort;
             //var allKarteikarte = database.GetAllKarteikarten();
-            database.CreateUsersettings("sarah", "sarahsb", false, 1);
+            //database.CreateUsersettings("sarah", "sarahsb", false, 1);
             //database.SetAllUsersettings();
             //var userSettings = database.AllUsersettings[0];
             //database.SetAllKlasse();
@@ -109,7 +109,6 @@ namespace KarteikartenDesktop {
         }
 
         private void buttonAbfrage_Click(object sender, EventArgs e) {
-            this.Visible = false;
             List<KarteikartenHelper> listAbfrage = new List<KarteikartenHelper>();
             foreach (DataGridView view in viewList) {
                 foreach (DataGridViewRow row in view.Rows) {
@@ -121,7 +120,9 @@ namespace KarteikartenDesktop {
                     }
                 }
             }
-            KartenAbfrage abfrage = new KartenAbfrage(listAbfrage);
+
+            this.Visible = false;
+            KartenAbfrage abfrage = new KartenAbfrage(listAbfrage, this.database);
             abfrage.ShowDialog();
 
             this.Visible = true;
