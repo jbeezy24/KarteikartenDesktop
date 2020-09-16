@@ -102,6 +102,8 @@ namespace KarteikartenDesktop
 
                     database.CreateRecordCard(thema.ThemaID, frage.FrageID, antwort.AntwortID, 1, DateTime.Now);
                 }
+
+                //TODO: Prüfe ob Bilder gleich, weil mehrere Karten ohne Frage/antwortText aber Bild;
             }
         }
 

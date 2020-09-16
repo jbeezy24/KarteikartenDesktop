@@ -124,7 +124,7 @@
             // FragenLabel
             // 
             this.FragenLabel.BackColor = System.Drawing.Color.Transparent;
-            this.FragenLabel.Font = new System.Drawing.Font("Georgia", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FragenLabel.Font = new System.Drawing.Font("Georgia", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FragenLabel.Location = new System.Drawing.Point(20, 37);
             this.FragenLabel.Name = "FragenLabel";
             this.FragenLabel.Size = new System.Drawing.Size(418, 227);
@@ -214,7 +214,7 @@
             // antwortLabel
             // 
             this.antwortLabel.BackColor = System.Drawing.Color.Transparent;
-            this.antwortLabel.Font = new System.Drawing.Font("Georgia", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.antwortLabel.Font = new System.Drawing.Font("Georgia", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.antwortLabel.Location = new System.Drawing.Point(23, 37);
             this.antwortLabel.Name = "antwortLabel";
             this.antwortLabel.Size = new System.Drawing.Size(418, 227);
