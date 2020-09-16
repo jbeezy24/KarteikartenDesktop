@@ -1,2 +1,2 @@
-[15.09.2020 14:17:49] createTable: SQL logic error
-table Thema already exists
+[16.09.2020 09:27:03] ChangeRecordCard: constraint failed
+FOREIGN KEY constraint failed
