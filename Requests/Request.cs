@@ -18,7 +18,7 @@ namespace KarteikartenDesktop
         /// <param name="userSetting">Benutzereinstellung</param>
         /// <param name="allKlasse">alle Klassen</param>
         /// <param name="code">Code</param>
-        public static void ImportKarteikarte(string code, DataBase database)
+        public static bool ImportKarteikarte(string code, DataBase database)
         {
             try
             {
@@ -105,10 +105,13 @@ namespace KarteikartenDesktop
 
                         database.CreateRecordCard(thema.ThemaID, frage.FrageID, antwort.AntwortID, 1, DateTime.Now);
                     }
+
+                    return true;
                 }
             } catch (Exception ex)
             {
                 Logger.WriteLogfile(ex.Message);
+                return false;
             }
         }
 
