@@ -147,6 +147,7 @@ namespace KarteikartenDesktop
                         recordCard.AntwortID = Convert.ToInt32(answerID);
                         recordCard.IntervallID = Convert.ToInt32(intervallID);
                         recordCard.LetzteAbfrage = Convert.ToDateTime(lastRequest);
+                        recordCard.KartenID = recordCardID;
 
                         return recordCard;
                     }
@@ -169,31 +170,33 @@ namespace KarteikartenDesktop
         /// <param name="themaID">ThemenID</param>
         /// <param name="frageID">FrageID</param>
         /// <param name="antwortID">AntwortID</param>
-        public void ChangeRecordCard(int recordCardID, int? themaID = null, int? frageID = null, int? antwortID = null)
+        public void ChangeRecordCard(Karteikarten karteikarte, int? themaID = null, int? frageID = null, int? antwortID = null, int? intervallID = null, DateTime? letzteAbfrage = null)
         {
             try
             {
-                string sqlQuery = "UPDATE Karteikarten SET ";
-
-                if (themaID != null)
-                {
-                    sqlQuery += "ThemaID='" + themaID + "'";
-                }
-
-                if (frageID != null)
-                {
-                    sqlQuery += ", FrageID='" + frageID + "'";
-                }
-
-                if (antwortID != null)
-                {
-                    sqlQuery += ", AntwortID='" + antwortID + "'";
-                }
-
-                sqlQuery += " WHERE KartenID='" + recordCardID + "';";
-
                 SQLiteCommand command = this.connection.CreateCommand();
-                command.CommandText = sqlQuery;
+                SQLiteParameter parameterThemaID = new SQLiteParameter("@0", System.Data.DbType.Int32);
+                parameterThemaID.Value = themaID == null ? karteikarte.ThemaID : themaID;
+                command.Parameters.Add(parameterThemaID);
+
+                SQLiteParameter parameterFrageID = new SQLiteParameter("@1", DbType.Int32);
+                parameterFrageID.Value = frageID == null ? karteikarte.FrageID : frageID;
+                command.Parameters.Add(parameterFrageID);
+
+                SQLiteParameter parameterAntwortID = new SQLiteParameter("@2", DbType.Int32);
+                parameterAntwortID.Value = antwortID == null ? karteikarte.AntwortID : antwortID;
+                command.Parameters.Add(parameterAntwortID);
+
+                SQLiteParameter parameterIntervallID = new SQLiteParameter("@3", DbType.Int32);
+                parameterIntervallID.Value = intervallID == null ? karteikarte.IntervallID : intervallID;
+                command.Parameters.Add(parameterIntervallID);
+
+                SQLiteParameter parameterLetzteAbfrage = new SQLiteParameter("@4", DbType.DateTime);
+                parameterLetzteAbfrage.Value = letzteAbfrage == null ? karteikarte.LetzteAbfrage : letzteAbfrage;
+                command.Parameters.Add(parameterLetzteAbfrage);
+
+                command.CommandText = string.Format("UPDATE Karteikarten SET ThemaID=@0, FrageID=@1, AntwortID=@2, IntervallID=@3, LetzteAbfrage=@4 " +
+                    " WHERE KartenID='" + karteikarte.KartenID + "';");
                 command.ExecuteNonQuery();
             }
             catch (Exception ex)
@@ -1175,12 +1178,14 @@ namespace KarteikartenDesktop
                         var answerID = dataReader["AntwortID"];
                         var intervallID = dataReader["IntervallID"];
                         var lastRequest = dataReader["LetzteAbfrage"];
+                        var kartenID = dataReader["KartenID"];
 
                         recordCard.ThemaID = Convert.ToInt32(topicID);
                         recordCard.FrageID = Convert.ToInt32(questionID);
                         recordCard.AntwortID = Convert.ToInt32(answerID);
                         recordCard.IntervallID = Convert.ToInt32(intervallID);
                         recordCard.LetzteAbfrage = Convert.ToDateTime(lastRequest);
+                        recordCard.KartenID = Convert.ToInt32(kartenID);
 
                         this.allKarteikarten.Add(recordCard);
                     }

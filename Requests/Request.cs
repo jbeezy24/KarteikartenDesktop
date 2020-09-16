@@ -13,6 +13,28 @@ namespace KarteikartenDesktop
 {
     public class Request
     {
+        /// <summary> Importiert !ALLE! Karteikarten mit dem angegebenen Code </summary>
+        /// <param name="userSetting">Benutzereinstellung</param>
+        /// <param name="allKlasse">alle Klassen</param>
+        /// <param name="code">Code</param>
+        public static void ImportKarteikarte(UserSettings userSetting, string code)
+        {
+            List<UserSettings> userSettings = new List<UserSettings>();
+            userSettings.Add(userSetting);
+
+            List<string> codeList = new List<string>();
+            codeList.Add(code);
+
+            string json1 = JsonConvert.SerializeObject(codeList);
+            string json2 = JsonConvert.SerializeObject(userSettings);
+
+
+            string jsonString = "{\"Code\": " + json1 + "," + "\"Benutzer\":" + json2 + "}";
+
+            // sendet ein "Post" an den Server
+            PostObject(jsonString, "/api_export.php");
+        }
+
         /// <summary> Exportiert !EINE! Karteikarte</summary>
         /// <param name="karteikartenHelper">Karteikartenhelper, bekommt man aus DataBase.GetAllKarteikarten()</param>
         /// <param name="userSetting">Benutzereinstellungen, !ACHTUNG! nur !EINE! Benutzereinstellung möglich, diese wird bei Initialisierung der Datenbank angelegt!!</param>
@@ -90,8 +112,8 @@ namespace KarteikartenDesktop
             string json8 = JsonConvert.SerializeObject(userSettings);
 
 
-            string jsonString = "[{\"Karteikarte\": " + json1 + "," + "\"Antwort\":" + json2 + "," + "\"Frage\":" + json3 + "," + "\"Fach\":" + json4 + "," + "\"Thema\":" + json5 + "," + "\"Bild\":" + json6 +
-                "," + "\"Klasse\":" + json7 + "," + "\"Benutzer\":" + json8 + "}]";
+            string jsonString = "{\"Karteikarte\": " + json1 + "," + "\"Antwort\":" + json2 + "," + "\"Frage\":" + json3 + "," + "\"Fach\":" + json4 + "," + "\"Thema\":" + json5 + "," + "\"Bild\":" + json6 +
+                "," + "\"Klasse\":" + json7 + "," + "\"Benutzer\":" + json8 + "}";
 
             // sendet ein "Post" an den Server
             PostObject(jsonString, "/api_import.php");

@@ -17,23 +17,41 @@ namespace KarteikartenDesktop {
             InitializeComponent();
 
             #region Testen von Export Karteikarten
-            //dataBase.CreateClass("FIA18A");
-            //dataBase.CreateSubject("IT3", 1);
-            //dataBase.CreateTopic("Programmierung", 1);
+            //database.CreateClass("FIA18A");
+            //database.CreateSubject("IT3", 1);
+            //database.CreateTopic("Programmierung", 1);
 
-            //dataBase.CreateQuestion("Warum sind Bananen krumm?", new Bitmap(Image.FromFile(@"D:\vsico.png")));
-            //dataBase.CreateAnswer("Weil es so ist", null);
+            //database.CreateQuestion("Warum sind Bananen krumm reloaded", new Bitmap(Image.FromFile(@"D:\vsico.png")));
+            //database.CreateAnswer("Weil es so ist reloaded", null);
 
-            //dataBase.CreateRecordCard(1, 11, 11, 1, DateTime.Now);
+            //database.CreateRecordCard(1, 33, 33, 1, DateTime.Now);
 
-            //dataBase.CreateUsersettings("sarah", "sarahb", true, 1);
-            //var allKarteikarte = dataBase.GetAllKarteikarten();
-            //dataBase.SetAllUsersettings();
-            //var userSettings = dataBase.AllUsersettings[0];
-            //dataBase.SetAllKlasse();
-            //var allKlasse = dataBase.AllKlasse;
+            //database.SetAllAntwort();
+            //var allquestions = database.AllAntwort;
+            //var allKarteikarte = database.GetAllKarteikarten();
+            //database.CreateUsersettings("sarah", "sarahsb", false, 1);
+            //database.SetAllUsersettings();
+            //var userSettings = database.AllUsersettings[0];
+            //database.SetAllKlasse();
+            //var allKlasse = database.AllKlasse;
 
-            //Request.ExportKarteikarte(allKarteikarte[0], userSettings, allKlasse);
+            //database.SetAllIntervall();
+            //var intervall = database.AllIntervall;
+            //database.SetAllKarteikarten();
+            //var karteikarten = database.AllKarteikarten;
+
+            //database.SetAllAntwort();
+            //database.SetAllFrage();
+
+            //var allFragen = database.AllFrage;
+            //var allAntworten = database.AllAntwort;
+
+            //var recordCard = database.GetRecordCard(1);
+            //database.ChangeRecordCard(recordCard, intervallID: 2, letzteAbfrage: DateTime.Now);
+            //var test = database.GetRecordCard(1);
+
+
+            //Request.ExportKarteikarte(allKarteikarte[allKarteikarte.Count - 1], userSettings, allKlasse);
             #endregion
 
             viewList.Add(dataGridView1);
@@ -97,7 +115,7 @@ namespace KarteikartenDesktop {
         }
         private void buttonExport_Click(object sender, EventArgs e) {
 
-            KartenExport export = new KartenExport();
+            KartenExport export = new KartenExport(database);
             this.Visible = false;
             if (export.ShowDialog() == DialogResult.OK) {
                 //-> Upload auf Web-DB der einzelnen angewählten Karten.
