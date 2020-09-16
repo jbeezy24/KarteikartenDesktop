@@ -26,12 +26,9 @@ namespace KarteikartenDesktop {
         Image antwortBild;
 
         List<Fach> fachlist = new List<Fach>();        
-        DataBase database = new DataBase();
+        DataBase database;
 
 
-        private void buttonPreview_Click(object sender, EventArgs e) {
-            //Verweis auf Lernfunktion
-        }
 
         private void buttonOK_Click(object sender, EventArgs e) {
             database.SetAllThema();
