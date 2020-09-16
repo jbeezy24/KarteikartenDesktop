@@ -54,8 +54,7 @@ namespace KarteikartenDesktop {
                 if(System.Convert.ToBoolean(row.Cells[0].Value) == true) {
                     var karte = db.GetAllKarteikarten().Where(x => x.KartenID == System.Convert.ToInt32(row.Cells[1].Value)).FirstOrDefault();
                     if (karte != null) {
-                        db.SetAllKlasse();
-                        Request.ExportKarteikarte(karte, db.GetUsersettings(1), db.AllKlasse);
+                        Request.ExportKarteikarte(karte, db.GetUsersettings(1));
                     }
                 }
             }           

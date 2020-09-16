@@ -42,7 +42,6 @@ namespace KarteikartenDesktop
                 removeTable("Intervall");
                 removeTable("Frage");
                 removeTable("Antwort");
-                removeTable("Klasse");
                 removeTable("Fach");
                 removeTable("Thema");
                 removeTable("UserSettings");
@@ -52,10 +51,9 @@ namespace KarteikartenDesktop
                 createTable("Intervall", "IntervallID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, Dauer INTEGER");
                 createTable("Frage", "FrageID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, Text VARCHAR(500), BildID INTEGER, FOREIGN KEY (BildID) REFERENCES Bild(BildID)");
                 createTable("Antwort", "AntwortID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, Text VARCHAR(2000), BildID INTEGER, FOREIGN KEY (BildID) REFERENCES Bild(BildID)");
-                createTable("Klasse", "KlasseID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, Name VARCHAR(64)");
-                createTable("Fach", "FachID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, Name VARCHAR(64), KlasseID INTEGER, FOREIGN KEY (KlasseID) REFERENCES Klasse(KlasseID)");
+                createTable("Fach", "FachID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, Name VARCHAR(64)");
                 createTable("Thema", "ThemaID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, Name VARCHAR(64), FachID INTEGER, FOREIGN KEY (FachID) REFERENCES Fach(FachID)");
-                createTable("UserSettings", "SettingsID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, Benutzername VARCHAR(64), Passwort VARCHAR(600), AutoLogin INTEGER, KlasseID INTEGER, FOREIGN KEY (KlasseID) REFERENCES Klasse(KlasseID)");
+                createTable("UserSettings", "SettingsID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, Benutzername VARCHAR(64), Passwort VARCHAR(600), AutoLogin INTEGER");
                 createTable("Karteikarten", "KartenID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, ThemaID INTEGER, FrageID INTEGER, AntwortID INTEGER, IntervallID INTEGER, LetzteAbfrage DATETIME," +
                     "FOREIGN KEY (ThemaID) REFERENCES Thema(ThemaID), FOREIGN KEY (FrageID) REFERENCES Frage(FrageID), FOREIGN KEY (AntwortID) REFERENCES Antwort(AntwortID), FOREIGN KEY (IntervallID) REFERENCES Intervall(IntervallID)");
 
@@ -212,6 +210,11 @@ namespace KarteikartenDesktop
             try
             {
                 SQLiteCommand command = this.connection.CreateCommand();
+
+                var card = GetRecordCard(recordCardID);
+                RemoveAnswer(card.AntwortID);
+                RemoveQuestion(card.FrageID);
+
                 command.CommandText = string.Format("DELETE FROM Karteikarten WHERE KartenID='" + recordCardID + "';");
                 command.ExecuteNonQuery();
             }
@@ -234,7 +237,7 @@ namespace KarteikartenDesktop
             try
             {
                 SQLiteCommand command = this.connection.CreateCommand();
-                command.CommandText = string.Format("INSERT INTO UserSettings (Benutzername, Passwort, AutoLogin, KlasseID) VALUES (@0, @1, @2, @3);");
+                command.CommandText = string.Format("INSERT INTO UserSettings (Benutzername, Passwort, AutoLogin) VALUES (@0, @1, @2);");
                 SQLiteParameter parameter = new SQLiteParameter("@0", System.Data.DbType.String);
                 parameter.Value = username;
                 command.Parameters.Add(parameter);
@@ -244,9 +247,6 @@ namespace KarteikartenDesktop
                 SQLiteParameter parameterAutoLogin = new SQLiteParameter("@2", DbType.Int32);
                 parameterAutoLogin.Value = autologin == true ? 1 : 0;
                 command.Parameters.Add(parameterAutoLogin);
-                SQLiteParameter parameterClassID = new SQLiteParameter("@3", DbType.Int32);
-                parameterClassID.Value = classID;
-                command.Parameters.Add(parameterClassID);
 
                 command.ExecuteNonQuery();
             }
@@ -274,12 +274,10 @@ namespace KarteikartenDesktop
                         var username = dataReader["Benutzername"];
                         var password = dataReader["Passwort"];
                         var autoLogin = dataReader["AutoLogin"];
-                        var classID = dataReader["KlasseID"];
 
                         userSettings.Benutzername = username.ToString();
                         userSettings.Passwort = password.ToString();
                         userSettings.AutoLogin = Convert.ToInt32(autoLogin) == 1 ? true : false;
-                        userSettings.KlasseID = Convert.ToInt32(classID);
                         return userSettings;
                     }
                 }
@@ -301,8 +299,7 @@ namespace KarteikartenDesktop
         /// <param name="username">Benutzername</param>
         /// <param name="password">Passwort</param>
         /// <param name="autoLogin">automatisches Einloggen</param>
-        /// <param name="classID">Klassen-ID</param>
-        public void ChangeUsersettings(int settingsID, string username = null, string password = null, bool? autoLogin = null, int? classID = null)
+        public void ChangeUsersettings(int settingsID, string username = null, string password = null, bool? autoLogin = null)
         {
             try
             {
@@ -322,11 +319,6 @@ namespace KarteikartenDesktop
                 {
                     int number = autoLogin == true ? 1 : 0;
                     sqlQuery += ", AutoLogin='" + number +"'";
-                }
-
-                if (classID != null)
-                {
-                    sqlQuery += ", KlasseID='" + classID + "'";
                 }
 
                 sqlQuery += " WHERE SettingsID='" + settingsID + "';";
@@ -443,19 +435,15 @@ namespace KarteikartenDesktop
 
         /// <summary> Erstellt ein Fach</summary>
         /// <param name="name">Fachname</param>
-        /// <param name="classID">Klassen-ID</param>
-        public void CreateSubject(string name, int classID)
+        public void CreateSubject(string name)
         {
             try
             {
                 SQLiteCommand command = this.connection.CreateCommand();
-                command.CommandText = string.Format("INSERT INTO Fach (Name, KlasseID) VALUES (@0, @1);");
+                command.CommandText = string.Format("INSERT INTO Fach (Name) VALUES (@0);");
                 SQLiteParameter parameter = new SQLiteParameter("@0", System.Data.DbType.String);
                 parameter.Value = name;
                 command.Parameters.Add(parameter);
-                SQLiteParameter parameterSubject = new SQLiteParameter("@1", System.Data.DbType.Int32);
-                parameterSubject.Value = classID;
-                command.Parameters.Add(parameterSubject);
 
                 command.ExecuteNonQuery();
             }
@@ -481,11 +469,9 @@ namespace KarteikartenDesktop
                     while (dataReader.Read())
                     {
                         var name = dataReader["Name"];
-                        var klasseID = dataReader["KlasseID"];
 
                         fach.Name = name.ToString();
                         fach.FachID = fachID;
-                        fach.KlasseID = Convert.ToInt32(klasseID);
                         return fach;
                     }
                 }
@@ -517,79 +503,6 @@ namespace KarteikartenDesktop
                 Logger.WriteLogfile("RemoveSubject: " + ex.Message);
             }
         }
-        #endregion
-
-        #region Klasse erstellen / löschen / ausgeben
-
-        /// <summary> Erstellt eine Klasse</summary>
-        /// <param name="name">Klassennamen</param>
-        public void CreateClass(string name)
-        {
-            try
-            {
-                SQLiteCommand command = this.connection.CreateCommand();
-                command.CommandText = string.Format("INSERT INTO Klasse (Name) VALUES (@0);");
-                SQLiteParameter parameter = new SQLiteParameter("@0", System.Data.DbType.String);
-                parameter.Value = name;
-                command.Parameters.Add(parameter);
-                command.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                Logger.WriteLogfile("CreateClass: " + ex.Message);
-            }
-        }
-
-        /// <summary> Gibt eine Klasse anhand ihrer ID zurück</summary>
-        /// <param name="classID">ID</param>
-        /// <returns>Klasse</returns>
-        public Klasse GetClass(int classID)
-        {
-            Klasse klasse = new Klasse();
-            string query = "SELECT Name FROM Klasse WHERE KlasseID='" + classID + "';";
-            SQLiteCommand command = new SQLiteCommand(query, this.connection);
-            try
-            {
-                IDataReader dataReader = command.ExecuteReader();
-                try
-                {
-                    while (dataReader.Read())
-                    {
-                        var className = dataReader["Name"];
-                        klasse.Name = className.ToString();
-                        klasse.KlasseID = classID;
-                        return klasse;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Logger.WriteLogfile("GetClass 1: " + ex.Message);
-                }
-            }
-            catch (Exception ex)
-            {
-                Logger.WriteLogfile("GetClass 2: " + ex.Message);
-            }
-
-            return klasse;
-        }
-
-        /// <summary> Löscht eine Klasse anhand ihrer ID</summary>
-        /// <param name="classID">ID</param>
-        public void RemoveClass(int classID)
-        {
-            try
-            {
-                SQLiteCommand command = this.connection.CreateCommand();
-                command.CommandText = string.Format("DELETE FROM Klasse WHERE KlasseID='" + classID + "';");
-                command.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                Logger.WriteLogfile("RemoveClass: " + ex.Message);
-            }
-        }
-
         #endregion
 
         #region Antwort erstellen / bearbeiten / löschen / ausgeben
@@ -662,8 +575,9 @@ namespace KarteikartenDesktop
         /// <summary> Gibt den Antwort-Text einer Antwort zurück</summary>
         /// <param name="antwortID">ID</param>
         /// <returns>Antwort-Text</returns>
-        public string GetAnswer(int antwortID)
+        public Antwort GetAnswer(int antwortID)
         {
+            Antwort antwort = new Antwort();
             string query = "SELECT Text FROM Antwort WHERE AntwortID='" + antwortID + "';";
             SQLiteCommand command = new SQLiteCommand(query, this.connection);
             try
@@ -673,8 +587,12 @@ namespace KarteikartenDesktop
                 {
                     while (dataReader.Read())
                     {
-                        var a = dataReader["Text"];
-                        return Convert.ToString(a);
+                        var text = dataReader["Text"];
+                        var bildID = dataReader["BildID"];
+
+                        antwort.Text = text;
+                        antwort.BildID = Convert.ToInt32(bildID);
+                        return antwort;
                     }
                 }
                 catch (Exception ex)
@@ -687,7 +605,7 @@ namespace KarteikartenDesktop
                 Logger.WriteLogfile("GetAnswer 2: " + ex.Message);
             }
 
-            return string.Empty;
+            return antwort;
         }
 
         /// <summary> Gibt das Bild einer Antwort zurück</summary>
@@ -768,6 +686,9 @@ namespace KarteikartenDesktop
         {
             try
             {
+                var answer = GetAnswer(antwortID);
+                RemovePicture(Convert.ToInt32(answer.BildID));
+
                 SQLiteCommand command = this.connection.CreateCommand();
                 command.CommandText = string.Format("DELETE FROM Antwort WHERE AntwortID='" + antwortID + "';");
                 command.ExecuteNonQuery();
@@ -849,8 +770,9 @@ namespace KarteikartenDesktop
         /// <summary> Gibt den Text einer Frage zurück</summary>
         /// <param name="frageID">ID</param>
         /// <returns>Frage-Text</returns>
-        public string GetQuestion(int frageID)
+        public Frage GetQuestion(int frageID)
         {
+            Frage frage = new Frage();
             string query = "SELECT Text FROM Frage WHERE FrageID='" + frageID + "';";
             SQLiteCommand command = new SQLiteCommand(query, this.connection);
             try
@@ -860,8 +782,12 @@ namespace KarteikartenDesktop
                 {
                     while (dataReader.Read())
                     {
-                        var a = dataReader["Text"];
-                        return Convert.ToString(a);
+                        var text = dataReader["Text"];
+                        var bildID = dataReader["BildID"];
+
+                        frage.Text = text;
+                        frage.BildID = Convert.ToInt32(bildID);
+                        return frage;
                     }
                 }
                 catch (Exception ex)
@@ -874,7 +800,7 @@ namespace KarteikartenDesktop
                 Logger.WriteLogfile("GetQuestion 2: " + ex.Message);
             }
 
-            return string.Empty;
+            return frage;
         }
 
         /// <summary> Gibt das Bild einer angegebenen Frage zurück</summary>
@@ -953,6 +879,9 @@ namespace KarteikartenDesktop
         {
             try
             {
+                var question = GetQuestion(frageID);
+
+
                 SQLiteCommand command = this.connection.CreateCommand();
                 command.CommandText = string.Format("DELETE FROM Frage WHERE FrageID='" + frageID + "';");
                 command.ExecuteNonQuery();
@@ -1218,12 +1147,10 @@ namespace KarteikartenDesktop
                         var username = dataReader["Benutzername"];
                         var password = dataReader["Passwort"];
                         var autoLogin = dataReader["AutoLogin"];
-                        var classID = dataReader["KlasseID"];
 
                         userSettings.Benutzername = username.ToString();
                         userSettings.Passwort = password.ToString();
                         userSettings.AutoLogin = Convert.ToInt32(autoLogin) == 1 ? true : false;
-                        userSettings.KlasseID = Convert.ToInt32(classID);
                         this.allUserSettings.Add(userSettings);
                     }
                 }
@@ -1271,39 +1198,6 @@ namespace KarteikartenDesktop
             catch (Exception ex)
             {
                 Logger.WriteLogfile("SetAllThema 2: " + ex.Message);
-            }
-        }
-
-        /// <summary> Säubert die <see cref="AllKlasse"/> Eigenschaft und setzt diese neu </summary>
-        public void SetAllKlasse()
-        {
-            this.allKlasse.Clear();
-            string query = "SELECT * FROM Klasse;";
-            SQLiteCommand command = new SQLiteCommand(query, this.connection);
-            try
-            {
-                IDataReader dataReader = command.ExecuteReader();
-                try
-                {
-                    while (dataReader.Read())
-                    {
-                        Klasse klasse = new Klasse();
-                        var classID = dataReader["KlasseID"];
-                        var className = dataReader["Name"];
-                        klasse.Name = className.ToString();
-                        klasse.KlasseID = Convert.ToInt32(classID);
-
-                        this.allKlasse.Add(klasse);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Logger.WriteLogfile("SetAllKlasse 1: " + ex.Message);
-                }
-            }
-            catch (Exception ex)
-            {
-                Logger.WriteLogfile("SetAllKlasse 2: " + ex.Message);
             }
         }
 
@@ -1391,12 +1285,10 @@ namespace KarteikartenDesktop
                     {
                         Fach fach = new Fach();
                         var name = dataReader["Name"];
-                        var klasseID = dataReader["KlasseID"];
                         var fachID = dataReader["FachID"];
 
                         fach.Name = name.ToString();
                         fach.FachID = Convert.ToInt32(fachID);
-                        fach.KlasseID = Convert.ToInt32(klasseID);
 
                         this.allFach.Add(fach);
                     }
@@ -1653,8 +1545,6 @@ namespace KarteikartenDesktop
         public List<UserSettings> AllUsersettings { get => allUserSettings; set => allUserSettings = value; }
         /// <summary> Alle Themen in der Datenbank, !ACHTUNG! SetAllThema() vor Benutzung dieser Eigenschaft verwenden!</summary>
         public List<Thema> AllThema { get => allThema; set => allThema = value; }
-        /// <summary> Alle Klassen in der Datenbank, !ACHTUNG! SetAllKlasse() vor Benutzung dieser Eigenschaft verwenden!</summary>
-        public List<Klasse> AllKlasse { get => allKlasse; set => allKlasse = value; }
         /// <summary> Alle Intervalle in der Datenbank, !ACHTUNG! SetAllIntervall() vor Benutzung dieser Eigenschaft verwenden!</summary>
         public List<Intervall> AllIntervall { get => allIntervall; set => allIntervall = value; }
         /// <summary> Alle Fragen in der Datenbank, !ACHTUNG! SetAllFrage() vor Benutzung dieser Eigenschaft verwenden!</summary>

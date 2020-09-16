@@ -12,6 +12,5 @@ namespace KarteikartenDesktop
         public string Benutzername { get; set; }
         public string Passwort { get; set; }
         public bool AutoLogin { get; set; }
-        public int KlasseID { get; set; }
     }
 }

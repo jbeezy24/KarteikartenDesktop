@@ -37,39 +37,39 @@
             this.panelGrids = new System.Windows.Forms.Panel();
             this.panelInterval5 = new System.Windows.Forms.Panel();
             this.dataGridView5 = new System.Windows.Forms.DataGridView();
-            this.buttonInt5 = new System.Windows.Forms.Button();
-            this.panelInterval4 = new System.Windows.Forms.Panel();
-            this.dataGridView4 = new System.Windows.Forms.DataGridView();
-            this.buttonInt4 = new System.Windows.Forms.Button();
-            this.panelInterval3 = new System.Windows.Forms.Panel();
-            this.dataGridView3 = new System.Windows.Forms.DataGridView();
-            this.buttonInt3 = new System.Windows.Forms.Button();
-            this.panelInterval2 = new System.Windows.Forms.Panel();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.buttonInt2 = new System.Windows.Forms.Button();
-            this.panelInterval1 = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.buttonInt1 = new System.Windows.Forms.Button();
-            this.ColumnCheckBox1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.ColumnKarteID1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnSubject1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTopic1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnCheckBox2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.ColumnID2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnSubject2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTopic2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnCheckBox3 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.ColumnID3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnSubject3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTopic3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnCheckBox4 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.ColumnID4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnSubject4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTopic4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnCheckBox5 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.ColumnID5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnSubject5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnTopic5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.buttonInt5 = new System.Windows.Forms.Button();
+            this.panelInterval4 = new System.Windows.Forms.Panel();
+            this.dataGridView4 = new System.Windows.Forms.DataGridView();
+            this.ColumnCheckBox4 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.ColumnID4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnSubject4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTopic4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.buttonInt4 = new System.Windows.Forms.Button();
+            this.panelInterval3 = new System.Windows.Forms.Panel();
+            this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.ColumnCheckBox3 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.ColumnID3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnSubject3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTopic3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.buttonInt3 = new System.Windows.Forms.Button();
+            this.panelInterval2 = new System.Windows.Forms.Panel();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.ColumnCheckBox2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.ColumnID2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnSubject2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTopic2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.buttonInt2 = new System.Windows.Forms.Button();
+            this.panelInterval1 = new System.Windows.Forms.Panel();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.ColumnCheckBox1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.ColumnKarteID1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnSubject1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTopic1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.buttonInt1 = new System.Windows.Forms.Button();
             this.panelsideMenu.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -157,6 +157,7 @@
             this.buttonOptions.Size = new System.Drawing.Size(60, 60);
             this.buttonOptions.TabIndex = 1;
             this.buttonOptions.UseVisualStyleBackColor = false;
+            this.buttonOptions.Click += new System.EventHandler(this.buttonOptions_Click);
             // 
             // panel1
             // 
@@ -257,6 +258,35 @@
             this.dataGridView5.Size = new System.Drawing.Size(585, 32);
             this.dataGridView5.TabIndex = 1;
             // 
+            // ColumnCheckBox5
+            // 
+            this.ColumnCheckBox5.FillWeight = 13.74573F;
+            this.ColumnCheckBox5.HeaderText = "";
+            this.ColumnCheckBox5.MinimumWidth = 2;
+            this.ColumnCheckBox5.Name = "ColumnCheckBox5";
+            this.ColumnCheckBox5.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // ColumnID5
+            // 
+            this.ColumnID5.FillWeight = 14.17857F;
+            this.ColumnID5.HeaderText = "ID";
+            this.ColumnID5.Name = "ColumnID5";
+            this.ColumnID5.ReadOnly = true;
+            // 
+            // ColumnSubject5
+            // 
+            this.ColumnSubject5.FillWeight = 18.62967F;
+            this.ColumnSubject5.HeaderText = "Fach";
+            this.ColumnSubject5.Name = "ColumnSubject5";
+            this.ColumnSubject5.ReadOnly = true;
+            // 
+            // ColumnTopic5
+            // 
+            this.ColumnTopic5.FillWeight = 93.10496F;
+            this.ColumnTopic5.HeaderText = "Thema";
+            this.ColumnTopic5.Name = "ColumnTopic5";
+            this.ColumnTopic5.ReadOnly = true;
+            // 
             // buttonInt5
             // 
             this.buttonInt5.Dock = System.Windows.Forms.DockStyle.Top;
@@ -301,6 +331,35 @@
             this.dataGridView4.Name = "dataGridView4";
             this.dataGridView4.Size = new System.Drawing.Size(585, 32);
             this.dataGridView4.TabIndex = 1;
+            // 
+            // ColumnCheckBox4
+            // 
+            this.ColumnCheckBox4.FillWeight = 12.93617F;
+            this.ColumnCheckBox4.HeaderText = "";
+            this.ColumnCheckBox4.MinimumWidth = 2;
+            this.ColumnCheckBox4.Name = "ColumnCheckBox4";
+            this.ColumnCheckBox4.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // ColumnID4
+            // 
+            this.ColumnID4.FillWeight = 15F;
+            this.ColumnID4.HeaderText = "ID";
+            this.ColumnID4.Name = "ColumnID4";
+            this.ColumnID4.ReadOnly = true;
+            // 
+            // ColumnSubject4
+            // 
+            this.ColumnSubject4.FillWeight = 22.73505F;
+            this.ColumnSubject4.HeaderText = "Fach";
+            this.ColumnSubject4.Name = "ColumnSubject4";
+            this.ColumnSubject4.ReadOnly = true;
+            // 
+            // ColumnTopic4
+            // 
+            this.ColumnTopic4.FillWeight = 113.6223F;
+            this.ColumnTopic4.HeaderText = "Thema";
+            this.ColumnTopic4.Name = "ColumnTopic4";
+            this.ColumnTopic4.ReadOnly = true;
             // 
             // buttonInt4
             // 
@@ -347,6 +406,35 @@
             this.dataGridView3.Size = new System.Drawing.Size(585, 34);
             this.dataGridView3.TabIndex = 1;
             // 
+            // ColumnCheckBox3
+            // 
+            this.ColumnCheckBox3.FillWeight = 9.051672F;
+            this.ColumnCheckBox3.HeaderText = "";
+            this.ColumnCheckBox3.MinimumWidth = 2;
+            this.ColumnCheckBox3.Name = "ColumnCheckBox3";
+            this.ColumnCheckBox3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // ColumnID3
+            // 
+            this.ColumnID3.FillWeight = 15F;
+            this.ColumnID3.HeaderText = "ID";
+            this.ColumnID3.Name = "ColumnID3";
+            this.ColumnID3.ReadOnly = true;
+            // 
+            // ColumnSubject3
+            // 
+            this.ColumnSubject3.FillWeight = 15.90813F;
+            this.ColumnSubject3.HeaderText = "Fach";
+            this.ColumnSubject3.Name = "ColumnSubject3";
+            this.ColumnSubject3.ReadOnly = true;
+            // 
+            // ColumnTopic3
+            // 
+            this.ColumnTopic3.FillWeight = 79.5036F;
+            this.ColumnTopic3.HeaderText = "Thema";
+            this.ColumnTopic3.Name = "ColumnTopic3";
+            this.ColumnTopic3.ReadOnly = true;
+            // 
             // buttonInt3
             // 
             this.buttonInt3.Dock = System.Windows.Forms.DockStyle.Top;
@@ -391,6 +479,35 @@
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.Size = new System.Drawing.Size(585, 33);
             this.dataGridView2.TabIndex = 1;
+            // 
+            // ColumnCheckBox2
+            // 
+            this.ColumnCheckBox2.FillWeight = 16.03649F;
+            this.ColumnCheckBox2.HeaderText = "";
+            this.ColumnCheckBox2.MinimumWidth = 2;
+            this.ColumnCheckBox2.Name = "ColumnCheckBox2";
+            this.ColumnCheckBox2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // ColumnID2
+            // 
+            this.ColumnID2.FillWeight = 25F;
+            this.ColumnID2.HeaderText = "ID";
+            this.ColumnID2.Name = "ColumnID2";
+            this.ColumnID2.ReadOnly = true;
+            // 
+            // ColumnSubject2
+            // 
+            this.ColumnSubject2.FillWeight = 28.1838F;
+            this.ColumnSubject2.HeaderText = "Fach";
+            this.ColumnSubject2.Name = "ColumnSubject2";
+            this.ColumnSubject2.ReadOnly = true;
+            // 
+            // ColumnTopic2
+            // 
+            this.ColumnTopic2.FillWeight = 140.8534F;
+            this.ColumnTopic2.HeaderText = "Thema";
+            this.ColumnTopic2.Name = "ColumnTopic2";
+            this.ColumnTopic2.ReadOnly = true;
             // 
             // buttonInt2
             // 
@@ -437,19 +554,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(585, 30);
             this.dataGridView1.TabIndex = 0;
             // 
-            // buttonInt1
-            // 
-            this.buttonInt1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.buttonInt1.Font = new System.Drawing.Font("Georgia", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonInt1.Location = new System.Drawing.Point(0, 0);
-            this.buttonInt1.Name = "buttonInt1";
-            this.buttonInt1.Size = new System.Drawing.Size(585, 38);
-            this.buttonInt1.TabIndex = 0;
-            this.buttonInt1.Text = "Interval 1 (x Karten)";
-            this.buttonInt1.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.buttonInt1.UseVisualStyleBackColor = true;
-            this.buttonInt1.Click += new System.EventHandler(this.buttonInt1_Click);
-            // 
             // ColumnCheckBox1
             // 
             this.ColumnCheckBox1.FillWeight = 14.36184F;
@@ -479,121 +583,18 @@
             this.ColumnTopic1.Name = "ColumnTopic1";
             this.ColumnTopic1.ReadOnly = true;
             // 
-            // ColumnCheckBox2
+            // buttonInt1
             // 
-            this.ColumnCheckBox2.FillWeight = 16.03649F;
-            this.ColumnCheckBox2.HeaderText = "";
-            this.ColumnCheckBox2.MinimumWidth = 2;
-            this.ColumnCheckBox2.Name = "ColumnCheckBox2";
-            this.ColumnCheckBox2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // ColumnID2
-            // 
-            this.ColumnID2.FillWeight = 25F;
-            this.ColumnID2.HeaderText = "ID";
-            this.ColumnID2.Name = "ColumnID2";
-            this.ColumnID2.ReadOnly = true;
-            // 
-            // ColumnSubject2
-            // 
-            this.ColumnSubject2.FillWeight = 28.1838F;
-            this.ColumnSubject2.HeaderText = "Fach";
-            this.ColumnSubject2.Name = "ColumnSubject2";
-            this.ColumnSubject2.ReadOnly = true;
-            // 
-            // ColumnTopic2
-            // 
-            this.ColumnTopic2.FillWeight = 140.8534F;
-            this.ColumnTopic2.HeaderText = "Thema";
-            this.ColumnTopic2.Name = "ColumnTopic2";
-            this.ColumnTopic2.ReadOnly = true;
-            // 
-            // ColumnCheckBox3
-            // 
-            this.ColumnCheckBox3.FillWeight = 9.051672F;
-            this.ColumnCheckBox3.HeaderText = "";
-            this.ColumnCheckBox3.MinimumWidth = 2;
-            this.ColumnCheckBox3.Name = "ColumnCheckBox3";
-            this.ColumnCheckBox3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // ColumnID3
-            // 
-            this.ColumnID3.FillWeight = 15F;
-            this.ColumnID3.HeaderText = "ID";
-            this.ColumnID3.Name = "ColumnID3";
-            this.ColumnID3.ReadOnly = true;
-            // 
-            // ColumnSubject3
-            // 
-            this.ColumnSubject3.FillWeight = 15.90813F;
-            this.ColumnSubject3.HeaderText = "Fach";
-            this.ColumnSubject3.Name = "ColumnSubject3";
-            this.ColumnSubject3.ReadOnly = true;
-            // 
-            // ColumnTopic3
-            // 
-            this.ColumnTopic3.FillWeight = 79.5036F;
-            this.ColumnTopic3.HeaderText = "Thema";
-            this.ColumnTopic3.Name = "ColumnTopic3";
-            this.ColumnTopic3.ReadOnly = true;
-            // 
-            // ColumnCheckBox4
-            // 
-            this.ColumnCheckBox4.FillWeight = 12.93617F;
-            this.ColumnCheckBox4.HeaderText = "";
-            this.ColumnCheckBox4.MinimumWidth = 2;
-            this.ColumnCheckBox4.Name = "ColumnCheckBox4";
-            this.ColumnCheckBox4.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // ColumnID4
-            // 
-            this.ColumnID4.FillWeight = 15F;
-            this.ColumnID4.HeaderText = "ID";
-            this.ColumnID4.Name = "ColumnID4";
-            this.ColumnID4.ReadOnly = true;
-            // 
-            // ColumnSubject4
-            // 
-            this.ColumnSubject4.FillWeight = 22.73505F;
-            this.ColumnSubject4.HeaderText = "Fach";
-            this.ColumnSubject4.Name = "ColumnSubject4";
-            this.ColumnSubject4.ReadOnly = true;
-            // 
-            // ColumnTopic4
-            // 
-            this.ColumnTopic4.FillWeight = 113.6223F;
-            this.ColumnTopic4.HeaderText = "Thema";
-            this.ColumnTopic4.Name = "ColumnTopic4";
-            this.ColumnTopic4.ReadOnly = true;
-            // 
-            // ColumnCheckBox5
-            // 
-            this.ColumnCheckBox5.FillWeight = 13.74573F;
-            this.ColumnCheckBox5.HeaderText = "";
-            this.ColumnCheckBox5.MinimumWidth = 2;
-            this.ColumnCheckBox5.Name = "ColumnCheckBox5";
-            this.ColumnCheckBox5.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // ColumnID5
-            // 
-            this.ColumnID5.FillWeight = 14.17857F;
-            this.ColumnID5.HeaderText = "ID";
-            this.ColumnID5.Name = "ColumnID5";
-            this.ColumnID5.ReadOnly = true;
-            // 
-            // ColumnSubject5
-            // 
-            this.ColumnSubject5.FillWeight = 18.62967F;
-            this.ColumnSubject5.HeaderText = "Fach";
-            this.ColumnSubject5.Name = "ColumnSubject5";
-            this.ColumnSubject5.ReadOnly = true;
-            // 
-            // ColumnTopic5
-            // 
-            this.ColumnTopic5.FillWeight = 93.10496F;
-            this.ColumnTopic5.HeaderText = "Thema";
-            this.ColumnTopic5.Name = "ColumnTopic5";
-            this.ColumnTopic5.ReadOnly = true;
+            this.buttonInt1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.buttonInt1.Font = new System.Drawing.Font("Georgia", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonInt1.Location = new System.Drawing.Point(0, 0);
+            this.buttonInt1.Name = "buttonInt1";
+            this.buttonInt1.Size = new System.Drawing.Size(585, 38);
+            this.buttonInt1.TabIndex = 0;
+            this.buttonInt1.Text = "Interval 1 (x Karten)";
+            this.buttonInt1.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.buttonInt1.UseVisualStyleBackColor = true;
+            this.buttonInt1.Click += new System.EventHandler(this.buttonInt1_Click);
             // 
             // Hauptform
             // 
