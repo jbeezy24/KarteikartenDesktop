@@ -236,6 +236,7 @@ namespace KarteikartenDesktop {
                     }
                 }
             }
+        }
         private void buttonOptions_Click(object sender, EventArgs e)
         {
             Benutzereinstellung benutzereinstellung = new Benutzereinstellung(database);
