@@ -18,9 +18,13 @@ namespace KarteikartenDesktop.UserInterface
             this.database = database;
 
             database.SetAllUsersettings();
-            var userSettings = database.AllUsersettings[0];
-            benutzernameTextBox.Text = userSettings.Benutzername;
-            passwordTextBox.Text = userSettings.Passwort;
+            
+            try
+            {
+                var userSettings = database.AllUsersettings[0];
+                benutzernameTextBox.Text = userSettings.Benutzername;
+                passwordTextBox.Text = userSettings.Passwort;
+            } catch { }
         }
 
         private DataBase database;

@@ -274,6 +274,8 @@ namespace KarteikartenDesktop {
                     this.Visible = true;
                 }
             }
+
+            Request.ImportFaecher(database);
         }
     }
 }

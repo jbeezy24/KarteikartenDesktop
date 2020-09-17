@@ -13,7 +13,7 @@ namespace KarteikartenDesktop
         {
             try
             {
-                using (StreamWriter sw = new StreamWriter(StaticVariables.EnvironmentPath() + @"\" + StaticVariables.LogName)) {
+                using (StreamWriter sw = new StreamWriter(StaticVariables.EnvironmentPath() + @"\" + StaticVariables.LogName, true)) {
                     sw.WriteLine("[" + DateTime.Now + "] " + text);
                 }
             } catch { }

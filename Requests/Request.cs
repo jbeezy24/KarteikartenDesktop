@@ -9,11 +9,56 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace KarteikartenDesktop
 {
     public class Request
     {
+        public static bool ImportFaecher(DataBase database)
+        {
+            try
+            {
+                database.SetAllUsersettings();
+                List<UserSettings> userSettings = new List<UserSettings>();
+
+                try
+                {
+                    var userSetting = database.AllUsersettings[0];
+                    userSettings.Add(userSetting);
+                }
+                catch
+                {
+                    MessageBox.Show("Importieren von Fächern nicht möglich, da keine Benutzereinstellungen vorhanden!");
+                    return false;
+                }
+                
+                var json1 = JsonConvert.SerializeObject(userSettings);
+                string jsonString = "{\"Benutzer\": " + json1 + "}";
+
+                string jsonObject = PostObject(jsonString, "/api_export_fach.php");
+
+                var faecher = JsonConvert.DeserializeObject<ImportFach>(jsonObject);
+
+                // prüfen ob Fach existiert
+                for (int i = 0; i < faecher.Faecher.Count; i++) {
+                    database.SetAllFach();
+                    var allFaecher = database.AllFach;
+                    var existsFach = allFaecher.Where(x => x.Name.ToLower() == faecher.Faecher[i].ToLower()).FirstOrDefault();
+
+                    if (existsFach == null)
+                    {
+                        database.CreateSubject(faecher.Faecher[i]);
+                    }
+                }
+                return true;
+            } catch (Exception ex)
+            {
+                Logger.WriteLogfile("ImportFaecher: " + ex.Message);
+                return false;
+            }
+        }
+
         /// <summary> Importiert !ALLE! Karteikarten mit dem angegebenen Code </summary>
         /// <param name="userSetting">Benutzereinstellung</param>
         /// <param name="allKlasse">alle Klassen</param>
