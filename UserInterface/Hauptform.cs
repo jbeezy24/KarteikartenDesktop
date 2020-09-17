@@ -85,9 +85,11 @@ namespace KarteikartenDesktop {
 
         private void buttonImport_Click(object sender, EventArgs e) {
             KartenImport import = new KartenImport(database);
+            this.Visible = false;
             if (import.ShowDialog() == DialogResult.OK) {
                 //Erstellung von Karten und einfügen in DB anhand von Daten der jeweiligen im Web auswählten Karten
             }
+            this.Visible = true;
         }
 
         private void buttonInt1_Click(object sender, EventArgs e) {
@@ -151,14 +153,17 @@ namespace KarteikartenDesktop {
         private DataBase database = new DataBase();
         List<Panel> panelList = new List<Panel>();
 
-        private void Hauptform_VisibleChanged(object sender, EventArgs e) {
+        private void countCards()
+        {
             List<KarteikartenHelper> karteikartenAbgelaufen = new List<KarteikartenHelper>();
 
-            foreach (var view in viewList) {
+            foreach (var view in viewList)
+            {
                 view.Rows.Clear();
             }
             var AktuelleKarteikarten = database.GetAllKarteikarten();
-            foreach (var Karte in AktuelleKarteikarten) {
+            foreach (var Karte in AktuelleKarteikarten)
+            {
                 var row = new DataGridViewRow();
                 var cellcheck = new DataGridViewCheckBoxCell();
                 var cellkartenid = new DataGridViewTextBoxCell();
@@ -169,24 +174,30 @@ namespace KarteikartenDesktop {
                 cellsubject.Value = Karte.Fachname;
                 cellkartenid.Value = Karte.KartenID;
                 row.Cells.AddRange(new DataGridViewCell[] { cellcheck, cellkartenid, cellsubject, celltopic });
-                switch (Karte.Intervall) {
-                    case 1: {
+                switch (Karte.Intervall)
+                {
+                    case 1:
+                        {
                             dataGridView1.Rows.Add(row);
                             break;
                         }
-                    case 3: {
+                    case 3:
+                        {
                             dataGridView2.Rows.Add(row);
                             break;
                         }
-                    case 7: {
+                    case 7:
+                        {
                             dataGridView3.Rows.Add(row);
                             break;
                         }
-                    case 30: {
+                    case 30:
+                        {
                             dataGridView4.Rows.Add(row);
                             break;
                         }
-                    case 9999: {
+                    case 9999:
+                        {
                             dataGridView5.Rows.Add(row);
                             break;
                         }
@@ -197,10 +208,24 @@ namespace KarteikartenDesktop {
                 buttonInt4.Text = "Interval 4 (" + dataGridView4.Rows.Count + " Karten)";
                 buttonInt5.Text = "Interval 5 (" + dataGridView5.Rows.Count + " Karten)";
 
-                for (int i = 0; i < 5; i++) {
+                for (int i = 0; i < 5; i++)
+                {
                     panelList[i].Size = new Size(Width, 22 * (1 + viewList[i].Rows.Count));
                 }
             }
+
+            if (AktuelleKarteikarten.Count == 0)
+            {
+                buttonInt1.Text = "Interval 1 (" + "0" + " Karten)";
+                buttonInt2.Text = "Interval 2 (" + "0" + " Karten)";
+                buttonInt3.Text = "Interval 3 (" + "0" + " Karten)";
+                buttonInt4.Text = "Interval 4 (" + "0" + " Karten)";
+                buttonInt5.Text = "Interval 5 (" + "0" + " Karten)";
+            }
+        }
+
+        private void Hauptform_VisibleChanged(object sender, EventArgs e) {
+            countCards();
         }
 
         private void buttonSelectAll_Click(object sender, EventArgs e) {
@@ -242,8 +267,10 @@ namespace KarteikartenDesktop {
                         }
                     }
                 }
+                countCards();
             }
         }
+
         private void buttonOptions_Click(object sender, EventArgs e) {
             Benutzereinstellung benutzereinstellung = new Benutzereinstellung(database);
             benutzereinstellung.ShowDialog();
