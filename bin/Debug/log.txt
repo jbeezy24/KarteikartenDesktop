@@ -2,10 +2,63 @@
 FOREIGN KEY constraint failed
 [17.09.2020 11:12:45] RemoveAnswer: constraint failed
 FOREIGN KEY constraint failed
-[17.09.2020 11:49:47] ImportFaecher: Der Remoteserver hat einen Fehler zurückgegeben: (403) Unzulässig.
-[17.09.2020 11:59:07] RemovePicture: constraint failed
+[17.09.2020 11:33:19] RemoveAnswer: constraint failed
 FOREIGN KEY constraint failed
-[17.09.2020 11:59:07] RemoveAnswer: constraint failed
+[17.09.2020 11:33:19] RemoveQuestion: constraint failed
 FOREIGN KEY constraint failed
-[17.09.2020 11:59:07] RemoveQuestion: constraint failed
+[17.09.2020 11:34:15] RemoveAnswer: constraint failed
+FOREIGN KEY constraint failed
+[17.09.2020 11:34:15] RemoveQuestion: constraint failed
+FOREIGN KEY constraint failed
+[17.09.2020 11:34:16] RemovePicture: constraint failed
+FOREIGN KEY constraint failed
+[17.09.2020 11:34:16] RemoveAnswer: constraint failed
+FOREIGN KEY constraint failed
+[17.09.2020 11:34:16] RemoveQuestion: constraint failed
+FOREIGN KEY constraint failed
+[17.09.2020 11:34:16] RemovePicture: constraint failed
+FOREIGN KEY constraint failed
+[17.09.2020 11:34:16] RemoveAnswer: constraint failed
+FOREIGN KEY constraint failed
+[17.09.2020 11:34:16] RemoveQuestion: constraint failed
+FOREIGN KEY constraint failed
+[17.09.2020 11:38:15] RemoveAnswer: constraint failed
+FOREIGN KEY constraint failed
+[17.09.2020 11:38:15] RemoveQuestion: constraint failed
+FOREIGN KEY constraint failed
+[17.09.2020 11:39:00] RemoveAnswer: constraint failed
+FOREIGN KEY constraint failed
+[17.09.2020 11:39:00] RemoveQuestion: constraint failed
+FOREIGN KEY constraint failed
+[17.09.2020 11:39:26] RemoveAnswer: constraint failed
+FOREIGN KEY constraint failed
+[17.09.2020 11:39:26] RemoveQuestion: constraint failed
+FOREIGN KEY constraint failed
+[17.09.2020 11:41:25] RemoveAnswer: constraint failed
+FOREIGN KEY constraint failed
+[17.09.2020 11:41:25] RemoveQuestion: constraint failed
+FOREIGN KEY constraint failed
+[17.09.2020 11:41:55] RemoveAnswer: constraint failed
+FOREIGN KEY constraint failed
+[17.09.2020 11:41:55] RemoveQuestion: constraint failed
+FOREIGN KEY constraint failed
+[17.09.2020 11:42:37] RemoveAnswer: constraint failed
+FOREIGN KEY constraint failed
+[17.09.2020 11:42:37] RemoveQuestion: constraint failed
+FOREIGN KEY constraint failed
+[17.09.2020 11:43:33] RemoveAnswer: constraint failed
+FOREIGN KEY constraint failed
+[17.09.2020 11:43:33] RemoveQuestion: constraint failed
+FOREIGN KEY constraint failed
+[17.09.2020 11:44:34] RemoveAnswer: constraint failed
+FOREIGN KEY constraint failed
+[17.09.2020 11:44:34] RemoveQuestion: constraint failed
+FOREIGN KEY constraint failed
+[17.09.2020 11:44:53] RemoveAnswer: constraint failed
+FOREIGN KEY constraint failed
+[17.09.2020 11:44:53] RemoveQuestion: constraint failed
+FOREIGN KEY constraint failed
+[17.09.2020 11:46:17] RemoveAnswer: constraint failed
+FOREIGN KEY constraint failed
+[17.09.2020 11:46:17] RemoveQuestion: constraint failed
 FOREIGN KEY constraint failed
