@@ -33,9 +33,10 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonKarteBearbeiten = new System.Windows.Forms.Button();
+            this.buttonSelectNone = new System.Windows.Forms.Button();
+            this.buttonSelectAll = new System.Windows.Forms.Button();
+            this.buttonDelete = new System.Windows.Forms.Button();
             this.buttonAbfrage = new System.Windows.Forms.Button();
             this.panelGrids = new System.Windows.Forms.Panel();
             this.panelInterval5 = new System.Windows.Forms.Panel();
@@ -187,9 +188,10 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.PaleTurquoise;
-            this.panel2.Controls.Add(this.button3);
-            this.panel2.Controls.Add(this.button2);
-            this.panel2.Controls.Add(this.button1);
+            this.panel2.Controls.Add(this.buttonKarteBearbeiten);
+            this.panel2.Controls.Add(this.buttonSelectNone);
+            this.panel2.Controls.Add(this.buttonSelectAll);
+            this.panel2.Controls.Add(this.buttonDelete);
             this.panel2.Controls.Add(this.buttonAbfrage);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
@@ -197,51 +199,67 @@
             this.panel2.Size = new System.Drawing.Size(784, 30);
             this.panel2.TabIndex = 1;
             // 
-            // button3
+            // buttonKarteBearbeiten
             // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.buttonKarteBearbeiten.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.BackColor = System.Drawing.Color.MediumTurquoise;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button3.Font = new System.Drawing.Font("Georgia", 9.75F, System.Drawing.FontStyle.Bold);
-            this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(429, 4);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(127, 23);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "Alles abwählen";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.buttonKarteBearbeiten.BackColor = System.Drawing.Color.DarkGray;
+            this.buttonKarteBearbeiten.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonKarteBearbeiten.Font = new System.Drawing.Font("Georgia", 9.75F, System.Drawing.FontStyle.Bold);
+            this.buttonKarteBearbeiten.ForeColor = System.Drawing.Color.White;
+            this.buttonKarteBearbeiten.Location = new System.Drawing.Point(283, 4);
+            this.buttonKarteBearbeiten.Name = "buttonKarteBearbeiten";
+            this.buttonKarteBearbeiten.Size = new System.Drawing.Size(97, 23);
+            this.buttonKarteBearbeiten.TabIndex = 4;
+            this.buttonKarteBearbeiten.Text = "Bearbeiten";
+            this.buttonKarteBearbeiten.UseVisualStyleBackColor = false;
+            this.buttonKarteBearbeiten.Click += new System.EventHandler(this.buttonKarteBearbeiten_Click);
             // 
-            // button2
+            // buttonSelectNone
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.buttonSelectNone.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.BackColor = System.Drawing.Color.MediumTurquoise;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button2.Font = new System.Drawing.Font("Georgia", 9.75F, System.Drawing.FontStyle.Bold);
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(562, 4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(130, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Alles anwählen";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.buttonSelectNone.BackColor = System.Drawing.Color.MediumTurquoise;
+            this.buttonSelectNone.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonSelectNone.Font = new System.Drawing.Font("Georgia", 9.75F, System.Drawing.FontStyle.Bold);
+            this.buttonSelectNone.ForeColor = System.Drawing.Color.White;
+            this.buttonSelectNone.Location = new System.Drawing.Point(429, 4);
+            this.buttonSelectNone.Name = "buttonSelectNone";
+            this.buttonSelectNone.Size = new System.Drawing.Size(127, 23);
+            this.buttonSelectNone.TabIndex = 3;
+            this.buttonSelectNone.Text = "Alles abwählen";
+            this.buttonSelectNone.UseVisualStyleBackColor = false;
+            this.buttonSelectNone.Click += new System.EventHandler(this.buttonSelectNone_Click);
             // 
-            // button1
+            // buttonSelectAll
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(24)))), ((int)(((byte)(24)))));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Font = new System.Drawing.Font("Georgia", 9.75F, System.Drawing.FontStyle.Bold);
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(199, 4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(78, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Löschen";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.buttonSelectAll.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonSelectAll.BackColor = System.Drawing.Color.MediumTurquoise;
+            this.buttonSelectAll.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonSelectAll.Font = new System.Drawing.Font("Georgia", 9.75F, System.Drawing.FontStyle.Bold);
+            this.buttonSelectAll.ForeColor = System.Drawing.Color.White;
+            this.buttonSelectAll.Location = new System.Drawing.Point(562, 4);
+            this.buttonSelectAll.Name = "buttonSelectAll";
+            this.buttonSelectAll.Size = new System.Drawing.Size(130, 23);
+            this.buttonSelectAll.TabIndex = 2;
+            this.buttonSelectAll.Text = "Alles anwählen";
+            this.buttonSelectAll.UseVisualStyleBackColor = false;
+            this.buttonSelectAll.Click += new System.EventHandler(this.buttonSelectAll_Click);
+            // 
+            // buttonDelete
+            // 
+            this.buttonDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(24)))), ((int)(((byte)(24)))));
+            this.buttonDelete.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonDelete.Font = new System.Drawing.Font("Georgia", 9.75F, System.Drawing.FontStyle.Bold);
+            this.buttonDelete.ForeColor = System.Drawing.Color.White;
+            this.buttonDelete.Location = new System.Drawing.Point(199, 4);
+            this.buttonDelete.Name = "buttonDelete";
+            this.buttonDelete.Size = new System.Drawing.Size(78, 23);
+            this.buttonDelete.TabIndex = 1;
+            this.buttonDelete.Text = "Löschen";
+            this.buttonDelete.UseVisualStyleBackColor = false;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
             // buttonAbfrage
             // 
@@ -341,6 +359,7 @@
             // 
             // buttonInt5
             // 
+            this.buttonInt5.BackColor = System.Drawing.SystemColors.Window;
             this.buttonInt5.Dock = System.Windows.Forms.DockStyle.Top;
             this.buttonInt5.Font = new System.Drawing.Font("Georgia", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonInt5.Location = new System.Drawing.Point(0, 281);
@@ -349,7 +368,7 @@
             this.buttonInt5.TabIndex = 8;
             this.buttonInt5.Text = "Interval ? (0 Karten)";
             this.buttonInt5.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.buttonInt5.UseVisualStyleBackColor = true;
+            this.buttonInt5.UseVisualStyleBackColor = false;
             this.buttonInt5.Click += new System.EventHandler(this.buttonInt5_Click);
             // 
             // panelInterval4
@@ -415,6 +434,7 @@
             // 
             // buttonInt4
             // 
+            this.buttonInt4.BackColor = System.Drawing.SystemColors.Window;
             this.buttonInt4.Dock = System.Windows.Forms.DockStyle.Top;
             this.buttonInt4.Font = new System.Drawing.Font("Georgia", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonInt4.Location = new System.Drawing.Point(0, 211);
@@ -423,7 +443,7 @@
             this.buttonInt4.TabIndex = 6;
             this.buttonInt4.Text = "Interval 4 (0 Karten)";
             this.buttonInt4.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.buttonInt4.UseVisualStyleBackColor = true;
+            this.buttonInt4.UseVisualStyleBackColor = false;
             this.buttonInt4.Click += new System.EventHandler(this.buttonInt4_Click);
             // 
             // panelInterval3
@@ -489,6 +509,7 @@
             // 
             // buttonInt3
             // 
+            this.buttonInt3.BackColor = System.Drawing.SystemColors.Window;
             this.buttonInt3.Dock = System.Windows.Forms.DockStyle.Top;
             this.buttonInt3.Font = new System.Drawing.Font("Georgia", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonInt3.Location = new System.Drawing.Point(0, 139);
@@ -497,7 +518,7 @@
             this.buttonInt3.TabIndex = 4;
             this.buttonInt3.Text = "Interval 3 (0 Karten)";
             this.buttonInt3.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.buttonInt3.UseVisualStyleBackColor = true;
+            this.buttonInt3.UseVisualStyleBackColor = false;
             this.buttonInt3.Click += new System.EventHandler(this.buttonInt3_Click);
             // 
             // panelInterval2
@@ -563,6 +584,7 @@
             // 
             // buttonInt2
             // 
+            this.buttonInt2.BackColor = System.Drawing.SystemColors.Window;
             this.buttonInt2.Dock = System.Windows.Forms.DockStyle.Top;
             this.buttonInt2.Font = new System.Drawing.Font("Georgia", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonInt2.Location = new System.Drawing.Point(0, 68);
@@ -571,7 +593,7 @@
             this.buttonInt2.TabIndex = 2;
             this.buttonInt2.Text = "Interval 2 (0 Karten)";
             this.buttonInt2.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.buttonInt2.UseVisualStyleBackColor = true;
+            this.buttonInt2.UseVisualStyleBackColor = false;
             this.buttonInt2.Click += new System.EventHandler(this.buttonInt2_Click);
             // 
             // panelInterval1
@@ -637,6 +659,7 @@
             // 
             // buttonInt1
             // 
+            this.buttonInt1.BackColor = System.Drawing.SystemColors.Window;
             this.buttonInt1.Dock = System.Windows.Forms.DockStyle.Top;
             this.buttonInt1.Font = new System.Drawing.Font("Georgia", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonInt1.Location = new System.Drawing.Point(0, 0);
@@ -645,7 +668,7 @@
             this.buttonInt1.TabIndex = 0;
             this.buttonInt1.Text = "Interval 1 (0 Karten)";
             this.buttonInt1.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.buttonInt1.UseVisualStyleBackColor = true;
+            this.buttonInt1.UseVisualStyleBackColor = false;
             this.buttonInt1.Click += new System.EventHandler(this.buttonInt1_Click);
             // 
             // Hauptform
@@ -731,9 +754,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnKarteID1;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSubject1;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTopic1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button buttonSelectAll;
+        private System.Windows.Forms.Button buttonDelete;
+        private System.Windows.Forms.Button buttonSelectNone;
+        private System.Windows.Forms.Button buttonKarteBearbeiten;
     }
 }
 

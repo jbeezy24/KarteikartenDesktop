@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -127,7 +128,8 @@ namespace KarteikartenDesktop {
                 abfrage.ShowDialog();
 
                 this.Visible = true;
-            } else {
+            }
+            else {
                 MessageBox.Show("Wählen Sie Karteikarten zum Abfragen aus!", "Keine Karten ausgewählt", MessageBoxButtons.OK);
             }
         }
@@ -201,15 +203,15 @@ namespace KarteikartenDesktop {
             }
         }
 
-        private void button2_Click(object sender, EventArgs e) {
+        private void buttonSelectAll_Click(object sender, EventArgs e) {
             foreach (DataGridView view in viewList) {
-                foreach(DataGridViewRow row in view.Rows) {
+                foreach (DataGridViewRow row in view.Rows) {
                     row.Cells[0].Value = true;
                 }
             }
         }
 
-        private void button3_Click(object sender, EventArgs e) {
+        private void buttonSelectNone_Click(object sender, EventArgs e) {
             foreach (DataGridView view in viewList) {
                 foreach (DataGridViewRow row in view.Rows) {
                     row.Cells[0].Value = false;
@@ -217,7 +219,7 @@ namespace KarteikartenDesktop {
             }
         }
 
-        private void button1_Click(object sender, EventArgs e) {
+        private void buttonDelete_Click(object sender, EventArgs e) {
             int deletionNumber = 0;
             foreach (DataGridView view in viewList) {
                 foreach (DataGridViewRow row in view.Rows) {
@@ -242,32 +244,60 @@ namespace KarteikartenDesktop {
                 }
             }
         }
-        private void buttonOptions_Click(object sender, EventArgs e)
-        {
+        private void buttonOptions_Click(object sender, EventArgs e) {
             Benutzereinstellung benutzereinstellung = new Benutzereinstellung(database);
             benutzereinstellung.ShowDialog();
         }
 
-        private void Hauptform_Shown(object sender, EventArgs e)
-        {
+
+        private bool checkEditButtonAviable() {
+            int deletionNumber = 0;
+            foreach (DataGridView view in viewList) {
+                foreach (DataGridViewRow row in view.Rows) {
+                    if (System.Convert.ToBoolean(row.Cells[0].Value) == true) {
+                        singlecheckedcard = database.GetAllKarteikarten().Where(x => x.KartenID == System.Convert.ToInt32(row.Cells[1].Value)).FirstOrDefault();
+                        if (singlecheckedcard != null) {
+                            deletionNumber++;
+                        }
+                    }
+                }
+            }
+            if (deletionNumber == 1) {
+                return true;
+            }
+            else return false;
+        }
+
+        private KarteikartenHelper singlecheckedcard = new KarteikartenHelper();
+
+        private void buttonKarteBearbeiten_Click(object sender, EventArgs e) {
+            singlecheckedcard = new KarteikartenHelper();
+            if (checkEditButtonAviable()) {
+                KartenErstellen erstellen = new KartenErstellen(database, singlecheckedcard);
+                this.Visible = false;
+                if (erstellen.ShowDialog() == DialogResult.OK) {
+
+                }
+                this.Visible = true;
+            }
+            else MessageBox.Show("Bitte wählen Sie nur 1 Karteikarte aus!", "Falsche Auswahl");
+        }
+
+        private void Hauptform_Shown(object sender, EventArgs e) {
             List<KarteikartenHelper> karteikartenAbgelaufen = new List<KarteikartenHelper>();
             var AktuelleKarteikarten = database.GetAllKarteikarten();
-            foreach (var Karte in AktuelleKarteikarten)
-            {
+            foreach (var Karte in AktuelleKarteikarten) {
                 var timeNow = DateTime.Now;
                 var dateTimeLate = Karte.LetzteAbfrage;
                 var differenceDate = timeNow - dateTimeLate;
 
-                if (differenceDate.Days > Karte.Intervall)
-                {
+                if (differenceDate.Days > Karte.Intervall) {
                     karteikartenAbgelaufen.Add(Karte);
                 }
-            }         
+            }
 
-            if (karteikartenAbgelaufen.Count > 0)
-            {
-                if (MessageBox.Show("Einige Karten sind vom Intervall abgelaufen. Möchten Sie diese aufrufen?", "Karteikarten", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
+            if (karteikartenAbgelaufen.Count > 0) {
+                if (MessageBox.Show("Einige Karten sind vom Intervall abgelaufen. Möchten Sie diese aufrufen?", "Karteikarten", MessageBoxButtons.YesNo) == DialogResult.Yes) {
                     this.Visible = false;
                     KartenAbfrage kartenAbfrage = new KartenAbfrage(karteikartenAbgelaufen, database);
                     kartenAbfrage.ShowDialog();
@@ -279,3 +309,4 @@ namespace KarteikartenDesktop {
         }
     }
 }
+
