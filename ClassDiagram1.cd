@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="KarteikartenDesktop.Antwort">
+    <Position X="2.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAAAAAAQAAAAAACAAAAAA=</HashCode>
+      <FileName>Database\Antwort.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KarteikartenDesktop.Bild">
+    <Position X="8" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Database\Bild.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KarteikartenDesktop.DataBase">
+    <Position X="4.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>DAiArCQAACBiJAECZABBzKDECEhowcTAREIEAAIIggQ=</HashCode>
+      <FileName>Database\DataBase.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Bild" />
+      <Property Name="Antwort" />
+      <Property Name="Fach" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="KarteikartenDesktop.KarteikartenHelper">
+    <Position X="2.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>RCAAACAAAAFgEAABAIAQAEAAAAAAAUIBAAACAAQAAAA=</HashCode>
+      <FileName>Database\KarteikartenHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KarteikartenDesktop.Fach">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAAABAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Database\Fach.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KarteikartenDesktop.Frage">
+    <Position X="6.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAEAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Database\Frage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KarteikartenDesktop.Intervall">
+    <Position X="6.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>Database\Intervall.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KarteikartenDesktop.Database.Karteikarten">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAABAEAAAAAAQAAAAAAAAAQABAAAAAAAAAAA=</HashCode>
+      <FileName>Database\Karteikarten.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KarteikartenDesktop.Klasse">
+    <Position X="0.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Database\Klasse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KarteikartenDesktop.Thema">
+    <Position X="0.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAAAAQAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Database\Thema.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KarteikartenDesktop.UserSettings">
+    <Position X="6.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAgAAAgAAAAAgAA=</HashCode>
+      <FileName>Database\UserSettings.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
