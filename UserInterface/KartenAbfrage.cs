@@ -122,16 +122,29 @@ namespace KarteikartenDesktop {
                 database.SetAllIntervall();
                 var intervall = database.AllIntervall;
 
+                for (int i = intervall.Count - 1; i <= 4; i++)
+                    intervall.RemoveAt(i);
+
+                // wenn Karte quasi Intervall 4 ist (unendlich) und auf Ja gedrückt wurde, wird auf Intervall 2 gesetzt
                 if (this.karte.Intervall == intervall[intervall.Count - 1].Dauer)
                 {
-                    this.karte.Intervall = 2;
+                    this.karte.Intervall = intervall[1].Dauer;
                 }
 
-                var newIntervall = ++this.karte.Intervall;
-                if (newIntervall < intervall.Count - 1)
+                // Intervall ist Tag in Dauer, daher wert suchen, Intervall ID bestimmen
+                var newIntervall = intervall.Where(x => x.Dauer == this.karte.Intervall).FirstOrDefault();
+                if (newIntervall != null)
                 {
-                    // wenn noch nicht im letzten Intervall dann um eins höher setzen
-                    database.ChangeRecordCard(database.GetRecordCard(this.karte.KartenID), intervallID: newIntervall, letzteAbfrage: DateTime.Now);
+                    if (newIntervall.Dauer < intervall[intervall.Count - 1].Dauer)
+                    {
+                        var newID = newIntervall.IntervallID + 1;
+                        var intervallDauer = intervall.Where(x => x.IntervallID == newID).FirstOrDefault();
+
+                        if (intervallDauer != null)
+                        {
+                            database.ChangeRecordCard(database.GetRecordCard(this.karte.KartenID), intervallID: intervallDauer.IntervallID, letzteAbfrage: DateTime.Now);
+                        }
+                    }
                 }
 
                 // Panel "Antwort" invisible

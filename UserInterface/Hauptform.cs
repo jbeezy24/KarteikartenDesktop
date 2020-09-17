@@ -152,6 +152,8 @@ namespace KarteikartenDesktop {
         List<Panel> panelList = new List<Panel>();
 
         private void Hauptform_VisibleChanged(object sender, EventArgs e) {
+            List<KarteikartenHelper> karteikartenAbgelaufen = new List<KarteikartenHelper>();
+
             foreach (var view in viewList) {
                 view.Rows.Clear();
             }
@@ -198,7 +200,6 @@ namespace KarteikartenDesktop {
                 for (int i = 0; i < 5; i++) {
                     panelList[i].Size = new Size(Width, 22 * (1 + viewList[i].Rows.Count));
                 }
-
             }
         }
 
@@ -249,22 +250,6 @@ namespace KarteikartenDesktop {
         }
 
 
-        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e) {
-            checkEditButtonAviable();
-        }
-
-        private void dataGridView3_CellContentClick(object sender, DataGridViewCellEventArgs e) {
-            checkEditButtonAviable();
-        }
-
-        private void dataGridView4_CellContentClick(object sender, DataGridViewCellEventArgs e) {
-            checkEditButtonAviable();
-        }
-
-        private void dataGridView5_CellContentClick(object sender, DataGridViewCellEventArgs e) {
-            checkEditButtonAviable();
-        }
-
         private bool checkEditButtonAviable() {
             int deletionNumber = 0;
             foreach (DataGridView view in viewList) {
@@ -286,6 +271,7 @@ namespace KarteikartenDesktop {
         private KarteikartenHelper singlecheckedcard = new KarteikartenHelper();
 
         private void buttonKarteBearbeiten_Click(object sender, EventArgs e) {
+			singlecheckedcard = new KarteikartenHelper();
             if (checkEditButtonAviable()) {
                 KartenErstellen erstellen = new KartenErstellen(database, singlecheckedcard);
                 this.Visible = false;
@@ -294,6 +280,34 @@ namespace KarteikartenDesktop {
                 }
                 this.Visible = true;
             } else MessageBox.Show("Bitte wählen Sie nur 1 Karteikarte aus!","Falsche Auswahl");
+			
+			
+        private void Hauptform_Shown(object sender, EventArgs e)
+        {
+            List<KarteikartenHelper> karteikartenAbgelaufen = new List<KarteikartenHelper>();
+            var AktuelleKarteikarten = database.GetAllKarteikarten();
+            foreach (var Karte in AktuelleKarteikarten)
+            {
+                var timeNow = DateTime.Now;
+                var dateTimeLate = Karte.LetzteAbfrage;
+                var differenceDate = timeNow - dateTimeLate;
+
+                if (differenceDate.Days > Karte.Intervall)
+                {
+                    karteikartenAbgelaufen.Add(Karte);
+                }
+            }         
+
+            if (karteikartenAbgelaufen.Count > 0)
+            {
+                if (MessageBox.Show("Einige Karten sind vom Intervall abgelaufen. Möchten Sie diese aufrufen?", "Karteikarten", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    this.Visible = false;
+                    KartenAbfrage kartenAbfrage = new KartenAbfrage(karteikartenAbgelaufen, database);
+                    kartenAbfrage.ShowDialog();
+                    this.Visible = true;
+                }
+            }
         }
     }
 }

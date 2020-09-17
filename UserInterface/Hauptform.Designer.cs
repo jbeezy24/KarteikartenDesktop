@@ -683,6 +683,7 @@
             this.Name = "Hauptform";
             this.Text = "KarteiLernSystem";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.handleHauptformClosing);
+            this.Shown += new System.EventHandler(this.Hauptform_Shown);
             this.SizeChanged += new System.EventHandler(this.Form1_SizeChanged);
             this.VisibleChanged += new System.EventHandler(this.Hauptform_VisibleChanged);
             this.panelsideMenu.ResumeLayout(false);
