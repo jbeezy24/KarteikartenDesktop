@@ -1537,9 +1537,9 @@ namespace KarteikartenDesktop
 
                 if (karteikartenHelpers[i].AntwortBitmapID > 0)
                 {
-                    var queryAntwort = "SELECT Bild.BildDaten" +
+                    var queryAntwort = "SELECT BildDaten " +
                     "FROM Bild" +
-                    "WHERE Bild.BildID='" + karteikartenHelpers[i].AntwortBitmapID + "';";
+                    " WHERE BildID='" + karteikartenHelpers[i].AntwortBitmapID + "';";
 
                     command = new SQLiteCommand(queryAntwort, this.connection);
                     try
