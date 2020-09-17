@@ -11,9 +11,11 @@ using System.Windows.Forms;
 namespace KarteikartenDesktop {
     public partial class KartenErstellen : Form {
         public KartenErstellen(DataBase db) {
+            bearbeiteteKarte = new KarteikartenHelper();
             InitializeComponent();
             this.database = db;
 
+            this.Text = "Karte Erstellen";
             db.SetAllFach();
             fachlist = db.AllFach;
 
@@ -46,8 +48,8 @@ namespace KarteikartenDesktop {
         }
 
         KarteikartenHelper bearbeiteteKarte = new KarteikartenHelper();
-        Image frageBild;
-        Image antwortBild;
+        Bitmap frageBild;
+        Bitmap antwortBild;
 
         List<Fach> fachlist = new List<Fach>();        
         DataBase database;
@@ -67,8 +69,8 @@ namespace KarteikartenDesktop {
                 thema = database.AllThema.Where(x => x.Name.ToLower() == textBox1.Text.ToLower()).FirstOrDefault();
             }
             if (this.Text == "Karte Erstellen") {
-            database.CreateQuestion(richTextBox1.Text, new Bitmap(frageBild));
-            database.CreateAnswer(richTextBox2.Text, new Bitmap(antwortBild));
+            database.CreateQuestion(richTextBox1.Text, frageBild);
+            database.CreateAnswer(richTextBox2.Text, antwortBild);
 
             database.SetAllFrage();
             database.SetAllAntwort();
@@ -80,7 +82,7 @@ namespace KarteikartenDesktop {
             } else {
 
                 var karte = database.GetRecordCard(bearbeiteteKarte.KartenID);
-                database.ChangeRecordCard(karte, thema.ThemaID, richTextBox1.Text, richTextBox2.Text, new Bitmap(frageBild), new Bitmap(antwortBild));
+                database.ChangeRecordCard(karte, thema.ThemaID, richTextBox1.Text, richTextBox2.Text, frageBild, antwortBild);
             }
 
         }
@@ -92,7 +94,7 @@ namespace KarteikartenDesktop {
             dialog.Title = "Bild auswählen zum Upload";
             if (dialog.ShowDialog() == DialogResult.OK) {
                 try {
-                    frageBild = Image.FromFile(dialog.FileName);
+                    frageBild = new Bitmap(Image.FromFile(dialog.FileName));
                 }
                 catch (Exception ex) {
                     Logger.WriteLogfile(ex.Message);
@@ -108,7 +110,7 @@ namespace KarteikartenDesktop {
             dialog.Title = "Bild auswählen zum Upload";
             if (dialog.ShowDialog() == DialogResult.OK) {
                 try {
-                    antwortBild = Image.FromFile(dialog.FileName);
+                    antwortBild = new Bitmap(Image.FromFile(dialog.FileName));
                 }
                 catch (Exception ex) {
                     Logger.WriteLogfile(ex.Message);
@@ -133,6 +135,14 @@ namespace KarteikartenDesktop {
 
         private void runderButton1_MouseUp(object sender, MouseEventArgs e) {
             panel1.Visible = false;
+        }
+
+        private void runderButton4_Click(object sender, EventArgs e) {
+            frageBild = null;
+        }
+
+        private void runderButton3_Click(object sender, EventArgs e) {
+            antwortBild = null;
         }
     }
 }

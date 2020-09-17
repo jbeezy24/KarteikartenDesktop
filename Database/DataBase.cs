@@ -211,15 +211,15 @@ namespace KarteikartenDesktop
                 {
                     if (antwortBild != null)
                     {
-                        CreateQuestion(antwortText, antwortBild);
+                        CreateAnswer(antwortText, antwortBild);
                     }
                     else
                     {
                         // derzeitiges Bild in die Frage speichern
-                        CreateQuestion(antwortText, GetQuestionPicture(karteikarte.AntwortID));
+                        CreateAnswer(antwortText, GetAnswerPicture(karteikarte.AntwortID));
                     }
 
-                    RemoveQuestion(karteikarte.AntwortID);
+                    RemoveAnswer(karteikarte.AntwortID);
 
                     SetAllAntwort();
                     antwort = AllAntwort[AllAntwort.Count - 1];
@@ -227,9 +227,9 @@ namespace KarteikartenDesktop
                 else if (antwortBild != null)
                 {
                     // neuen Fragetext nicht setzen, es hat sich nur das Bild geändert
-                    CreateQuestion(GetQuestion(karteikarte.AntwortID).Text, antwortBild);
+                    CreateAnswer(GetAnswer(karteikarte.AntwortID).Text, antwortBild);
 
-                    RemoveQuestion(karteikarte.AntwortID);
+                    RemoveAnswer(karteikarte.AntwortID);
 
                     SetAllAntwort();
                     antwort = AllAntwort[AllAntwort.Count - 1];
