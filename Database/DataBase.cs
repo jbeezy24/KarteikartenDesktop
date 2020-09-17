@@ -168,8 +168,8 @@ namespace KarteikartenDesktop
         /// <param name="themaID">ThemenID</param>
         /// <param name="frageID">FrageID</param>
         /// <param name="antwortID">AntwortID</param>
-        public void ChangeRecordCard(Karteikarten karteikarte, int? themaID = null, int? frageID = null, int? antwortID = null, int? intervallID = null, DateTime? letzteAbfrage = null)
-        {
+        public void ChangeRecordCard(Karteikarten karteikarte, int? themaID = null, string frageText = null, string antwortText = null, Bitmap frageBild = null, string fachName = null, Bitmap antwortBild = null,
+            int? intervallID = null, DateTime? letzteAbfrage = null) {
             try
             {
                 SQLiteCommand command = this.connection.CreateCommand();
@@ -177,12 +177,71 @@ namespace KarteikartenDesktop
                 parameterThemaID.Value = themaID == null ? karteikarte.ThemaID : themaID;
                 command.Parameters.Add(parameterThemaID);
 
+                var frage = GetQuestion(karteikarte.FrageID);
+                var antwort = GetAnswer(karteikarte.AntwortID);
+
+                // bearbeiten der Frage, bedeutet: Frage mit derzeitige FrageID löschen, neue Frage erstellen, letzte erstellte Frage auslesen
+                if (frageText != null)
+                {
+                    if (frageBild != null)
+                    {
+                        CreateQuestion(frageText, frageBild);
+                    } else
+                    {
+                        // derzeitiges Bild in die Frage speichern
+                        CreateQuestion(frageText, GetQuestionPicture(karteikarte.FrageID));
+                    }
+
+                    RemoveQuestion(karteikarte.FrageID);
+
+                    SetAllFrage();
+                    frage = AllFrage[AllFrage.Count - 1];
+                } else if (frageBild != null)
+                {
+                    // neuen Fragetext nicht setzen, es hat sich nur das Bild geändert
+                    CreateQuestion(GetQuestion(karteikarte.FrageID).Text, frageBild);
+
+                    RemoveQuestion(karteikarte.FrageID);
+                    SetAllFrage();
+                    frage = AllFrage[AllFrage.Count - 1];
+                }
+
+                // bearbeiten der Frage, bedeutet: Frage mit derzeitige FrageID löschen, neue Frage erstellen, letzte erstellte Frage auslesen
+                if (antwortText != null)
+                {
+                    if (antwortBild != null)
+                    {
+                        CreateQuestion(antwortText, antwortBild);
+                    }
+                    else
+                    {
+                        // derzeitiges Bild in die Frage speichern
+                        CreateQuestion(antwortText, GetQuestionPicture(karteikarte.AntwortID));
+                    }
+
+                    RemoveQuestion(karteikarte.AntwortID);
+
+                    SetAllAntwort();
+                    antwort = AllAntwort[AllAntwort.Count - 1];
+                }
+                else if (antwortBild != null)
+                {
+                    // neuen Fragetext nicht setzen, es hat sich nur das Bild geändert
+                    CreateQuestion(GetQuestion(karteikarte.AntwortID).Text, antwortBild);
+
+                    RemoveQuestion(karteikarte.AntwortID);
+
+                    SetAllAntwort();
+                    antwort = AllAntwort[AllAntwort.Count - 1];
+                }
+
+
                 SQLiteParameter parameterFrageID = new SQLiteParameter("@1", DbType.Int32);
-                parameterFrageID.Value = frageID == null ? karteikarte.FrageID : frageID;
+                parameterFrageID.Value = frage.FrageID;
                 command.Parameters.Add(parameterFrageID);
 
                 SQLiteParameter parameterAntwortID = new SQLiteParameter("@2", DbType.Int32);
-                parameterAntwortID.Value = antwortID == null ? karteikarte.AntwortID : antwortID;
+                parameterAntwortID.Value = antwort.AntwortID;
                 command.Parameters.Add(parameterAntwortID);
 
                 SQLiteParameter parameterIntervallID = new SQLiteParameter("@3", DbType.Int32);
