@@ -23,18 +23,19 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(KartenExport));
             this.panel1 = new System.Windows.Forms.Panel();
             this.buttonAbort = new System.Windows.Forms.Button();
             this.buttonUpload = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.ColumnCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.ColumnID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnTopic = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnQuestion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -109,6 +110,34 @@
             this.dataGridView1.Size = new System.Drawing.Size(800, 352);
             this.dataGridView1.TabIndex = 0;
             // 
+            // ColumnCheck
+            // 
+            this.ColumnCheck.FillWeight = 20F;
+            this.ColumnCheck.HeaderText = "";
+            this.ColumnCheck.Name = "ColumnCheck";
+            // 
+            // ColumnID
+            // 
+            this.ColumnID.FillWeight = 21.70743F;
+            this.ColumnID.HeaderText = "ID";
+            this.ColumnID.Name = "ColumnID";
+            this.ColumnID.ReadOnly = true;
+            this.ColumnID.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // ColumnTopic
+            // 
+            this.ColumnTopic.FillWeight = 108.5371F;
+            this.ColumnTopic.HeaderText = "Thema";
+            this.ColumnTopic.Name = "ColumnTopic";
+            this.ColumnTopic.ReadOnly = true;
+            // 
+            // ColumnQuestion
+            // 
+            this.ColumnQuestion.FillWeight = 108.5371F;
+            this.ColumnQuestion.HeaderText = "Frage";
+            this.ColumnQuestion.Name = "ColumnQuestion";
+            this.ColumnQuestion.ReadOnly = true;
+            // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
@@ -138,34 +167,6 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "Fach:";
             // 
-            // ColumnCheck
-            // 
-            this.ColumnCheck.FillWeight = 20F;
-            this.ColumnCheck.HeaderText = "";
-            this.ColumnCheck.Name = "ColumnCheck";
-            // 
-            // ColumnID
-            // 
-            this.ColumnID.FillWeight = 21.70743F;
-            this.ColumnID.HeaderText = "ID";
-            this.ColumnID.Name = "ColumnID";
-            this.ColumnID.ReadOnly = true;
-            this.ColumnID.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // ColumnTopic
-            // 
-            this.ColumnTopic.FillWeight = 108.5371F;
-            this.ColumnTopic.HeaderText = "Thema";
-            this.ColumnTopic.Name = "ColumnTopic";
-            this.ColumnTopic.ReadOnly = true;
-            // 
-            // ColumnQuestion
-            // 
-            this.ColumnQuestion.FillWeight = 108.5371F;
-            this.ColumnQuestion.HeaderText = "Frage";
-            this.ColumnQuestion.Name = "ColumnQuestion";
-            this.ColumnQuestion.ReadOnly = true;
-            // 
             // KartenExport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -176,6 +177,7 @@
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "KartenExport";
             this.Text = "KartenExport";
             this.panel1.ResumeLayout(false);

@@ -25,7 +25,6 @@ namespace KarteikartenDesktop {
         }
 
         public void KartenErstellen1(DataBase db, KarteikartenHelper karte) {
-            InitializeComponent();
             bearbeiteteKarte = karte;
             this.Text = "Karte Bearbeiten";
             this.database = db;

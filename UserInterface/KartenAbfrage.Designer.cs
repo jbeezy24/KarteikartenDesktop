@@ -374,6 +374,7 @@
             this.Controls.Add(this.runderButtonZurück);
             this.Controls.Add(this.panelFrage);
             this.Controls.Add(this.runderButton1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "KartenAbfrage";
             this.Text = "KartenAbfrage";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.KartenAbfrage_FormClosing);

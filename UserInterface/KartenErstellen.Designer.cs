@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(KartenErstellen));
             this.buttonOK = new System.Windows.Forms.Button();
             this.buttonAbort = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -316,6 +317,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonAbort);
             this.Controls.Add(this.buttonOK);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "KartenErstellen";
             this.Text = "Karten Erstellen";
             this.panel1.ResumeLayout(false);
