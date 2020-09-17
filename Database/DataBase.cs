@@ -637,7 +637,7 @@ namespace KarteikartenDesktop
         public Antwort GetAnswer(int antwortID)
         {
             Antwort antwort = new Antwort();
-            string query = "SELECT Text FROM Antwort WHERE AntwortID='" + antwortID + "';";
+            string query = "SELECT * FROM Antwort WHERE AntwortID='" + antwortID + "';";
             SQLiteCommand command = new SQLiteCommand(query, this.connection);
             try
             {
@@ -650,7 +650,8 @@ namespace KarteikartenDesktop
                         var bildID = dataReader["BildID"];
 
                         antwort.Text = text.ToString();
-                        antwort.BildID = Convert.ToInt32(bildID);
+                        antwort.BildID = bildID.GetType() == typeof(DBNull) ? 0 : Convert.ToInt32(bildID);
+                        antwort.AntwortID = antwortID;
                         return antwort;
                     }
                 }
@@ -832,7 +833,7 @@ namespace KarteikartenDesktop
         public Frage GetQuestion(int frageID)
         {
             Frage frage = new Frage();
-            string query = "SELECT Text FROM Frage WHERE FrageID='" + frageID + "';";
+            string query = "SELECT * FROM Frage WHERE FrageID='" + frageID + "';";
             SQLiteCommand command = new SQLiteCommand(query, this.connection);
             try
             {
@@ -845,7 +846,8 @@ namespace KarteikartenDesktop
                         var bildID = dataReader["BildID"];
 
                         frage.Text = text.ToString();
-                        frage.BildID = Convert.ToInt32(bildID);
+                        frage.BildID = bildID.GetType() == typeof(DBNull) ? 0 : Convert.ToInt32(bildID);
+                        frage.FrageID = frageID;
                         return frage;
                     }
                 }
