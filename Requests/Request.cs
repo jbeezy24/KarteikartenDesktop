@@ -189,6 +189,7 @@ namespace KarteikartenDesktop
             Thema thema = new Thema();
             thema.Name = karteikartenHelper.Thema;
             thema.ThemaID = karteikartenHelper.ThemaID;
+            thema.FachID = fach.FachID;
             themas.Add(thema);
 
             List<Bild> bilder = new List<Bild>();
