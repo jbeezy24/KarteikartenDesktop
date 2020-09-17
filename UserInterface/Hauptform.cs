@@ -150,6 +150,8 @@ namespace KarteikartenDesktop {
         List<Panel> panelList = new List<Panel>();
 
         private void Hauptform_VisibleChanged(object sender, EventArgs e) {
+            List<KarteikartenHelper> karteikartenAbgelaufen = new List<KarteikartenHelper>();
+
             foreach (var view in viewList) {
                 view.Rows.Clear();
             }
@@ -196,7 +198,6 @@ namespace KarteikartenDesktop {
                 for (int i = 0; i < 5; i++) {
                     panelList[i].Size = new Size(Width, 22 * (1 + viewList[i].Rows.Count));
                 }
-
             }
         }
 
@@ -245,6 +246,34 @@ namespace KarteikartenDesktop {
         {
             Benutzereinstellung benutzereinstellung = new Benutzereinstellung(database);
             benutzereinstellung.ShowDialog();
+        }
+
+        private void Hauptform_Shown(object sender, EventArgs e)
+        {
+            List<KarteikartenHelper> karteikartenAbgelaufen = new List<KarteikartenHelper>();
+            var AktuelleKarteikarten = database.GetAllKarteikarten();
+            foreach (var Karte in AktuelleKarteikarten)
+            {
+                var timeNow = DateTime.Now;
+                var dateTimeLate = Karte.LetzteAbfrage;
+                var differenceDate = timeNow - dateTimeLate;
+
+                if (differenceDate.Days > Karte.Intervall)
+                {
+                    karteikartenAbgelaufen.Add(Karte);
+                }
+            }         
+
+            if (karteikartenAbgelaufen.Count > 0)
+            {
+                if (MessageBox.Show("Einige Karten sind vom Intervall abgelaufen. Möchten Sie diese aufrufen?", "Karteikarten", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    this.Visible = false;
+                    KartenAbfrage kartenAbfrage = new KartenAbfrage(karteikartenAbgelaufen, database);
+                    kartenAbfrage.ShowDialog();
+                    this.Visible = true;
+                }
+            }
         }
     }
 }
