@@ -168,7 +168,7 @@ namespace KarteikartenDesktop
         /// <param name="themaID">ThemenID</param>
         /// <param name="frageID">FrageID</param>
         /// <param name="antwortID">AntwortID</param>
-        public void ChangeRecordCard(Karteikarten karteikarte, int? themaID = null, string frageText = null, string antwortText = null, Bitmap frageBild = null, string fachName = null, Bitmap antwortBild = null,
+        public void ChangeRecordCard(Karteikarten karteikarte, int? themaID = null, string frageText = null, string antwortText = null, Bitmap frageBild = null, Bitmap antwortBild = null,
             int? intervallID = null, DateTime? letzteAbfrage = null) {
             try
             {
