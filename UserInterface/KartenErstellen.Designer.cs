@@ -263,7 +263,7 @@
             // 
             // runderButton3
             // 
-            this.runderButton3.BackColor = System.Drawing.Color.Crimson;
+            this.runderButton3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(24)))), ((int)(((byte)(24)))));
             this.runderButton3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.runderButton3.Font = new System.Drawing.Font("Georgia", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.runderButton3.Location = new System.Drawing.Point(644, 330);
@@ -278,7 +278,7 @@
             // 
             // runderButton4
             // 
-            this.runderButton4.BackColor = System.Drawing.Color.Crimson;
+            this.runderButton4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(24)))), ((int)(((byte)(24)))));
             this.runderButton4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.runderButton4.Font = new System.Drawing.Font("Georgia", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.runderButton4.Location = new System.Drawing.Point(644, 190);
