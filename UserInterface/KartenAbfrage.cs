@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KarteikartenDesktop.Database;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,7 +22,7 @@ namespace KarteikartenDesktop {
         DataBase database;
 
         private void KartenAbfrage_FormClosing(object sender, FormClosingEventArgs e) {
-
+            
         }
 
         private void runderButton1_Click(object sender, EventArgs e) {
@@ -112,40 +113,25 @@ namespace KarteikartenDesktop {
             if (this.karte != null)
             {
                 var id = this.karten.FindIndex(x => x == this.karte);
-                if (id > -1)
-                {
+                if (id > -1) {
                     this.karten.RemoveAt(id);
                 }
-
-                // Intervall um eins erhöhen!
-                // Prüfen ob wir nicht in den unendlichen Intervall rennen
-                database.SetAllIntervall();
-                var intervall = database.AllIntervall;
-
-                for (int i = intervall.Count - 1; i < 4; i++)
-                    intervall.RemoveAt(i);
-
-                // wenn Karte quasi Intervall 4 ist (unendlich) und auf Ja gedrückt wurde, wird auf Intervall 2 gesetzt
-                if (this.karte.Intervall == intervall[intervall.Count - 1].Dauer)
-                {
-                    this.karte.Intervall = intervall[1].Dauer;
-                }
-
-                // Intervall ist Tag in Dauer, daher wert suchen, Intervall ID bestimmen
-                var newIntervall = intervall.Where(x => x.Dauer == this.karte.Intervall).FirstOrDefault();
-                if (newIntervall != null)
-                {
-                    if (newIntervall.Dauer < intervall[intervall.Count - 1].Dauer)
-                    {
-                        var newID = newIntervall.IntervallID + 1;
-                        var intervallDauer = intervall.Where(x => x.IntervallID == newID).FirstOrDefault();
-
-                        if (intervallDauer != null)
-                        {
-                            database.ChangeRecordCard(database.GetRecordCard(this.karte.KartenID), intervallID: intervallDauer.IntervallID, letzteAbfrage: DateTime.Now);
+                var karte = database.GetRecordCard(this.karte.KartenID);
+                switch(karte.IntervallID) {
+                    case 5: {
+                            database.ChangeRecordCard(karte, intervallID: 2, letzteAbfrage: DateTime.Now);
+                            break;
                         }
+                    case 4: {
+                            database.ChangeRecordCard(karte, intervallID: 4, letzteAbfrage: DateTime.Now);
+                            break;
+                        }
+                    default: {
+                            database.ChangeRecordCard(karte, intervallID: karte.IntervallID + 1, letzteAbfrage: DateTime.Now);
+                            break;
                     }
                 }
+
 
                 // Panel "Antwort" invisible
                 panelLayover.Visible = false;
@@ -170,14 +156,10 @@ namespace KarteikartenDesktop {
                 database.SetAllIntervall();
                 var intervall = database.AllIntervall;
 
-                if (this.karte.Intervall == intervall[intervall.Count - 1].Dauer)
-                {
-                    this.karte.Intervall = 1;
-                }
-
-                // wenn noch nicht im letzten Intervall dann um eins höher setzen
-                database.ChangeRecordCard(database.GetRecordCard(this.karte.KartenID), intervallID: 1, letzteAbfrage: DateTime.Now);
-
+                var karte = database.GetRecordCard(this.karte.KartenID);
+                   
+                database.ChangeRecordCard(karte, intervallID: 1, letzteAbfrage: DateTime.Now);
+                           
                 // Panel "Antwort" invisible
                 panelLayover.Visible = false;
 
@@ -201,7 +183,9 @@ namespace KarteikartenDesktop {
                 database.SetAllIntervall();
                 var intervall = database.AllIntervall;
 
-                database.ChangeRecordCard(database.GetRecordCard(this.karte.KartenID), intervallID: intervall[intervall.Count - 1].IntervallID, letzteAbfrage: DateTime.Now);
+                var karte = database.GetRecordCard(this.karte.KartenID);
+
+                database.ChangeRecordCard(karte, intervallID: 5, letzteAbfrage: DateTime.Now);
 
                 // Panel "Antwort" invisible
                 panelLayover.Visible = false;

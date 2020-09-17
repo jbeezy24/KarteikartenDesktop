@@ -2,3 +2,10 @@
 FOREIGN KEY constraint failed
 [17.09.2020 11:12:45] RemoveAnswer: constraint failed
 FOREIGN KEY constraint failed
+[17.09.2020 11:49:47] ImportFaecher: Der Remoteserver hat einen Fehler zurückgegeben: (403) Unzulässig.
+[17.09.2020 11:59:07] RemovePicture: constraint failed
+FOREIGN KEY constraint failed
+[17.09.2020 11:59:07] RemoveAnswer: constraint failed
+FOREIGN KEY constraint failed
+[17.09.2020 11:59:07] RemoveQuestion: constraint failed
+FOREIGN KEY constraint failed
