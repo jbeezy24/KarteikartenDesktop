@@ -21,10 +21,6 @@ namespace KarteikartenDesktop {
         List<KarteikartenHelper> karten = new List<KarteikartenHelper>();
         DataBase database;
 
-        private void KartenAbfrage_FormClosing(object sender, FormClosingEventArgs e) {
-            
-        }
-
         private void runderButton1_Click(object sender, EventArgs e) {
             panelLayover.Visible = true;
         }

@@ -377,7 +377,6 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "KartenAbfrage";
             this.Text = "KartenAbfrage";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.KartenAbfrage_FormClosing);
             this.Load += new System.EventHandler(this.KartenAbfrage_Load);
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.KartenAbfrage_MouseClick);
             this.panelFrage.ResumeLayout(false);
