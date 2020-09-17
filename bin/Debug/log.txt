@@ -1,0 +1,4 @@
+[17.09.2020 11:12:45] RemoveQuestion: constraint failed
+FOREIGN KEY constraint failed
+[17.09.2020 11:12:45] RemoveAnswer: constraint failed
+FOREIGN KEY constraint failed

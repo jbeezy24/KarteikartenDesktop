@@ -122,7 +122,7 @@ namespace KarteikartenDesktop {
                 database.SetAllIntervall();
                 var intervall = database.AllIntervall;
 
-                for (int i = intervall.Count - 1; i <= 4; i++)
+                for (int i = intervall.Count - 1; i < 4; i++)
                     intervall.RemoveAt(i);
 
                 // wenn Karte quasi Intervall 4 ist (unendlich) und auf Ja gedrückt wurde, wird auf Intervall 2 gesetzt
