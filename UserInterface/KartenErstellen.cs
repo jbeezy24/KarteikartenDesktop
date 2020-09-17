@@ -24,18 +24,11 @@ namespace KarteikartenDesktop {
             }
         }
 
-        public KartenErstellen(DataBase db, KarteikartenHelper karte) {
+        public void KartenErstellen1(DataBase db, KarteikartenHelper karte) {
             InitializeComponent();
             bearbeiteteKarte = karte;
             this.Text = "Karte Bearbeiten";
             this.database = db;
-
-            db.SetAllFach();
-            fachlist = db.AllFach;
-
-            foreach (var fach in fachlist) {
-                comboBox1.Items.Add(fach.Name);
-            }
 
             //Laden der Daten aus Karte
             comboBox1.Text = karte.Fachname;

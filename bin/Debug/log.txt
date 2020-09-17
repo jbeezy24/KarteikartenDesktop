@@ -80,3 +80,11 @@ Parametername: index
 Parametername: index
 [17.09.2020 10:10:06] ImportFaecher: Der Index lag außerhalb des Bereichs. Er darf nicht negativ und kleiner als die Sammlung sein.
 Parametername: index
+[17.09.2020 10:25:17] GetAllKarteikarten 6: SQL logic error
+near "Bild": syntax error
+[17.09.2020 10:25:20] GetAllKarteikarten 6: SQL logic error
+near "Bild": syntax error
+[17.09.2020 10:25:20] GetAllKarteikarten 6: SQL logic error
+near "Bild": syntax error
+[17.09.2020 10:25:25] GetAllKarteikarten 6: SQL logic error
+near "Bild": syntax error

@@ -273,7 +273,8 @@ namespace KarteikartenDesktop {
         private void buttonKarteBearbeiten_Click(object sender, EventArgs e) {
             singlecheckedcard = new KarteikartenHelper();
             if (checkEditButtonAviable()) {
-                KartenErstellen erstellen = new KartenErstellen(database, singlecheckedcard);
+                KartenErstellen erstellen = new KartenErstellen(database);
+                erstellen.KartenErstellen1(database, singlecheckedcard);
                 this.Visible = false;
                 if (erstellen.ShowDialog() == DialogResult.OK) {
 
