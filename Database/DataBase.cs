@@ -1621,7 +1621,6 @@ namespace KarteikartenDesktop
         private List<Karteikarten> allKarteikarten = new List<Karteikarten>();
         private List<UserSettings> allUserSettings = new List<UserSettings>();
         private List<Thema> allThema = new List<Thema>();
-        private List<Klasse> allKlasse = new List<Klasse>();
         private List<Intervall> allIntervall = new List<Intervall>();
         private List<Frage> allFrage = new List<Frage>();
         private List<Fach> allFach = new List<Fach>();
