@@ -1208,10 +1208,12 @@ namespace KarteikartenDesktop
                         var username = dataReader["Benutzername"];
                         var password = dataReader["Passwort"];
                         var autoLogin = dataReader["AutoLogin"];
+                        var settingsID = dataReader["SettingsID"];
 
                         userSettings.Benutzername = username.ToString();
                         userSettings.Passwort = password.ToString();
                         userSettings.AutoLogin = Convert.ToInt32(autoLogin) == 1 ? true : false;
+                        userSettings.SettingsID = Convert.ToInt32(settingsID);
                         this.allUserSettings.Add(userSettings);
                     }
                 }

@@ -62,3 +62,29 @@ FOREIGN KEY constraint failed
 FOREIGN KEY constraint failed
 [17.09.2020 11:46:17] RemoveQuestion: constraint failed
 FOREIGN KEY constraint failed
+[17.09.2020 13:21:59] removeTable: SQL logic error
+no such table: Bild
+[17.09.2020 13:21:59] removeTable: SQL logic error
+no such table: Intervall
+[17.09.2020 13:21:59] removeTable: SQL logic error
+no such table: Frage
+[17.09.2020 13:21:59] removeTable: SQL logic error
+no such table: Antwort
+[17.09.2020 13:21:59] removeTable: SQL logic error
+no such table: Fach
+[17.09.2020 13:21:59] removeTable: SQL logic error
+no such table: Thema
+[17.09.2020 13:21:59] removeTable: SQL logic error
+no such table: UserSettings
+[17.09.2020 13:21:59] removeTable: SQL logic error
+no such table: Karteikarten
+[08.10.2020 09:12:12] RemoveAnswer: constraint failed
+FOREIGN KEY constraint failed
+[08.10.2020 09:12:12] RemoveQuestion: constraint failed
+FOREIGN KEY constraint failed
+[08.10.2020 09:12:12] RemoveAnswer: constraint failed
+FOREIGN KEY constraint failed
+[08.10.2020 09:12:12] RemoveQuestion: constraint failed
+FOREIGN KEY constraint failed
+[08.10.2020 09:13:15] Der Remoteserver hat einen Fehler zurückgegeben: (500) Interner Serverfehler.
+[08.10.2020 09:13:35] Der Remoteserver hat einen Fehler zurückgegeben: (500) Interner Serverfehler.
