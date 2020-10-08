@@ -113,3 +113,95 @@ FOREIGN KEY constraint failed
 FOREIGN KEY constraint failed
 [08.10.2020 10:45:44] RemoveAnswer: constraint failed
 FOREIGN KEY constraint failed
+[08.10.2020 11:03:33] RemovePicture: constraint failed
+FOREIGN KEY constraint failed
+[08.10.2020 11:03:33] RemoveAnswer: constraint failed
+FOREIGN KEY constraint failed
+[08.10.2020 11:03:33] RemoveQuestion: constraint failed
+FOREIGN KEY constraint failed
+[08.10.2020 11:04:11] Der Remoteserver hat einen Fehler zurückgegeben: (500) Interner Serverfehler.
+[08.10.2020 11:06:49] RemovePicture: constraint failed
+FOREIGN KEY constraint failed
+[08.10.2020 11:06:49] RemoveAnswer: constraint failed
+FOREIGN KEY constraint failed
+[08.10.2020 11:06:49] RemoveQuestion: constraint failed
+FOREIGN KEY constraint failed
+[08.10.2020 11:07:42] RemovePicture: constraint failed
+FOREIGN KEY constraint failed
+[08.10.2020 11:07:42] RemoveAnswer: constraint failed
+FOREIGN KEY constraint failed
+[08.10.2020 11:07:42] RemoveQuestion: constraint failed
+FOREIGN KEY constraint failed
+[08.10.2020 11:12:18] RemovePicture: constraint failed
+FOREIGN KEY constraint failed
+[08.10.2020 11:12:18] RemoveAnswer: constraint failed
+FOREIGN KEY constraint failed
+[08.10.2020 11:12:18] RemoveQuestion: constraint failed
+FOREIGN KEY constraint failed
+[08.10.2020 11:12:33] Der Remoteserver hat einen Fehler zurückgegeben: (500) Interner Serverfehler.
+[08.10.2020 11:17:24] RemoveAnswer: constraint failed
+FOREIGN KEY constraint failed
+[08.10.2020 11:17:24] RemoveQuestion: constraint failed
+FOREIGN KEY constraint failed
+[08.10.2020 11:21:56] RemoveAnswer: constraint failed
+FOREIGN KEY constraint failed
+[08.10.2020 11:21:56] RemoveQuestion: constraint failed
+FOREIGN KEY constraint failed
+[08.10.2020 11:22:30] RemoveAnswer: constraint failed
+FOREIGN KEY constraint failed
+[08.10.2020 11:22:30] RemoveQuestion: constraint failed
+FOREIGN KEY constraint failed
+[08.10.2020 11:23:07] RemoveAnswer: constraint failed
+FOREIGN KEY constraint failed
+[08.10.2020 11:23:07] RemoveQuestion: constraint failed
+FOREIGN KEY constraint failed
+[08.10.2020 11:24:53] RemoveAnswer: constraint failed
+FOREIGN KEY constraint failed
+[08.10.2020 11:24:53] RemoveQuestion: constraint failed
+FOREIGN KEY constraint failed
+[08.10.2020 11:29:03] RemovePicture: constraint failed
+FOREIGN KEY constraint failed
+[08.10.2020 11:29:03] RemoveAnswer: constraint failed
+FOREIGN KEY constraint failed
+[08.10.2020 11:29:03] RemoveQuestion: constraint failed
+FOREIGN KEY constraint failed
+[08.10.2020 11:31:14] RemoveAnswer: constraint failed
+FOREIGN KEY constraint failed
+[08.10.2020 11:31:14] RemoveQuestion: constraint failed
+FOREIGN KEY constraint failed
+[08.10.2020 11:31:41] RemoveAnswer: constraint failed
+FOREIGN KEY constraint failed
+[08.10.2020 11:31:41] RemoveQuestion: constraint failed
+FOREIGN KEY constraint failed
+[08.10.2020 11:39:44] RemoveAnswer: constraint failed
+FOREIGN KEY constraint failed
+[08.10.2020 11:39:44] RemoveQuestion: constraint failed
+FOREIGN KEY constraint failed
+[08.10.2020 11:39:44] RemovePicture: constraint failed
+FOREIGN KEY constraint failed
+[08.10.2020 11:39:44] RemoveAnswer: constraint failed
+FOREIGN KEY constraint failed
+[08.10.2020 11:39:44] RemoveQuestion: constraint failed
+FOREIGN KEY constraint failed
+[08.10.2020 11:39:45] RemovePicture: constraint failed
+FOREIGN KEY constraint failed
+[08.10.2020 11:39:45] RemoveAnswer: constraint failed
+FOREIGN KEY constraint failed
+[08.10.2020 11:39:45] RemoveQuestion: constraint failed
+FOREIGN KEY constraint failed
+[08.10.2020 11:41:10] removeTable: SQL logic error
+no such table: Bild
+[08.10.2020 11:41:10] removeTable: SQL logic error
+no such table: Intervall
+[08.10.2020 11:41:10] removeTable: SQL logic error
+no such table: Frage
+[08.10.2020 11:41:10] removeTable: SQL logic error
+no such table: Antwort
+[08.10.2020 11:41:10] removeTable: SQL logic error
+no such table: Fach
+[08.10.2020 11:41:10] removeTable: SQL logic error
+no such table: Thema
+[08.10.2020 11:41:10] removeTable: SQL logic error
+no such table: UserSettings
+[08.10.2020 11:41:10] removeTable: SQL logic error
+no such table: Karteikarten
