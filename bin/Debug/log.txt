@@ -107,3 +107,9 @@ FOREIGN KEY constraint failed
 [08.10.2020 10:30:45] Der Remoteserver hat einen Fehler zurückgegeben: (500) Interner Serverfehler.
 [08.10.2020 10:39:51] Der Remoteserver hat einen Fehler zurückgegeben: (500) Interner Serverfehler.
 [08.10.2020 10:40:30] Der Objektverweis wurde nicht auf eine Objektinstanz festgelegt.
+[08.10.2020 10:45:44] RemoveQuestion: constraint failed
+FOREIGN KEY constraint failed
+[08.10.2020 10:45:44] RemovePicture: constraint failed
+FOREIGN KEY constraint failed
+[08.10.2020 10:45:44] RemoveAnswer: constraint failed
+FOREIGN KEY constraint failed
