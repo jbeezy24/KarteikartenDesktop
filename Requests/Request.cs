@@ -82,7 +82,7 @@ namespace KarteikartenDesktop
                     helper.Antwort = exportObject.Karteikarten[i].Antwort;
 
                     // Bild und Antwort müssen konvertiert werden
-                    if (exportObject.Karteikarten[i].BildAntwort.GetType() == typeof(JArray))
+                    if (exportObject.Karteikarten[i].BildAntwort?.GetType() == typeof(JArray))
                     {
                         var array = exportObject.Karteikarten[i].BildAntwort as JArray;
                         int[] bitmapArray = array.Select(jv => (int)jv).ToArray();
@@ -93,7 +93,7 @@ namespace KarteikartenDesktop
                     else
                         helper.AntwortBild = null;
 
-                    if (exportObject.Karteikarten[i].BildFrage.GetType() == typeof(JArray))
+                    if (exportObject.Karteikarten[i].BildFrage?.GetType() == typeof(JArray))
                     {
                         var array = exportObject.Karteikarten[i].BildFrage as JArray;
                         int[] bitmapArray = array.Select(jv => (int)jv).ToArray();
@@ -254,10 +254,12 @@ namespace KarteikartenDesktop
                 {
                     streamWriter.Write(jsonString);
                 }
-            } catch (Exception ex) {
-                Logger.WriteLogfile("PostObject Request: " + ex.Message);            
             }
-                
+            catch (Exception ex)
+            {
+                Logger.WriteLogfile("PostObject Request: " + ex.Message);
+            }
+
             var response = webRequest.GetResponse();
             var responseStream = response.GetResponseStream();
             StreamReader reader = new StreamReader(responseStream);
