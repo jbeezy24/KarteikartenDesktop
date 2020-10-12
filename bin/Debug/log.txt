@@ -205,3 +205,31 @@ no such table: Thema
 no such table: UserSettings
 [08.10.2020 11:41:10] removeTable: SQL logic error
 no such table: Karteikarten
+[12.10.2020 18:48:09] RemovePicture: constraint failed
+FOREIGN KEY constraint failed
+[12.10.2020 18:48:09] RemoveAnswer: constraint failed
+FOREIGN KEY constraint failed
+[12.10.2020 18:48:09] RemoveQuestion: constraint failed
+FOREIGN KEY constraint failed
+[12.10.2020 18:48:09] RemoveAnswer: constraint failed
+FOREIGN KEY constraint failed
+[12.10.2020 18:48:09] RemoveQuestion: constraint failed
+FOREIGN KEY constraint failed
+[12.10.2020 18:48:09] RemovePicture: constraint failed
+FOREIGN KEY constraint failed
+[12.10.2020 18:48:09] RemoveAnswer: constraint failed
+FOREIGN KEY constraint failed
+[12.10.2020 18:48:09] RemoveQuestion: constraint failed
+FOREIGN KEY constraint failed
+[12.10.2020 18:48:09] RemovePicture: constraint failed
+FOREIGN KEY constraint failed
+[12.10.2020 18:48:09] RemoveAnswer: constraint failed
+FOREIGN KEY constraint failed
+[12.10.2020 18:48:09] RemoveQuestion: constraint failed
+FOREIGN KEY constraint failed
+[12.10.2020 18:48:13] RemovePicture: constraint failed
+FOREIGN KEY constraint failed
+[12.10.2020 18:48:13] RemoveAnswer: constraint failed
+FOREIGN KEY constraint failed
+[12.10.2020 18:48:13] RemoveQuestion: constraint failed
+FOREIGN KEY constraint failed
